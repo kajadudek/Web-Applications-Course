@@ -1,0 +1,33 @@
+.row {
+    display: flex;
+    width: 500px;
+    height: 70px;
+    color: rgba(0,0,0,0);
+}
+
+.red-flexbox {
+    background-color: red;
+    flex: 1;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    border: 2px;
+    border-style: solid;
+    border-color: black;
+}
+
+.blue-flexbox {
+    background-color: lightblue;
+    flex: 2;
+    margin-bottom: 10px;
+    border: 2px;
+    border-style: solid;
+    border-color: black;
+}
+
+.yellow-flexbox {
+    background-color: yellow;
+    flex: 1;
+    border: 2px;
+    border-style: solid;
+    border-color: black;
+}

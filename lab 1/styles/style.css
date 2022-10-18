@@ -1,0 +1,163 @@
+.first-p {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    font-weight: bold;
+
+    background-color: black;
+    color: white;
+
+    line-height: 30px;
+
+    width: 500px;
+    height: 100px;
+    overflow: auto;
+}
+
+.second-p {
+    padding: 20px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    
+    background-color: red;
+    color: lightpink;
+}
+
+.third-p {
+    font-size: 8px;
+    font-style: italic;
+    
+    color: rgb(32, 2, 61);
+
+    width: 300px;
+
+    padding: 10px;
+    border-color: black;
+    border-style: dashed;
+    border-radius: 30px;
+
+    margin-bottom: 130px;
+}
+
+.fourth-p {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular';
+    font-size: 13px;
+    font-weight: bold;
+    font-style: oblique;
+
+    width: 500px;
+    background-color: rgb(186, 184, 184);
+
+    padding-left: 30px;
+    padding-right: 30px;
+
+    margin-left: 150px;
+}
+
+.table-1 {
+    table-layout: fixed;
+    text-align: center;
+
+    width: 600px;
+    height: 200px;
+
+    color: rgba(0,0,0,0);
+
+    padding-bottom: 30px;
+}
+
+.table-row-1 {
+    background-color: rgb(6, 145, 192);
+    height: 50px;
+}
+
+.table-row-2 {
+    background-color: lightblue;
+}
+
+.table-row-3 {
+    background-color: rgb(188, 238, 255);
+}
+
+.table-row-4{
+    background-color: lightblue;
+}
+
+
+.table-2 {
+    table-layout: fixed;
+
+    width: 600px;
+    height: 200px;
+
+    color: rgb(166, 96, 96,0);
+    border-collapse: collapse;
+    border: 2px solid black;
+}
+
+.table-2-row-1 {
+    background-color: rgb(80, 80, 80);
+}
+
+.table-2-row-2, 
+.table-2-row-3 {
+    background-color: rgb(164, 164, 164);
+}
+
+
+.drawer {
+    border: 2px solid black;
+}
+
+.text-with-img {
+    margin-bottom: 100px;
+}
+
+.first-painting {
+    float: left;
+    width: 40%;
+}
+
+.second-painting {
+    float: right;
+    width: 40%;
+}
+
+.first-painting2 {
+    position: absolute;
+    height: 70%;
+    top: 100%;
+    left: 0;
+}
+
+.second-painting2 {
+    width: 30%;
+    position: relative;
+}
+
+.eu-countries {
+    position: relative;
+    top: 100px;
+    
+    background-color: blue;
+    color: white;
+    font-weight: 500;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    width: 250px;
+}
+
+.asian-countries {
+    position: relative;
+    bottom: 100px;
+    
+    background-color: red;
+    color: white;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    width: 250px;
+}

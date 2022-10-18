@@ -1,0 +1,164 @@
+.parent1 {
+    display: grid;
+    width: 900px;
+    grid-template-areas: 
+        'header header header header'
+        'main gallery loc contact'
+        'leftcol web web web'
+        'footer footer footer footer';
+    background-color: rgb(177, 177, 177);
+    padding: 30px;
+
+    margin-bottom: 40px;
+}
+
+.parent1 > div {
+    text-align: center;
+    padding-top: 25px;
+
+    border-style: solid;
+    border-color: black;
+
+    margin-bottom: -1px;
+    margin-right: -1px;
+}
+
+.header {
+    grid-area: header;
+    height: 90px;
+    
+    background-color: gray;
+}
+
+.logo {
+    position: absolute;
+    background-color: white;
+    width: 260px;
+    height: 20px;
+    top: 60px;
+    left: 55px;
+    padding-top: 30px;
+    border-style: solid;
+    border-color: black;
+
+}
+
+.main-site {
+    grid-area: main;
+    height: 50px;
+
+    font-weight: bold;
+
+    
+    background-color: rgb(211, 211, 211);
+}
+
+.gallery {
+    grid-area: gallery;
+    background-color: rgb(255, 255, 255);
+}
+
+.localization {
+    grid-area: loc;
+
+    font-weight: bold;
+    background-color: rgb(206, 206, 206);
+}
+
+.contact {
+    grid-area: contact;
+    background-color: rgb(255, 255, 255);
+}
+
+.left-col {
+    grid-area: leftcol;
+    height: 350px;
+    background-color: rgb(255, 255, 255);
+}
+
+.website {
+    grid-area: web;
+    background-color: rgb(255, 255, 255);
+}
+
+.footer {
+    grid-area: footer;
+    height: 40px;
+
+    background-color: gray;
+}
+
+.parent2 {
+    display: grid;
+    width: 700px;
+
+    grid-template: 
+    repeat(4, [row] minmax(120px, 1fr)) / repeat(3,[col] minmax(120px,1fr));
+
+
+    gap: 15px;
+    padding: 10px;
+
+}
+
+.parent2 > div {
+    background-color: rgb(236, 195, 58, 0.5);
+
+    border-style: solid;
+    border-radius: 5px;
+    border-color:rgb(214, 155, 67);
+    border-width: 3px;
+
+    padding: 7px;
+    color: rgb(193, 110, 15);
+}
+
+.one {
+    grid-area: one;
+    grid-column: col 1 / span 2;
+    grid-row: row 1;
+
+}
+
+.two {
+    grid-area: two;
+    grid-column: col 2/ span 2;
+    grid-row: row 1 / span 2;
+
+}
+
+.three {
+    grid-area: three;
+
+    grid-column: col 1 / span 1;
+    grid-row: row 2 / span 3;
+}
+
+.four {
+    grid-area: four;
+
+    grid-column: col 3 / span 1;
+    grid-row: row 3;
+}
+
+.five {
+    grid-area: five;
+
+    grid-column: col 2 / span 1;
+    grid-row: row 4;
+}
+
+.six {
+    grid-area: six;
+
+    grid-column: col 3 / span 1;
+    grid-row: row 4;
+}
+
+/* p:nth-child(2) {
+    color: red;
+}
+
+li:nth-child(odd) {
+    color:rgb(193, 110, 15)  - takie kolorowanie co drugi elem posrod elementow listy (li)
+} */

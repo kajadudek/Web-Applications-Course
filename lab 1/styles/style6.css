@@ -1,0 +1,32 @@
+.menu {
+    display: flex;
+    flex-direction: row;
+    
+    border: 1px;
+    border-style: solid;
+}
+
+
+.left-section {
+    flex: 3;
+    background-color: lightblue;
+
+    display: flex;
+    align-items: center;
+}
+
+.left-section > div,
+.right-section > div {
+    width: fit-content;
+    height: 100%;
+
+    background-color: red;
+}
+
+.right-section {
+    flex: 1;
+    background-color: lightsalmon;
+
+    display: flex;
+    align-items:flex-start;
+}

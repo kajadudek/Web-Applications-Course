@@ -104,16 +104,22 @@ img {
     margin-top: 3px;
     }
 
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 1500px) {
     .parent {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
 
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1050px) {
     .parent {
         grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .parent {
+        grid-template-columns: 1fr 1fr;
     }
 }
 

@@ -1,0 +1,339 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.main-container {
+    padding: 15px;
+    
+    display: flex;
+    justify-content: center;
+
+    --shoe-color: rgb(43, 99, 255);
+}
+
+/* .shoe-card:has(.shoe-color>.colors>.color-1:hover) > .shoe-img{
+    --shoe-color: rgb(87, 45, 45);
+} */
+
+.shoe-card:has(.shoe-color>.checkboxes>.box#col-1:checked) {
+    --shoe-color: rgb(43, 99, 255);
+}
+
+.shoe-card:has(.shoe-color>.checkboxes>.box#col-1:checked)>.shoe-info >.shoe-color> .colors > .color-1 {
+    border: 4px solid rgb(255, 255, 255);
+    box-shadow: 0px 0px 3px 1px rgba(90, 90, 90, 0.3);
+}
+
+.shoe-card:has(.shoe-color>.checkboxes>.box#col-1:checked) > .shoe-img > .shoe-image {
+    filter: hue-rotate(0deg);
+    filter: grayscale(0%);
+}
+
+.shoe-card:has(.shoe-color>.checkboxes>.box#col-2:checked)  {
+    --shoe-color: rgb(211, 51, 30);
+}
+
+.shoe-card:has(.shoe-color>.checkboxes>.box#col-2:checked)>.shoe-info >.shoe-color> .colors > .color-2 {
+    border: 4px solid rgb(255, 255, 255);
+    box-shadow: 0px 0px 3px 1px rgba(90, 90, 90, 0.3);
+}
+
+.shoe-card:has(.shoe-color>.checkboxes>.box#col-2:checked) > .shoe-img > .shoe-image {
+    filter: hue-rotate(100deg);
+}
+
+.shoe-card:has(.shoe-color>.checkboxes>.box#col-3:checked)  {
+    --shoe-color: rgb(24, 185, 94);
+}
+
+.shoe-card:has(.shoe-color>.checkboxes>.box#col-3:checked)>.shoe-info >.shoe-color> .colors > .color-3 {
+    border: 4px solid rgb(255, 255, 255);
+    box-shadow: 0px 0px 3px 1px rgba(90, 90, 90, 0.3);
+}
+
+.shoe-card:has(.shoe-color>.checkboxes>.box#col-3:checked) > .shoe-img > .shoe-image {
+    filter: hue-rotate(210deg);
+}
+
+.shoe-card:has(.shoe-color>.checkboxes>.box#col-4:checked)  {
+    --shoe-color: black;
+}
+
+.shoe-card:has(.shoe-color>.checkboxes>.box#col-4:checked)>.shoe-info >.shoe-color> .colors > .color-4 {
+    border: 4px solid rgb(255, 255, 255);
+    box-shadow: 0px 0px 3px 1px rgba(90, 90, 90, 0.3);
+}
+
+.shoe-card:has(.shoe-color>.checkboxes>.box#col-4:checked) > .shoe-img > .shoe-image {
+    filter: grayscale(100%);
+}
+
+.shoe-card:has(.shoe-color>.checkboxes>.box#col-5:checked)  {
+    --shoe-color: rgb(153, 38, 99);
+}
+
+.shoe-card:has(.shoe-color>.checkboxes>.box#col-5:checked)>.shoe-info >.shoe-color> .colors > .color-5 {
+    border: 4px solid rgb(255, 255, 255);
+    box-shadow: 0px 0px 3px 1px rgba(90, 90, 90, 0.3);
+}
+
+.shoe-card:has(.shoe-color>.checkboxes>.box#col-5:checked) > .shoe-img > .shoe-image {
+    filter: hue-rotate(70deg);
+}
+
+.shoe-card {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+
+    width: 80vw;
+    height: 90vh;
+
+}
+
+.shoe-img {
+    position: relative;
+    width: 55%;
+    height: auto;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    background: var(--shoe-color) linear-gradient(to bottom left, rgb(255,255,255, 0.4), rgb(0,0,0,0.5));
+}
+
+.logo {
+    position: absolute;
+    width: 20%;
+    top: 20px;
+    left: 20px;
+}
+
+.shoe-image {
+    position: absolute;
+    right: 5px;
+    bottom: 3%;
+    width: 130%;
+    transform: rotate(-20deg);
+}
+
+.company-name {
+    text-transform: uppercase;
+    font-family:'Gill Sans', 'Gill Sans MT', sans-serif;
+    font-weight: 900;
+    width: 100%;
+
+    position: absolute;
+    top: 12vh;
+
+    font-size: 15vw;
+    text-align: center;
+    color: rgb(255,255,255,0.3);
+
+    margin: 0;
+}
+
+.shoe-info {
+    display: flex;
+    flex-direction: column;
+
+    width: 45%;
+    background-color: white;
+    padding: 35px;
+
+    justify-content: space-between;
+
+    box-shadow: 0px 0px 15px 2px rgb(155, 155, 155);
+}
+
+.shoe-name {
+    display: grid;
+    grid-template-areas: 
+        "a a b"
+        "c c c";
+
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.shoe-title {
+    grid-area: a;
+    font-family: 'Franklin Gothic Medium';
+    font-size: calc(17px + 1.5vw);
+    font-weight: bold;
+}
+
+.new-button {
+    grid-area: b;
+
+    background-color: var(--shoe-color);
+    border-radius: 3px;
+    width: 50px;
+    height: 25px;
+
+    color: white;
+    font-size: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.shoe-type {
+    grid-area: c;
+
+    margin-top: 0px;
+    font-size: calc(10px + 1vw);
+}
+
+.shoe-info-section, 
+.shoe-color, 
+.shoe-size {
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.product-info-header,
+.color-header,
+.size-header {
+    text-transform: uppercase;
+    font-weight: bold;
+
+    font-size: calc(14px + 0.3vw);
+    margin-bottom: 3px;
+}
+
+.shoe-description {
+    color: rgb(94, 94, 94);
+    font-family: 'Roboto', sans-serif;
+    font-size: calc(10px + 0.5vw);
+    line-height: 22px;
+
+    margin-top: 0px;
+}
+
+.colors {
+    display: flex;
+    flex-direction: row;
+    gap: calc(20px + 0.2vw);
+    margin: 15px 15px;
+}
+
+.colors > button:hover {
+    border: 4px solid rgb(255, 255, 255);
+    box-shadow: 0px 0px 3px 1px rgba(90, 90, 90, 0.3);
+}
+
+
+.colors > button {
+    width: 20px;
+    height: 20px;
+
+    border-radius: 10px;
+    border: 0px;
+    cursor: pointer;
+}
+
+
+.checkboxes {
+    display: flex;
+    flex-direction: row;
+    gap: calc(12px + 0.2vw);
+    opacity: 0%;
+    position: absolute;
+    margin: 10px 13px;
+}
+
+.checkboxes > input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.sizes {
+    display: flex;
+    gap: calc(20px + 0.2vw);
+    margin: 13px 15px;
+}
+
+.sizes > button {
+    width: calc(30px + 0.5vw);
+    height: calc(30px + 0.5vw);
+
+    font-weight: 700;
+    border: 0px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.sizes > button:hover {
+    background-color: var(--shoe-color);
+    color: white;
+}
+
+.shoe-final-info {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 25px;
+}
+
+.add-to-card-button {
+    background-color: var(--shoe-color);
+
+    width: auto;
+    height: 40px;
+
+    border: 0;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 3px;
+    font-size: calc(8px + 0.5vw);
+
+    padding: 8px 15px;
+}
+
+.price {
+    font-size: 3vw;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1000px) {
+    .shoe-card {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .shoe-img {
+        height: 35vh;
+        width: 90%;
+        margin: 0 20px;
+        margin-bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .company-name {
+        font-size: 25vw;
+        top: 60px;
+        bottom: 0;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .shoe-image {
+        width: 70vw;
+        transform: rotate(0);
+        position: static;
+        margin-right: auto;
+    }
+
+    .shoe-info {
+        height: auto;
+        width: 90%;
+        padding: 20px;
+    }
+}

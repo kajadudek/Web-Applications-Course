@@ -1,16 +1,26 @@
 body {
-    margin: 0
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .main-container {
     margin: 0;
     position: relative;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 300vh;
     display: grid;
+    box-sizing: border-box;
+    overflow: hidden;
     grid-template-areas: 
     "h h h h h h"
     "s n n n n a"
+    "s m m m m a"
+    "s m m m m a"
+    "s m m m m a"
+    "s m m m m a"
+    "s m m m m a"
+    "s m m m m a"
+    "s m m m m a"
     "s m m m m a"
     "s m m m m a"
     "s m m m m a"
@@ -23,39 +33,230 @@ header {
     width: 100vw;
     background-color: aqua;
     text-align: center;
-    height: 10vh;
+    z-index: 2;
 }
 
 .sidebar {
     grid-area: s;
     width: 15vw;
-    background-color: red;
-    float: left;
-    height: 83vh;
+    background-color: white;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 -10px 5px 2px rgb(151, 151, 151);
 }
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 60vh;
+    width: 13vw;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left: 1vw;
+}
+
+.profile-image-container {
+    width: 10vw;
+    min-width: 150px;
+    height: 10vw;
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 7vw;
+}
+
+.sidebar-content > p {
+    text-align: center;
+    font-weight: bold;
+}
+
+.icons {
+    display: flex;
+    gap: 2vw;
+}
+
+.icons > a {
+    font-size: calc(15px + 0.5vw);
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.image {
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 100%;
+}
+
 
 nav {
     grid-area: n;
     width: 70vw;
-    background-color: yellow;
-    float: left;
-    height: 10vh;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
+
+nav > button {
+    color: black;
+    border: 0;
+    padding: 2vw 8vw;
+    background-color: white;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+nav > button:hover {
+    background-color: rgb(149, 149, 149);
+    color: white;
+}
+
 
 .ads {
     grid-area: a;
     width: 15vw;
-    background-color: rgb(255, 0, 230);
-    float: right;
-    height: 83vh;
+    background-color: white;
+    z-index: 1;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: space-around;
+    box-shadow: -3px 0px 3px 0px rgb(151, 151, 151);
+}
+
+.ads > div > p {
+    font-size: 1vw;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.add-container {
+    height: 30vw;
+    width: 15vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
 }
 
 section {
     grid-area: m;
     width: 70vw;
     background-color: lightpink;
-    height: 73vh;
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url(images/bg.jpg);
+}
+
+.milky-background2 {
+    position: absolute;
+    right: 0;
+    left: 0;
+
+    border-left: 0px solid transparent;
+	border-right: calc(300px + 90vw) solid transparent;
+	border-top: 4000px solid rgba(255, 255, 255, 0.79);
+}
+
+.wpisy-testowe {
+    background-color: rgba(255, 255, 255, 0.632);
+    margin: 20px calc(20px + 3vw);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+    transform: skew(-15deg);
+}
+
+.image-container {
+    width: 10vw;
+    min-width: 90px;
+    height: auto;
+    min-height: 90px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    transform: skew(15deg);
     float: left;
+    margin: 6px 30px 6px 0px;
+    border-radius: 7.5vw;
+
+    shape-outside: circle(40%);
+    float: left;
+    clip-path:  circle(40%);
+    background-color: black;
+}
+
+
+.container > h3 {
+    text-align: left;
+    font-size: calc(8px + 0.5vw);
+    color: rgb(94, 94, 94);
+    transform: skew(15deg);
+}
+
+.container > p {
+    text-align: left;
+    transform: skew(15deg);
+    font-size: calc(9px + 0.5vw);
+    color: rgb(94, 94, 94);
+}
+
+.forms-container {
+    background-color: transparent;
+    width: 50%;
+    min-width: 200px;
+    margin: 20px;
+    margin-bottom: 100px;
+    height: 500px;
+    padding: 3vw;
+    z-index: 1;
+}
+
+.forms > h1 {
+    font-size: calc(20px + 1vw);
+    color: green;
+    margin-bottom: 80px;
+}
+
+.forms > input {
+    width: 80%;
+    height: 25px;
+    margin-bottom: 20px;
+}
+
+.checkboxes{
+    margin-bottom: 25px;
+}
+
+.submit-button {
+    color: white;
+    background-color: green;
+    padding: 12px 30px;
+    border: 0;
+    border-radius: 30px;
+}
+
+.test-image {
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 footer {
@@ -63,19 +264,30 @@ footer {
     width: 100vw;
     float: left;
     background-color: greenyellow;
-    height: 7vh;
 }
 
 @media screen and (max-width: 1050px) {
     .main-container {
         grid-template-areas: 
-    "h h h h h h"
-    "n n n n n n"
-    "s m m m m m"
-    "s m m m m m"
-    "s m m m m m"
-    "s m m m m m"
-    "a f f f f f";
+    "h h h h h h h"
+    "n n n n n n n"
+    "s m m m m m m"
+    "s m m m m m m"
+    "s m m m m m m"
+    "s m m m m m m"
+    "s m m m m m m"
+    "s m m m m m m"
+    "s m m m m m m"
+    "s m m m m m m"
+    "s m m m m m m"
+    "s m m m m m m"
+    "s m m m m m m"
+    "s m m m m m m"
+    "s m m m m m m"
+    "s m m m m m m"
+    "s m m m m m m"
+    "s m m m m m m"
+    "a f f f f f f";
     }
 
     nav {
@@ -84,16 +296,27 @@ footer {
 
     .sidebar {
         width: 30vw;
-        height: 73vh;
+    }
+
+    .sidebar-content {
+        width: 28vw;
+        left: 1vw;
+    }
+
+    .profile-image-container {
+        border-radius: 80px;
     }
 
     section {
         width: 70vw;
     }
 
+    .milky-background2 {
+        border-top: 480vh solid rgba(255, 255, 255, 0.79)
+    }
+
     .ads {
         width: 30vw;
-        height: 7vh;
     }
 
     footer {
@@ -109,6 +332,15 @@ footer {
     "m"
     "m "
     "m "
+    "m"
+    "m "
+    "m "
+    "m"
+    "m "
+    "m "
+    "m"
+    "m "
+    "m "
     "s "
     "a "
     "f ";
@@ -116,32 +348,34 @@ footer {
 
     header {
         width: 100vw;
-        height: 10vh;
     }
 
     nav {
         width: 100vw;
-        height: 10vh;
     }
 
     .sidebar {
         width: 100vw;
-        height: 10vh;
     }
 
     section {
         width: 100vw;
-        height: 50vh;
+    }
+
+    .milky-background2 {
+        border-top: 530vh solid rgba(255, 255, 255, 0.79);
+    }
+
+    .image-container {
+        border-radius: 65px;
     }
 
     .ads {
         width: 100vw;
-        height: 10vh;
     }
 
     footer {
         width: 100vw;
-        height: 10vh;
     }
 }
 

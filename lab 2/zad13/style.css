@@ -1,0 +1,147 @@
+body {
+    margin: 0
+}
+
+.main-container {
+    margin: 0;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-areas: 
+    "h h h h h h"
+    "s n n n n a"
+    "s m m m m a"
+    "s m m m m a"
+    "s m m m m a"
+    "s m m m m a"
+    "f f f f f f";
+}
+
+header {
+    grid-area: h;
+    width: 100vw;
+    background-color: aqua;
+    text-align: center;
+    height: 10vh;
+}
+
+.sidebar {
+    grid-area: s;
+    width: 15vw;
+    background-color: red;
+    float: left;
+    height: 83vh;
+}
+
+nav {
+    grid-area: n;
+    width: 70vw;
+    background-color: yellow;
+    float: left;
+    height: 10vh;
+}
+
+.ads {
+    grid-area: a;
+    width: 15vw;
+    background-color: rgb(255, 0, 230);
+    float: right;
+    height: 83vh;
+}
+
+section {
+    grid-area: m;
+    width: 70vw;
+    background-color: lightpink;
+    height: 73vh;
+    float: left;
+}
+
+footer {
+    grid-area: f;
+    width: 100vw;
+    float: left;
+    background-color: greenyellow;
+    height: 7vh;
+}
+
+@media screen and (max-width: 1050px) {
+    .main-container {
+        grid-template-areas: 
+    "h h h h h h"
+    "n n n n n n"
+    "s m m m m m"
+    "s m m m m m"
+    "s m m m m m"
+    "s m m m m m"
+    "a f f f f f";
+    }
+
+    nav {
+        width: 100vw;
+    }
+
+    .sidebar {
+        width: 30vw;
+        height: 73vh;
+    }
+
+    section {
+        width: 70vw;
+    }
+
+    .ads {
+        width: 30vw;
+        height: 7vh;
+    }
+
+    footer {
+        width: 70vw;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .main-container {
+        grid-template-areas: 
+    "h"
+    "n"
+    "m"
+    "m "
+    "m "
+    "s "
+    "a "
+    "f ";
+    }
+
+    header {
+        width: 100vw;
+        height: 10vh;
+    }
+
+    nav {
+        width: 100vw;
+        height: 10vh;
+    }
+
+    .sidebar {
+        width: 100vw;
+        height: 10vh;
+    }
+
+    section {
+        width: 100vw;
+        height: 50vh;
+    }
+
+    .ads {
+        width: 100vw;
+        height: 10vh;
+    }
+
+    footer {
+        width: 100vw;
+        height: 10vh;
+    }
+}
+

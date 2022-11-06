@@ -11,9 +11,6 @@ body {
     --shoe-color: rgb(43, 99, 255);
 }
 
-/* .shoe-card:has(.shoe-color>.colors>.color-1:hover) > .shoe-img{
-    --shoe-color: rgb(87, 45, 45);
-} */
 
 .shoe-card:has(.shoe-color>.checkboxes>.box#col-1:checked) {
     --shoe-color: rgb(43, 99, 255);
@@ -115,6 +112,18 @@ body {
     bottom: 3%;
     width: 130%;
     transform: rotate(-20deg);
+}
+
+.share-button {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    border-radius: 20px;
+    border: 0;
+    background-color: white;
 }
 
 .company-name {

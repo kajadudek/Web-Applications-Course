@@ -1,0 +1,103 @@
+.parent {
+    width: 100vw;
+    height: 70vh;
+    background-color: rgb(55, 89, 255);
+}
+
+.img-cut{
+    width:200vw;
+    position:absolute;
+    top:60vh;
+    height: 800px;
+    background-color: white;
+    transform:rotate(-4deg);
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+
+    padding: 5vw;
+}
+
+.text-section {
+    position: relative;
+    flex: 2;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+
+    margin-right: 10vw;
+    animation-name: text-animation;
+    animation-duration: 3s;
+}
+
+@keyframes text-animation {
+    from {left: -10vw;}
+    to {left: 1vw;}
+  }
+
+.more-info-button {
+    background-color: rgb(55, 89, 255);
+    color: white;
+    font-size: 12px;
+    border: 1px solid white;
+    height: 4em;
+    width: 10em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.forms {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 20px;
+    background-color: white;
+    flex: 1;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 1px rgb(0,0,0,0.5);
+    animation-name: forms-animation;
+    animation-duration: 3s;
+    z-index: 5;
+}
+
+input {
+    width: 90%;
+    border: 0px;
+    border-bottom: 1px solid gray;
+    margin-top: 10px;
+}
+
+@keyframes forms-animation {
+    from {right: -10vw;}
+    to {right: 1vw;}
+  }
+
+.send-form-button {
+    background-color: rgb(55, 89, 255);
+    border: 0px;
+    border-radius: 5px;
+    color: white;
+
+    height: 3em;
+    width: 6em;
+
+    margin-top: 20px;
+}
+
+
+@media screen and (max-width: 800px) {
+    .main-container{
+        flex-direction: column;
+    }
+
+    .forms {
+        margin-top: 3vh;
+        width: 80vw;
+    }
+}
+    
+
+

@@ -1,0 +1,109 @@
+body {
+    height: 3000px;
+}
+
+.video-call {
+    position: relative;
+    background-color: rgb(3, 32, 57);
+    border-radius: 10px;
+    height: 80vh;
+}
+
+.my-camera {
+    display: flex;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+
+    height: 25%;
+    width: 100px;
+    overflow: hidden;
+}
+
+.my-camera > img {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+
+    border-radius: 10px;
+}
+
+.friends-camera {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    height: 100%;
+    width: 500px;
+}
+
+.friends-camera > img {
+    min-height:100%; 
+    min-width: 100%;
+    object-fit: cover;
+}
+
+.microphone-options {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+
+    background-color: white;
+    height: 10vh;
+    width: 15px;
+    border-radius: 10px;
+}
+
+.video-call-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    width: 150px;
+}
+
+.video-call-buttons > button {
+    width: 35px;
+    height: 35px;
+
+    border-radius: 18px;
+    border: 0;
+
+    cursor: pointer;
+}
+
+.microphone-button, .camera-button {
+    background-color: white;
+}
+
+.end-call-button {
+    background-color: red;
+}
+
+@media screen and (max-width: 600px){
+    .video-call {
+        width: auto;
+        height: 100vw;
+    }
+
+    .my-camera {
+        height: 15vh;
+        object-fit: cover;
+    }
+
+    .friends-camera {
+        width: auto;
+        height: 100%;
+        object-fit: cover;
+
+        border-radius: 10px;
+    }
+
+}

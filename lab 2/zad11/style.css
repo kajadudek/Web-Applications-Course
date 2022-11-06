@@ -1,0 +1,102 @@
+body{
+    background-color: rgb(239, 231, 82);
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.menu{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    overflow: hidden;
+    list-style: none;
+}
+.item-list{
+    overflow: hidden;
+}
+
+.item-list:target .list-container{
+    max-height: 30vh;
+}
+
+.inner-list{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 25px;
+    background-color: rgb(220, 81, 197);
+    color: #fff;
+    position: relative;
+}
+
+.inner-list:before{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    right: 15px;
+    bottom: -10px;
+    z-index: 1;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 10px solid rgb(220, 81, 197);
+}
+
+
+.list-container{
+    background: rgb(63, 83, 177);
+    overflow: hidden;
+    max-height:0px;
+    transition: 300ms ease all;
+}
+
+.list-container a{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 25px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    position: relative;
+    
+}
+.list-container a:before{
+    content: '  ';
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+
+}
+.list-container a:hover{
+    background: rgb(63, 83, 177);
+    background: -webkit-linear-gradient(top, rgb(63, 83, 177) 0%, rgb(63, 83, 177) 50%, rgb(97, 133, 232) 50%, rgb(97, 133, 232) 100%); 
+    transition: all 0.3s;
+    border-bottom: 1px solid rgb(57, 76, 127);
+}
+
+.list-container a:hover:after{
+    position: absolute;
+    height: 0;
+    width: 6px;
+    right: 0px;
+    top:0;
+}
+
+.list-container a:hover:before{
+    position: absolute;
+    height: 0;
+    width: 5px;
+    left: 0;
+    top:0;
+    opacity: 1;
+    border-top: 30px solid transparent;
+    border-left: 8px solid rgb(239, 231, 82);
+    border-bottom: 30px solid transparent;
+}
+.list-container a:after{
+    opacity: 0%;
+    transition: opacity 300ms ease;
+
+}

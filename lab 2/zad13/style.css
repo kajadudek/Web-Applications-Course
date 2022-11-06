@@ -31,9 +31,20 @@ body {
 header {
     grid-area: h;
     width: 100vw;
-    background-color: aqua;
+    background-color: rgb(255, 255, 255);
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 0;
     z-index: 2;
+    font-size: calc(25px + 2vw);
+    box-shadow: 0 0 4px 3px rgb(205, 205, 205);
+}
+
+header > p {
+    margin: 0;
 }
 
 .sidebar {
@@ -42,7 +53,7 @@ header {
     background-color: white;
     position: relative;
     z-index: 1;
-    box-shadow: 0 -10px 5px 2px rgb(151, 151, 151);
+    box-shadow: 0 -10px 5px 2px rgb(205, 205, 205);
 }
 
 .sidebar-content {
@@ -128,7 +139,7 @@ nav > button:hover {
     overflow: hidden;
     flex-direction: column;
     justify-content: space-around;
-    box-shadow: -3px 0px 3px 0px rgb(151, 151, 151);
+    box-shadow: -3px 0px 3px 0px rgb(205, 205, 205);
 }
 
 .ads > div > p {
@@ -263,7 +274,15 @@ footer {
     grid-area: f;
     width: 100vw;
     float: left;
-    background-color: greenyellow;
+    background-color: rgb(53, 53, 53);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+}
+
+footer > .icons > a {
+    color: white;
 }
 
 @media screen and (max-width: 1050px) {
@@ -292,6 +311,7 @@ footer {
 
     nav {
         width: 100vw;
+        z-index: 1;
     }
 
     .sidebar {
@@ -312,11 +332,26 @@ footer {
     }
 
     .milky-background2 {
-        border-top: 480vh solid rgba(255, 255, 255, 0.79)
+        border-top: 380vh solid rgba(255, 255, 255, 0.79)
     }
 
     .ads {
         width: 30vw;
+        justify-content: center;
+    }
+
+    .add-container {
+        width: 30vw;
+        height: 10vh;
+    }  
+
+    .add-1 > p{
+        color: white;
+        font-weight: bold;
+        margin: 0;
+    }
+    .add-2, .add-3 {
+        display: none;
     }
 
     footer {

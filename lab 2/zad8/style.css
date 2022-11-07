@@ -33,7 +33,7 @@
 
 @keyframes text-animation {
     from {left: -10vw;}
-    to {left: 1vw;}
+    to {left: 0.05vw;}
   }
 
 .more-info-button {
@@ -72,7 +72,7 @@ input {
 
 @keyframes forms-animation {
     from {right: -10vw;}
-    to {right: 1vw;}
+    to {right: 0.05vw;}
   }
 
 .send-form-button {
@@ -89,6 +89,10 @@ input {
 
 
 @media screen and (max-width: 800px) {
+    .parent {
+        height: 90vh;
+    }
+
     .main-container{
         flex-direction: column;
     }
@@ -97,6 +101,16 @@ input {
         margin-top: 3vh;
         width: 80vw;
     }
+
+    @keyframes text-animation {
+        from {top: -10vw;}
+        to {top: 0.05vw;}
+    }
+
+    @keyframes forms-animation {
+        from {bottom: -10vw;}
+        to {bottom: 0.05vw;}
+      }
 }
     
 

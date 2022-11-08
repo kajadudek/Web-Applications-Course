@@ -27,6 +27,7 @@ a {
     max-height: 30vh;
 }
 
+/* trojkat */
 .inner-list:before{
     content: '';
     border-left: 7px solid transparent;
@@ -79,6 +80,7 @@ a {
     transition: all 0.3s;
 }
 
+/* trojkat */
 .list-container > a:hover:before{
     position: absolute;
     left: 0;

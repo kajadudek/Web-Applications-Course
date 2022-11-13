@@ -17,11 +17,13 @@
             <form class="input-container" id="form" action="">
                 <div>
                     <label for="name">Imię i nazwisko</label><br>
-                    <input id="name" name="name" type="text" required pattern="[A-Z]{1}[a-z]+[ ]{1}[A-Z]{1}[a-z]+([-]{1}[A-Z]{1}[a-z]+)?">
+                    <input id="name" name="name" type="text" pattern="[A-Z]{1}[a-z]+[ ]{1}[A-Z]{1}[a-z]+([-]{1}[A-Z]{1}[a-z]+)?">
+                    <p class="invalid-name">"Name should start with uppercase letters and be of format John Doe or John Doe-Smith"</p>
                 </div>
                 <div>
                     <label for="phone">Numer telefonu</label><br>
-                    <input id="phone" name="phone" type="text" required pattern="([+][0-9\s]{3})?[0-9]{9}">
+                    <input id="phone" name="phone" type="text" pattern="([+][0-9]{3})?[0-9]{9}">
+                    <p class="invalid-phone">"Phone number should content 9 digits or '+'12digits"</p>
                 </div>
                 <button class="submit-button" id="add">Dodaj</button>
             </form>

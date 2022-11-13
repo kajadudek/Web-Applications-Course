@@ -84,8 +84,24 @@ body {
     margin-top: 3px;
 }
 
-input:invalid {
-    border: 1px solid red;
+
+.input-container >div > input:invalid {
+    border: 2px solid red;
+}
+
+.invalid-name, .invalid-phone {
+    font-size: 9px;
+    color: red;
+    position: absolute;
+    opacity: 0;
+}
+
+.input-container >div > #name:invalid + .invalid-name {
+    opacity: 100%;
+}
+
+.input-container >div > #phone:invalid + .invalid-phone {
+    opacity: 100%;
 }
 
 .input-container > div > label {

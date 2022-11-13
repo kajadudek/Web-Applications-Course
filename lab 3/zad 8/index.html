@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatibile" content="IE-edge">
+        <title>zad8</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/964e7573f7.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="main">
+            <form>
+                <p>New password</p>
+                <div class="input-container">
+                    <input id="password1" placeholder="password" type="password" required pattern = "(?=.*\W)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*).{8,}">
+                    <i id="hide-psw1" class="fa-solid fa-eye"></i>
+                </div>
+
+                <p>Repeat new password</p>
+                <div class="input-container">
+                    <input id="password2" placeholder="password" type="password" required>
+                    <i id="hide-psw2" class="fa-solid fa-eye"></i>
+                    <p id="password-match" class="password-match">passwords do not match</p>
+                </div>
+            </form>
+
+            <div class="password-requirements">
+                <p class="title">Password requirements</p>
+
+                <div class="requirement">
+                    <i id="characters-i" class="fa-solid fa-circle-xmark"></i>
+                    <p id="characters">at least 8 characters</p>
+                </div>
+
+                <div class="requirement">
+                    <i id="special-char-i" class="fa-solid fa-circle-xmark"></i>
+                    <p id="special-char">at least one special character</p>
+                </div>
+
+                <div class="requirement">
+                    <i id="capital-letter-i" class="fa-solid fa-circle-xmark"></i>
+                    <p id="capital-letter">at least one capital letter</p>
+                </div>
+
+                <div class="requirement">
+                    <i id="digit-i" class="fa-solid fa-circle-xmark"></i>
+                    <p id="digit">at least one digit</p>
+                </div>
+            </div>
+
+        </div>
+        
+        <script src="script.js"></script>
+    </body>
+</html>

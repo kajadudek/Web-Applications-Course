@@ -62,13 +62,14 @@ function yellowClicked(event) {
 
 function clickHandler() {
     squareReset();
-    pointsChange(points);
 
     if (points > 30) {
         document.getElementById("sq2").classList.add("deactivated");
+        document.getElementById("sq2").style.backgroundColor = "rgba(255,0,0,0.5)";
     }
     if (points > 50) {
         document.getElementById("sq3").classList.add("deactivated");
+        document.getElementById("sq3").style.backgroundColor = "rgba(255,255,0,0.5)"
     }
 }
 
@@ -112,7 +113,14 @@ document.getElementById("order-change").addEventListener('click',function() {
                 yellowClicked(event);
             }
         }, true);
-
+        
+        document.getElementById("sq-container").addEventListener('click', function() {
+            if (order) {
+                clickHandler();
+            }
+         
+            printPoints();
+        },true);
     }
 });
 
@@ -129,10 +137,13 @@ document.getElementById("sq-container").addEventListener('click', function() {
 function reset(){
     points = 0;
     propagation = true;
+    order = false;
     pointsChange(0);
     printPoints();
     document.getElementById("sq3").classList.remove("deactivated");
     document.getElementById("sq2").classList.remove("deactivated");
+    document.getElementById("sq2").style.backgroundColor = "";
+    document.getElementById("sq3").style.backgroundColor = "";
     document.getElementById("propagation-button").textContent = "STOP PROPAGATION";
 }
 

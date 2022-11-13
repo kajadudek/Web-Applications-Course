@@ -17,29 +17,15 @@ function squareReset(){
 }
 
 function printPoints() {
-    document.getElementById("first-sq-info").textContent= "";
-    document.getElementById("second-sq-info").textContent= "";
-    document.getElementById("third-sq-info").textContent= "";
-
-    if (yellow_clicked){
-        // document.getElementById("third-sq-info").textContent = "Nacisnąłeś żółty o wartości 5";
-    }
-
-    if (red_clicked){
-        // document.getElementById("second-sq-info").textContent= "Nacisnąłeś czerwony o wartości 2";
-    }
-
-    if (blue_clicked){
-        // document.getElementById("first-sq-info").textContent= "Nacisnąłeś niebieski o wartości 1";
-    }
+    document.getElementById("test").textContent="";
 }
 
 function blueClicked(event) {
     points += 1;
+    pointsChange(points);
     blue_clicked = true;
     console.log(blue_clicked, "niebieski");
-    document.getElementById("test").textContent += "\n Nacisnąłeś niebieski o wartości 1";
-
+    document.getElementById("test").innerHTML += " Nacisnąłeś niebieski o wartości 1" + "<br />";
     if (!propagation) {
         event.stopPropagation();
         clickHandler();
@@ -49,9 +35,10 @@ function blueClicked(event) {
 function redClicked(event) {
     if (!document.getElementById("sq2").classList.contains("deactivated")){
         points += 2;
+        pointsChange(points);
         red_clicked = true;
         console.log(red_clicked, "czerwony");
-        document.getElementById("test").textContent += "\n Nacisnąłeś czerwony o wartości 2";
+        document.getElementById("test").innerHTML += "Nacisnąłeś czerwony o wartości 2" + "<br />";
     }
     if (!propagation && !document.getElementById("sq2").classList.contains("deactivated")) {
         event.stopPropagation();
@@ -62,9 +49,10 @@ function redClicked(event) {
 function yellowClicked(event) {
     if (!document.getElementById("sq3").classList.contains("deactivated")){
         points += 5;
+        pointsChange(points);
         yellow_clicked = true;
         console.log(yellow_clicked, "zolty")
-        document.getElementById("test").textContent += "Nacisnąłeś żółty o wartości 5";;
+        document.getElementById("test").innerHTML += "Nacisnąłeś żółty o wartości 5" + "<br />";
     }
     if (!propagation && !document.getElementById("sq3").classList.contains("deactivated")) {
         event.stopPropagation();
@@ -73,11 +61,10 @@ function yellowClicked(event) {
 }
 
 function clickHandler() {
-    counter +=1 ;
-    console.log("-------new click------", counter)
-    pointsChange(points);
-    printPoints();
+    // counter +=1 ;
+    // console.log("-------new click------", counter)
     squareReset();
+    pointsChange(points);
 
     if (points > 30) {
         document.getElementById("sq2").classList.add("deactivated");
@@ -87,64 +74,61 @@ function clickHandler() {
     }
 }
 
-console.log(order, "tutaj");
-        
+
 document.getElementById("sq1").addEventListener('click', function(event) {
-    blueClicked(event);
-},false);
-
-document.getElementById("sq2").addEventListener('click', function(event) {
-    redClicked(event);
-},false);
-
-document.getElementById("sq3").addEventListener('click', function(event) {
-    yellowClicked(event);
-},false);
-
-document.getElementById("sq-container").addEventListener('click', function() {
-    clickHandler();
+    if (!order){
+        blueClicked(event);
+    }
 });
 
-// document.getElementById("order-change").addEventListener('click',function() {
-//     order = !order;
-//     console.log(order);
+document.getElementById("sq2").addEventListener('click', function(event) {
+    if (!order){
+        redClicked(event);
+    }
+});
 
-//     if (order){
-//         console.log(order, "tutaaaj");
-        
-//         document.getElementById("sq1").addEventListener('click', function(event) {
-//             blueClicked(event);
-//         },true);
-        
-//         document.getElementById("sq2").addEventListener('click', function(event) {
-//             redClicked(event);
-//         },true);
-        
-//         document.getElementById("sq3").addEventListener('click', function(event) {
-//             yellowClicked(event);
-//         },true);
-//     }
+document.getElementById("sq3").addEventListener('click', function(event) {
+    if (!order){
+        yellowClicked(event);
+    }
+});
 
-//     if (!order) {
-//         console.log(order, "tutaj");
-        
-//         document.getElementById("sq1").addEventListener('click', function(event) {
-//             blueClicked(event);
-//         },false);
-        
-//         document.getElementById("sq2").addEventListener('click', function(event) {
-//             redClicked(event);
-//         },false);
-        
-//         document.getElementById("sq3").addEventListener('click', function(event) {
-//             yellowClicked(event);
-//         },false);
-//     }
+document.getElementById("order-change").addEventListener('click',function() {
+    order = !order;
+    console.log('order clicked ', order);
 
-//     document.getElementById("sq-container").addEventListener('click', function() {
-//         clickHandler();
-//     });
-// })
+    if (order) {
+        document.getElementById("sq1").addEventListener('click', function(event) {
+            if (order){
+                console.log(blue_clicked,' ','pierwszy handler ',order,' counter ');
+                blueClicked(event);
+            }
+        }, true);
+        
+        document.getElementById("sq2").addEventListener('click', function(event) {
+            if (order){
+                redClicked(event);
+            }
+        }, true);
+        
+        document.getElementById("sq3").addEventListener('click', function(event) {
+            if (order){
+                yellowClicked(event);
+            }
+        }, true);
+
+    }
+});
+
+
+document.getElementById("sq-container").addEventListener('click', function() {
+    if (!order) {
+        console.log('drugi handler')
+        clickHandler();
+    }
+ 
+    printPoints();
+},true);
 
 
 function reset(){
@@ -163,7 +147,6 @@ document.getElementById("reset-button").addEventListener('click', function() {
 
 function propagationInvoke() {
     propagation = !propagation;
-    console.log(propagation);
     if (propagation) {
         document.getElementById("propagation-button").textContent = "STOP PROPAGATION";
     }

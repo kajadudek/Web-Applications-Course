@@ -1,0 +1,115 @@
+body {
+    padding: 50px;
+    background-color: rgb(242, 242, 242);
+    font-family: Arial, Helvetica, sans-serif;
+    --main-color: green;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.phonebook-container {
+    width: 90%;
+    margin-bottom: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-container {
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 0px 0px 5px 3px rgb(213, 213, 213);
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-start;
+}
+
+.contact-info > p{
+    font-size: 20px;
+}
+
+.contact-name {
+    font-weight: bold;
+}
+
+.delete-button {
+    justify-self: flex-end;
+    width: 50px;
+    height: 50px;
+    background-color: green;
+    border: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.input-container {
+    padding: 40px;
+    width: 90%;
+
+    display: flex;
+    /* align-self: center; */
+
+    background-color: white;
+    box-shadow: 0px 0px 5px 3px rgb(213, 213, 213);
+    border-radius: 5px;
+}
+
+.input-container > div {
+    flex: 2;
+}
+
+.input-container > div > input {
+    width: 80%;
+    height: 40px;
+
+    border: 1px solid rgb(190, 189, 189);
+    border-radius: 5px;
+    margin-top: 3px;
+}
+
+input:invalid {
+    border: 1px solid red;
+}
+
+.input-container > div > label {
+    color: gray;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+.submit-button {
+    flex: 1;
+    background-color: var(--main-color);
+    border: 2px solid green;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: white;
+    color: green;
+    border: 2px solid green;
+}
+

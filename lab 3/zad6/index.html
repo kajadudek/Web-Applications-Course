@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatibile" content="IE-edge">
+        <title>zad6</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="main">
+            <div class="phonebook-container" id="phonebook">
+            
+                
+            </div>
+
+            <form class="input-container" id="form" action="">
+                <div>
+                    <label for="name">Imię i nazwisko</label><br>
+                    <input id="name" name="name" type="text" required pattern="[A-Z]{1}[a-z]+[ ]{1}[A-Z]{1}[a-z]+([-]{1}[A-Z]{1}[a-z]+)?">
+                </div>
+                <div>
+                    <label for="phone">Numer telefonu</label><br>
+                    <input id="phone" name="phone" type="text" required pattern="([+][0-9\s]{3})?[0-9]{9}">
+                </div>
+                <button class="submit-button" id="add">Dodaj</button>
+            </form>
+        </div>
+        
+        <script src="script.js"></script>
+    </body>
+</html>

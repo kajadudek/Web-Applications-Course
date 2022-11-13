@@ -61,8 +61,6 @@ function yellowClicked(event) {
 }
 
 function clickHandler() {
-    // counter +=1 ;
-    // console.log("-------new click------", counter)
     squareReset();
     pointsChange(points);
 
@@ -95,12 +93,10 @@ document.getElementById("sq3").addEventListener('click', function(event) {
 
 document.getElementById("order-change").addEventListener('click',function() {
     order = !order;
-    console.log('order clicked ', order);
 
     if (order) {
         document.getElementById("sq1").addEventListener('click', function(event) {
             if (order){
-                console.log(blue_clicked,' ','pierwszy handler ',order,' counter ');
                 blueClicked(event);
             }
         }, true);
@@ -123,7 +119,6 @@ document.getElementById("order-change").addEventListener('click',function() {
 
 document.getElementById("sq-container").addEventListener('click', function() {
     if (!order) {
-        console.log('drugi handler')
         clickHandler();
     }
  

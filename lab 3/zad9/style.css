@@ -3,15 +3,25 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* .card-container {
-    display: flex;
+.card-container {
+    margin: 0px 20vw;
+
     width: 60vw;
-    flex-direction: row;
-    justify-content: center;
-    align-self: center;
+    height: 70vh;
     position: relative;
-    margin: 0;
-} */
+    overflow: hidden;
+}
+
+.test {
+    width: max-content;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    transition: transform 0.9s ease;
+}
 
 .title-container {
     display: flex;
@@ -54,11 +64,10 @@ body {
 }
 
 .business-card-container {
-    visibility: hidden; 
-    position: absolute;
     left: 20vw;
     right: 20vw;
     margin: auto;
+    padding: 5px;
 }
 
 .business-card {
@@ -103,48 +112,9 @@ body {
 }
 
 .decoration {
-    font-size: 250px;
+    font-size: calc(200px + 3vw);
     letter-spacing: 0px;
     position: absolute;
-    bottom: -250px;
+    bottom: calc(-250px - 3vw);
     color: rgb(44, 108, 197);
-}
-
-/* .animatedRight {
-} */
-
-/* .fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
-}
-  
-@keyframes fade {
-    from {left: -100px;} 
-    to {right: 0px;}
-} */
-
-.animatedRight{
-    -webkit-animation: slide 0.5s forwards;
-    animation: slide 0.5s forwards;
-/* animation-delay: 2s; */
-}
-
-@-webkit-keyframes slide {
-    0% {left: -50px;}
-    100% { left: 0px; }
-}
-
-@keyframes slide {
-    0% {left: -10px;}
-    100% { left: 20vw; }
-}
-
-@-webkit-keyframes slideLeft {
-    0% {left: -50px;}
-    100% { left: 0px; }
-}
-
-@keyframes slideLeft {
-    0% {left: -100px;}
-    100% { left: 0px; }
 }

@@ -5,12 +5,10 @@ var cardsArray = document.getElementsByClassName("business-card-container"),
 var cardIndex = 0,
     cardListLen = cardsArray.length;
 
-
-var cardWidth = cardsArray[0].clientWidth;
-
-slide(0)
+var cont = document.getElementById("test");
 
 function slide(){
+    var cardWidth = cardsArray[0].clientWidth;
     if (cardIndex >= cardListLen) {
         cardIndex = 0;
     }
@@ -18,13 +16,7 @@ function slide(){
         cardIndex = cardListLen-1;
     }
 
-    for (let i = 0; i < cardListLen; i++){
-        cardsArray[i].style.visibility = "hidden";
-        cardsArray[i].classList.remove = "animatedRight";
-    }
-
-    cardsArray[cardIndex].style.visibility = "visible";
-    cardsArray[cardIndex].classList.add = "animatedRight";
+    cont.style.transform = `translateX(-${cardWidth * cardIndex}px)`;
 }
 
 buttonRight.addEventListener('click',function() {

@@ -28,3 +28,8 @@ buttonLeft.addEventListener('click',function(){
     cardIndex -= 1;
     slide();
 })
+
+document.getElementById("random").addEventListener('click',function(){
+    cardIndex = Math.floor(Math.random() * cardListLen);
+    slide();
+})

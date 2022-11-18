@@ -74,65 +74,54 @@ function clickHandler() {
 }
 
 
-document.getElementById("sq1").addEventListener('click', function(event) {
-    if (!order){
-        blueClicked(event);
-    }
-});
+function blue(event) {
+    blueClicked(event);
+}
 
-document.getElementById("sq2").addEventListener('click', function(event) {
-    if (!order){
-        redClicked(event);
-    }
-});
+function yellow(event) {
+    yellowClicked(event);
+}
 
-document.getElementById("sq3").addEventListener('click', function(event) {
-    if (!order){
-        yellowClicked(event);
-    }
-});
+function red(event) {
+    redClicked(event);
+}
 
-document.getElementById("order-change").addEventListener('click',function() {
-    order = !order;
+document.getElementById("sq1").addEventListener('click', blue);
 
-    if (order) {
-        document.getElementById("sq1").addEventListener('click', function(event) {
-            if (order){
-                blueClicked(event);
-            }
-        }, true);
-        
-        document.getElementById("sq2").addEventListener('click', function(event) {
-            if (order){
-                redClicked(event);
-            }
-        }, true);
-        
-        document.getElementById("sq3").addEventListener('click', function(event) {
-            if (order){
-                yellowClicked(event);
-            }
-        }, true);
-        
-        document.getElementById("sq-container").addEventListener('click', function() {
-            if (order) {
-                clickHandler();
-            }
-         
-            printPoints();
-        },true);
-    }
-});
+document.getElementById("sq2").addEventListener('click', red);
+
+document.getElementById("sq3").addEventListener('click', yellow);
 
 
 document.getElementById("sq-container").addEventListener('click', function() {
-    if (!order) {
-        clickHandler();
-    }
- 
-    printPoints();
+    clickHandler();
+     printPoints();
 },true);
 
+
+document.getElementById("order-change").addEventListener('click',function() {
+        order = !order;
+        if (order) {
+            document.getElementById("sq1").removeEventListener('click',blue);
+            document.getElementById("sq1").addEventListener('click',blue,true);
+
+            document.getElementById("sq2").removeEventListener('click',red);
+            document.getElementById("sq2").addEventListener('click',red,true);
+
+            document.getElementById("sq3").removeEventListener('click',yellow);
+            document.getElementById("sq3").addEventListener('click',yellow,true);
+        }
+        else{
+            document.getElementById("sq1").removeEventListener('click',blue,true);
+            document.getElementById("sq1").addEventListener('click',blue);
+
+            document.getElementById("sq2").removeEventListener('click',red,true);
+            document.getElementById("sq2").addEventListener('click',red);
+
+            document.getElementById("sq3").removeEventListener('click',yellow,true);
+            document.getElementById("sq3").addEventListener('click',yellow);
+        }
+});
 
 function reset(){
     points = 0;

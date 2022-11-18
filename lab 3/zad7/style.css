@@ -1,0 +1,16 @@
+body {
+    margin: 30px;
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    font-weight: 100;
+    margin-top: 40px;
+    border-bottom: 1px solid black;
+}
+
+p {
+    color: rgb(107, 107, 107);
+    font-family: Arial, Helvetica, sans-serif;
+}

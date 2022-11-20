@@ -13,7 +13,7 @@ document.getElementById("add").onclick = function(){
     phone = phone.replace(/\s/g,'');
 
     if (phone.charAt(0) == "+"){
-        phone = phone.slice(1,phone.length-1);
+        phone = phone.slice(1,phone.length);
         phoneArr = phone.match(/.{3}/g);
         phone = "+";
         phoneArr.forEach(element => {

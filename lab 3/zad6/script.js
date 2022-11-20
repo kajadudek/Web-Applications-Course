@@ -10,6 +10,24 @@ document.getElementById("add").onclick = function(){
         
     var name = formData.get("name");
     var phone = formData.get("phone");
+    phone = phone.replace(/\s/g,'');
+
+    if (phone.charAt(0) == "+"){
+        phone = phone.slice(1,phone.length-1);
+        phoneArr = phone.match(/.{3}/g);
+        phone = "+";
+        phoneArr.forEach(element => {
+            phone += element + " ";
+        });
+    }
+    else{
+        phoneArr = phone.match(/.{3}/g);
+        phone = "";
+        phoneArr.forEach(element => {
+            phone += element + " ";
+        });
+    }
+    
 
     if (isValid() && name != '' && phone != ''){
         console.log(name,' ',phone);

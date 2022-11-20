@@ -24,7 +24,7 @@
                 </div>
                 <div>
                     <label for="phone">Numer telefonu</label><br>
-                    <input id="phone" name="phone" type="text" pattern="([+][0-9]{3})?[0-9]{9}">
+                    <input id="phone" name="phone" type="text" pattern="([ ]{0,}[\+]([ ]{0,}\d[ ]{0,}){12})|(([ ]{0,}\d[ ]{0,}){9})">
                     <p class="invalid-phone">"Phone number should content 9 digits or '+'12digits"</p>
                 </div>
                 <button class="submit-button" id="add">Dodaj</button>

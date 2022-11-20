@@ -123,6 +123,7 @@ function makeZombieAlive(el, speed){
 //Start of game
 function startOfGame(){
     points = 0;
+    pointsChange();
     howManyZombies = 0;
 
     document.getElementById("live-1").className = "fa-solid fa-heart";

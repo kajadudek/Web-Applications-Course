@@ -25,7 +25,7 @@ function pointsChange(){
 }
 
 //Zombie walk animation
-var zombie = document.getElementById("zombie");
+var zombie = document.querySelector("#zombie");
 var zombieSteps = document.getElementById("zombie-steps")
 var zombieWidth = zombie.clientWidth,           //200px
     zombieHeight = zombie.clientHeight;         //312px
@@ -42,21 +42,19 @@ function zombieSpawner(){
     var speed = Math.round(Math.random()*5);
     var posY = Math.round(Math.random()*200); //px
     var size = (0.9 + (Math.round(Math.random()*40)/100)); 
+    var newZombie = zombie.cloneNode(true);
 
-    console.log(posY, size)
-    var zombie2 = zombie.cloneNode(true);
-    zombie2.id = "zombie " + zombieNumber;
-    zombie2.classList = "zombie";
-    zombie2.addEventListener('click', zombieKill);
-    zombie2.style.bottom = posY - 50 + "px";
-    zombie2.style.left = screenWidth - 100 + "px";
-    zombie2.style.transform = "scale("+size+")";
-    game.appendChild(zombie2);
+    newZombie.id = "zombie " + zombieNumber;
+    newZombie.classList = "zombie";
+    newZombie.addEventListener('click', zombieKill);
+    newZombie.style.bottom = posY - 50 + "px";
+    newZombie.style.left = screenWidth - 100 + "px";
+    newZombie.style.transform = "scale("+size+")";
+    game.appendChild(newZombie);
 
     zombieNumber += 1;
 
-    makeZombieAlive(zombie2, speed);
-    console.log(zombie2.style.right);
+    makeZombieAlive(newZombie, speed);
 }
 
 //Zombie kill
@@ -64,10 +62,10 @@ function zombieKill(event){
     this.remove();
     points += 12;
     pointsChange();
-    console.log('killed');
     clearInterval(zombieWalk[this.id])
     event.stopPropagation();
 }
+zombie.remove();
 
 //Making zombie alive
 function makeZombieAlive(el, speed){
@@ -109,8 +107,10 @@ function makeZombieAlive(el, speed){
         zombie.style.left = position.x - zombieWalkSpeed + "px";
         if (zombie.style.left < (endPosition + "px")){
             howManyZombies += 1;
+            if (howManyZombies<=3){
+                document.getElementById("live-" + howManyZombies).className = "fa-regular fa-heart";
+            }
             clearInterval(zombieWalk[zombie.id]);
-            console.log('removed', zombie)
             zombie.remove();
         }
 
@@ -124,11 +124,15 @@ function makeZombieAlive(el, speed){
 function startOfGame(){
     points = 0;
     howManyZombies = 0;
-    makeZombieAlive(zombie, 2);
+
+    document.getElementById("live-1").className = "fa-solid fa-heart";
+    document.getElementById("live-2").className = "fa-solid fa-heart";
+    document.getElementById("live-3").className = "fa-solid fa-heart";
 
     generateZombies = setInterval( function() {
         zombieSpawner();
     }, 1000)
+    
 }
 
 newGameButton.addEventListener('click',function(event){

@@ -40,8 +40,28 @@ body {
     letter-spacing: 7px;
     position: fixed;
     top: 15px;
-    left: 80vw;
+    /* left: 80vw; */
+    right: 30px;
     margin: 0;
+
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none;
+}
+
+#lives {
+    position: absolute;
+    right: 20px;
+    top: 150px;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#lives > i {
+    color: white;
+    font-size: 40px;
 }
 
 .game-content {
@@ -55,7 +75,6 @@ body {
     overflow: hidden;
     right: 0;
     bottom: 0;
-    /* display: none; */
 }
 
 .zombie > img {

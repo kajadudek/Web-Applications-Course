@@ -20,7 +20,7 @@ body {
     left: 0px;
     right: 0px;
     margin: auto;
-    transition: transform 0.9s ease;
+    transform: translateX(-60vw);
 }
 
 .title-container {
@@ -56,6 +56,7 @@ body {
 #left-arrow {
     top: 30vh;
     left: 15vw;
+    z-index: 1;
 }
 
 #right-arrow {

@@ -1,35 +1,44 @@
 var cardsArray = document.getElementsByClassName("business-card-container"),
     buttonRight = document.getElementById("right-arrow"),
-    buttonLeft = document.getElementById("left-arrow");
+    buttonLeft = document.getElementById("left-arrow"),
+    cardWidth = cardsArray[0].clientWidth,
+    container = document.getElementById("test");
 
-var cardIndex = 0,
-    cardListLen = cardsArray.length;
+var cardIndex = 1,
+    cardListLen = cardsArray.length - 2;
 
-var cont = document.getElementById("test");
-
-function slide(){
-    var cardWidth = cardsArray[0].clientWidth;
-    if (cardIndex >= cardListLen) {
-        cardIndex = 0;
-    }
-    else if (cardIndex < 0){
-        cardIndex = cardListLen-1;
-    }
-
-    cont.style.transform = `translateX(-${cardWidth * cardIndex}px)`;
-}
 
 buttonRight.addEventListener('click',function() {
+    container.style.transition = "transform 0.4s ease";
     cardIndex +=1;
-    slide();
+    container.style.transform = `translateX(-${cardWidth * cardIndex}px)`;
 })
 
 buttonLeft.addEventListener('click',function(){
+    container.style.transition = "transform 0.4s ease";
     cardIndex -= 1;
-    slide();
+    container.style.transform = `translateX(-${cardWidth * cardIndex}px)`;
 })
 
 document.getElementById("random").addEventListener('click',function(){
     cardIndex = Math.floor(Math.random() * cardListLen);
-    slide();
+    container.style.transition = "transform 0.4s ease";
+    container.style.transform = `translateX(-${cardWidth * cardIndex}px)`
 })
+
+container.addEventListener('transitionend', slide);
+
+function slide(){
+
+    if (cardsArray[cardIndex].id === 'last-card'){
+        container.style.transition = "none";
+        container.style.transform = `translateX(-${cardWidth * cardListLen}px)`
+        cardIndex = cardListLen;
+    }
+
+    if (cardsArray[cardIndex].id === 'first-card'){
+        container.style.transition = "none";
+        container.style.transform = `translateX(-${cardWidth}px)`
+        cardIndex = 1;
+    }
+}

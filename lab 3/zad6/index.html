@@ -19,7 +19,7 @@
             <form class="input-container" id="form" action="">
                 <div>
                     <label for="name">Imię i nazwisko</label><br>
-                    <input id="name" name="name" type="text" pattern="([A-Z]{1}|\p{Lu}{1})[a-z\p{Ll}]+[ ]{1}([A-Z]{1}|\p{Lu}{1})[a-z\p{Ll}]+([-]{1}([A-Z]{1}|\p{Lu}{1}){1}[a-z\p{Ll}]+)?">
+                    <input id="name" name="name" type="text" pattern="\p{Lu}{1}\p{Ll}+[ ]{1}\p{Lu}{1}\p{Ll}+([-]{1}\p{Lu}{1}\p{Ll}+)?">
                     <p class="invalid-name">"Name should start with uppercase letters and be of format John Doe or John Doe-Smith"</p>
                 </div>
                 <div>

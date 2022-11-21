@@ -5,10 +5,54 @@ body {
     margin: 0;
     cursor: none;
     overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .top-content {
     height: 40vh;
+}
+
+.highscores {
+    width: 50vw;
+    height: 70vh;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    border-radius: 40px;
+    cursor: pointer;
+    z-index: 2;
+
+    display: none;;
+}
+
+.highscores > i {
+    position: fixed;
+    top: 150px;
+    right: 27vw;
+
+    color: gray;
+    font-size: 30px;
+}
+
+.top7 {
+    color: gray;
+    font-size: 24px;
+    text-align: center;
+    position: fixed;
+    top: 23vh;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.top7 > p {
+    text-transform: uppercase;
 }
 
 .new-game-button {
@@ -26,6 +70,7 @@ body {
     right: 0;
     left: 0;
     margin: auto;
+    cursor: none;
 }
 
 .new-game-button:hover {
@@ -40,7 +85,6 @@ body {
     letter-spacing: 7px;
     position: fixed;
     top: 15px;
-    /* left: 80vw; */
     right: 30px;
     margin: 0;
 

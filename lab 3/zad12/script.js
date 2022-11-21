@@ -7,6 +7,7 @@ const newGameButton = document.getElementById("new-game-button");
 var zombieWalk = {};
 var generateZombies = {};
 var screenWidth = game.clientWidth;
+var nick = "Kaja";
 
 //Cursor move
 const cursor = document.getElementById("cursor");
@@ -47,7 +48,7 @@ function zombieSpawner(){
     newZombie.id = "zombie " + zombieNumber;
     newZombie.classList = "zombie";
     newZombie.addEventListener('click', zombieKill);
-    newZombie.style.bottom = posY - 50 + "px";
+    newZombie.style.bottom = posY - 100 + "px";
     newZombie.style.left = screenWidth - 100 + "px";
     newZombie.style.transform = "scale("+size+")";
     game.appendChild(newZombie);
@@ -68,41 +69,39 @@ function zombieKill(event){
 zombie.remove();
 
 //Making zombie alive
-function makeZombieAlive(el, speed){
-    var interval;
-
+function makeZombieAlive(elem, speed){
     switch(speed){
         case 1:
-            interval=70;
+            speed=70;
             break;
         case 2:
-            interval=60;
+            speed=60;
             break;
         case 3:
-            interval=55;
+            speed=55;
             break;
         case 4:
-            interval=50;
+            speed=50;
             break;
         case 5:
-            interval=45;
+            speed=45;
             break;
         default:
-            interval=70;
+            speed=70;
             break;
     }
 
-    el.addEventListener('click', zombieKill);
+    elem.addEventListener('click', zombieKill);
 
-    zombieWalk[el.id] = setInterval ( () => {
-        zombieSteps = el.firstElementChild;
+    zombieWalk[elem.id] = setInterval ( () => {
+        zombieSteps = elem.firstElementChild;
         if (stepCounter > 9) {
             stepCounter = 0;
         }
         zombieSteps.style.transform = `translateX(-${zombieWidth * stepCounter}px)`;
         stepCounter += 1;
 
-        zombie = el;
+        zombie = elem;
         position = zombie.getBoundingClientRect();
         zombie.style.left = position.x - zombieWalkSpeed + "px";
         if (zombie.style.left < (endPosition + "px")){
@@ -117,7 +116,7 @@ function makeZombieAlive(el, speed){
         if (howManyZombies >= 3){
             endOfGame();
         }
-    }, interval );
+    }, speed );
 }
 
 //Start of game
@@ -125,6 +124,8 @@ function startOfGame(){
     points = 0;
     pointsChange();
     howManyZombies = 0;
+
+    window.addEventListener('click', missTheShot);
 
     document.getElementById("live-1").className = "fa-solid fa-heart";
     document.getElementById("live-2").className = "fa-solid fa-heart";
@@ -145,8 +146,8 @@ newGameButton.addEventListener('click',function(event){
 //End of game 
 function endOfGame(){
     clearInterval(generateZombies);
-    points = 0;
 
+    window.removeEventListener('click', missTheShot);
     
     let zombies = document.getElementsByClassName("zombie");
     for (let zombie of zombies){
@@ -154,10 +155,73 @@ function endOfGame(){
     }
 
     newGameButton.style.display = "block";
+
+    // leaderboard.style.display = "block";
+    // getData();
 }
 
 //Missing the shot
-window.addEventListener('click', function() {
+function missTheShot() {
     points -= 6;
     pointsChange();
-})
+}
+
+//Leaderboard
+// const exitHsButton = document.getElementById("hs-exit-button");
+// const leaderboard = document.getElementById("highscores");
+// exitHsButton.addEventListener('click', function(){
+//     leaderboard.style.display = "none";
+// })
+
+
+
+//Nieudana próba tablicy wyników
+// var url = "https://mocki.io/v1/aff8f5e9-c36a-4bfb-906a-9284716adcd4"
+
+// async function getData(){
+//     var data = await fetch(url);
+//     var json = await data.json();
+//     console.log(json);
+//     updateScore(json);
+// }
+
+
+// var todayDate = new Date();
+// async function updateScore(data){
+//     // var todayDate = new Date();
+//     var day = String(todayDate.getDate()).padStart(2, '0');
+//     var month = String(todayDate.getMonth() + 1).padStart(2, '0');
+//     var year = todayDate.getFullYear();
+//     todayDate = day + '.' + month + '.' + year;
+
+//     console.log(todayDate);
+
+//     var scores = data;
+//     console.log(scores)
+
+//     scores.push({"name": nick, "score": points, "date": todayDate})
+//     await pushScore(url, data);
+// }
+
+// fetch(url)
+// .then((response) => {
+//     console.log("ok", response);
+// })
+// .catch((err) => {
+//     console.log("error",err);
+// })
+
+// getData();
+
+// async function pushScore(url = '', data = {}) {
+//     const response = await fetch(url, {
+//       method: 'POST', 
+//       mode: 'cors', 
+//       headers: {
+//         'Content-type': 'application/json',
+
+//       },
+//       body: JSON.stringify(data)
+//     });
+//     return response.json();
+// }

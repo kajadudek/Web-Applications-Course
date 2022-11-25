@@ -1,0 +1,16 @@
+{
+    "The Basics": {
+        "shortcut": "Core Angular basics you have to know",
+        "informations": "With Angular, you're taking advantage of a platform that can scale from single-developer projects to enterprise-level applications. Angular is designed to make updating as straightforward as possible, so take advantage of the latest developments with minimal effort. Best of all, the Angular ecosystem consists of a diverse group of over 1.7 million developers, library authors, and content creators."
+    },
+
+    "Components": {
+        "shortcut": "Components are the building blocks that compose an application.",
+        "informations": "Components are the building blocks that compose an application. A component includes a TypeScript class with a @Component() decorator, an HTML template, and styles. The @Component() decorator specifies the following Angular-specific information. Angular's component model offers strong encapsulation and an intuitive application structure. Components also make your application painless to unit test and can improve the general readability of your code."
+    },
+
+    "Templates": {
+        "shortcut": "Every component has an HTML template that declares how that component renders.",
+        "informations": "Every component has an HTML template that declares how that component renders. You define this template either inline or by file path. Angular adds syntax elements that extend HTML so you can insert dynamic values from your component. Angular automatically updates the rendered DOM when your component's state changes. One application of this feature is inserting dynamic text, as shown in the following example."
+    }
+}

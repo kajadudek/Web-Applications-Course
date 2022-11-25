@@ -28,6 +28,7 @@ h3 {
 p {
     margin-bottom: 40px;
     font-size: 15px;
+    overflow: scroll;
 }
 
 button {

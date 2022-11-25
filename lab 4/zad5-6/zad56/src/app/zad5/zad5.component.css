@@ -1,0 +1,53 @@
+.main-container{
+    margin-left: 30px;
+    display:flex;
+    flex-direction: column;
+    padding: 50px;
+    width: 350px;
+    height: auto;
+    box-shadow: 0px 0px 5px 3px rgb(227, 227, 227);
+    border-radius: 7px;
+}
+
+select{
+    width:85%;
+    height: 40px;
+    border-radius: 3px;
+    border: 1px solid rgb(191, 191, 191);
+    cursor: pointer;
+}
+
+option {
+    font-size: 15px;
+}
+
+p{
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.result {
+    margin-top: 30px;
+    color: sil;
+}
+
+.colors-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.color-options {
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    margin: 5px;
+    border: 1px solid gray;
+    border-radius: 16px;
+}
+
+li {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}

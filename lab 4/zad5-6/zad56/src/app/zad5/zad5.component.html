@@ -1,0 +1,48 @@
+<div class="main-container">
+    <p>Wybierz markę swojego samochodu:</p>
+
+    <select [(ngModel)]="brand" (ngModelChange)="brandIsSelected()">
+        <ng-container>
+            <option *ngFor="let marka of carsData | keyvalue">
+                {{ marka.key }}
+            </option>
+        </ng-container>
+    </select>
+
+    <p>Wybierz model:</p>
+
+    <select [(ngModel)]="model" (ngModelChange)="modelIsSelected()">
+        <ng-container *ngIf="brandsSelected">
+            <option disabled selected></option>
+            <option *ngFor="let model of carsData[brand] | keyvalue">
+                {{ model.key }}
+            </option>
+        </ng-container>
+    </select>
+
+    <div [(ngModel)]="color">
+        <ng-container *ngIf="modelsSelected">
+        <p>Wybierz kolor:</p>
+            <div class="colors-container">
+                <div class="color-options" *ngFor="let color of carsData[brand][model][0]" [ngStyle]="{'background-color': color}" (click)="colorIsSelected(color)">
+                </div>
+            </div>
+        </ng-container>
+    </div>
+
+    <div *ngIf="colorsSelected && brandsSelected && modelsSelected">
+        <p class="result">
+            Twoje nowe auto to:  <br>
+            {{ brand + " " + model + " " + lastColor}} <br><br>
+            Z wyposażeniem:
+        </p>
+        <ul >
+            <li *ngFor="let carsEquip of carsData[brand][model][1]">
+                {{carsEquip}}
+            </li>
+        </ul>
+    </div>
+    
+
+
+  </div>

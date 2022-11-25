@@ -1,0 +1,33 @@
+{
+    "Fiat":
+    {
+        "500": [["red","blue","cyan"], ["podgrzewane siedzenia", "automatyczna skrzynia biegów","asystent parkowania"]],
+        "500x": [["black", "wheat","white"],["podgrzewane siedzenia", "podgrzewana kierownica", "kamera cofania"]],
+        "Panda": [["green", "white"], ["podgrzewane siedzenia", "automatyczna skrzynia biegów","asystent parkowania"]]
+    },
+
+    "Volkswagen":
+    {
+        "Polo": [["red", "black"], ["podgrzewane siedzenia", "podgrzewana kierownica", "kamera cofania"]],
+        "T-Cross": [["orange","grey","blue"], ["wbudowana nawigacja", "automatyczna skrzynia biegów","asystent parkowania"]],
+        "Golf": [["grey","white","black","goldenrod"], ["podgrzewane siedzenia", "podgrzewana kierownica", "automatyczna skrzynia biegów","asystent parkowania"]],
+        "Passat": [["grey","black","darkred"], ["kamera cofania", "wbudowana nawigacja", "asystent parkowania", "relingi dachowe"]],
+        "T-Roc": [["darkblue","green"], ["podgrzewane siedzenia","kamera cofania", "wbudowana nawigacja", "automatyczna skrzynia biegów"]]
+    },
+
+    "BMW":
+    {
+        "X6": [["black","red"], ["podgrzewane siedzenia", "wbudowana nawigacja", "asystent parkowania"]],
+        "X5": [["black","silver"], ["podgrzewane siedzenia", "kamera cofania", "wbudowana nawigacja", "automatyczna skrzynia biegów"]],
+        "iX M60": [["silver","orange","wheat"], ["kamera cofania", "automatyczna skrzynia biegów","asystent parkowania"]],
+        "i7": [["black","white","red"], ["kamera cofania", "asystent parkowania"]]
+    },
+
+    "Audi":
+    {
+        "A7": [["black","darkred","darkblue"],["podgrzewane siedzenia","kamera cofania","automatyczna skrzynia biegów","wysuwany spoiler"]],
+        "A8": [["white","darkred"],["podgrzewana kierownica", "kamera cofania","automatyczna skrzynia biegów","asystent parkowania"]],
+        "Q3": [["silver","darkblue"],["kamera cofania", "wbudowana nawigacja", "automatyczna skrzynia biegów"]],
+        "R8": [["darkblue","red","green"],["podgrzewane siedzenia", "wysuwany spoiler", "kamera cofania","automatyczna skrzynia biegów"]]
+    }
+}

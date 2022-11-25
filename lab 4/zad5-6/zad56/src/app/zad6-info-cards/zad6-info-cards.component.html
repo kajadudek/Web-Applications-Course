@@ -1,0 +1,19 @@
+<div class="info-cards-container">
+
+    <h2>Select Topic</h2>
+
+    <div class="cards" *ngIf="infoCards != []">
+
+        <div class="info-card" *ngFor="let card of infoCards">
+            <h3>
+                {{card.topic}}
+            </h3>
+            <p class="shortcut">
+                {{card.shortcut}}
+            </p>
+            <button>
+                Learn More!
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,9 @@
-<p>zad6-parent works!</p>
+<div class=main>
+    <div class="output">
+        <h3>{{topic}}</h3>
+        <p>{{info}}</p> 
+    </div>
+
+    <app-zad6-info-cards (dataForParent)="processDataFromChild($event)"></app-zad6-info-cards>
+
+</div>

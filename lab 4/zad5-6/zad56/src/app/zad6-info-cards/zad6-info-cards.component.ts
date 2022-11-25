@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import angularTopics from 'src/assets/angularTopics.json';
 
 export interface Card {
@@ -15,12 +15,11 @@ export interface Card {
 
 export class Zad6InfoCardsComponent implements OnInit {
     data: any;
-
     infoCards: Card[] = [];
+    @Output() dataForParent = new EventEmitter<any>();
 
     constructor() {
         this.data = angularTopics;
-        console.log(this.data)
     }
 
     ngOnInit(): void {
@@ -31,7 +30,10 @@ export class Zad6InfoCardsComponent implements OnInit {
                 info: this.data[topics]["informations"]
             } as Card)
         }
-        console.log(this.infoCards)
+    }
+
+    sendDataToParent(topic: string, info: string){
+        this.dataForParent.emit({topic,info});
     }
 
 }

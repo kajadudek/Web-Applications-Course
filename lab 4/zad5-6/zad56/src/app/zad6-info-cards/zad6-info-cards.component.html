@@ -11,7 +11,7 @@
             <p class="shortcut">
                 {{card.shortcut}}
             </p>
-            <button>
+            <button (click)="sendDataToParent(card.topic,card.info)">
                 Learn More!
             </button>
         </div>

@@ -5,8 +5,8 @@
 }
 
 .cards {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .info-card {
@@ -15,6 +15,7 @@
     margin: auto;
     padding: 10px;
     position: relative;
+    margin-bottom: 40px;
 
     box-shadow: 0px 0px 5px 3px rgb(234, 234, 234);
     border-radius: 15px;

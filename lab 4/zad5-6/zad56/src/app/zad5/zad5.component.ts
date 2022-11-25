@@ -8,33 +8,33 @@ import carsData from 'src/assets/cars.json';
 })
 export class Zad5Component{
 
-  brand!: string;
-  model!: string;
-  color!: string;
-  lastColor!: string;
-  carsData: any;
+    brand!: string;
+    model!: string;
+    color!: string;
+    lastColor!: string;
+    carsData: any;
 
-  constructor() { 
-    this.carsData = carsData
-  }
-  
-  colorsSelected = false
-  brandsSelected = false
-  modelsSelected = false
+    constructor() { 
+        this.carsData = carsData
+    }
+    
+    colorsSelected = false
+    brandsSelected = false
+    modelsSelected = false
 
-  brandIsSelected(){
-    this.brandsSelected = true
-    this.modelsSelected = false
-    this.colorsSelected = false
-  }
+    brandIsSelected(){
+        this.brandsSelected = true
+        this.modelsSelected = false
+        this.colorsSelected = false
+    }
 
-  modelIsSelected(){
-    this.modelsSelected = true
-    this.colorsSelected = false
-  }
+    modelIsSelected(){
+        this.modelsSelected = true
+        this.colorsSelected = false
+    }
 
-  colorIsSelected(color: any){
-    this.lastColor = color
-    this.colorsSelected = true;
-  }
+    colorIsSelected(color: any){
+        this.lastColor = color
+        this.colorsSelected = true;
+    }
 }

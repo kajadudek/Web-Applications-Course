@@ -1,0 +1,32 @@
+<div class="trip-cards" *ngIf="trips != []">
+
+    <div class="trip-card" *ngFor="let trip of trips">
+
+        <div class="img-container">
+            <div class="trip-name">
+                {{trip.name}}
+            </div>
+            <img src="{{ trip.imgUrl }}" class="trip-img">
+        </div>
+        
+        <div class="info">
+            <div class="dates">
+                <p>From: {{trip.startDate}}</p>
+                <p>To: {{trip.endDate}}</p>
+            </div>
+            <p class="cost">
+                {{trip.cost}}PLN
+            </p>
+            <p class="trip-info">
+                {{trip.shortInfo}}
+            </p>            
+        </div>
+
+        <div class="trip-card-footer">
+            <p class="vacants">
+                <b>Vacants:</b> {{trip.vacants}}
+            </p>
+        </div>
+        
+    </div>
+</div>

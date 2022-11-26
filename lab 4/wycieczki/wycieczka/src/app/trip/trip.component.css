@@ -1,0 +1,94 @@
+.trip-cards {
+    width: 70vw;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 90px;
+}
+
+.trip-card {
+    width: 27vw;
+    height: 570px;
+    margin: auto;
+    box-shadow: 0px 0px 5px 3px rgb(205, 205, 205);
+    position: relative;
+    border-radius: 5px;
+
+    overflow: hidden;
+}
+
+.img-container {
+    width: 100%;
+    height: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.trip-img {
+    max-width: 110%;
+    min-height: 100%;
+}
+
+.trip-name {
+    position: absolute;
+    text-align: center;
+    font-size: calc(20px + 0.2vw);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.39);
+    width: 100%;
+    height: 40px;
+    bottom: 0;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 290px;
+}
+
+.dates {
+    display: flex;
+    color: gray;
+    justify-content: space-around;
+    margin: 5px 20px;
+}
+
+.cost {
+    font-size: 35px;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+}
+
+.trip-info {
+    color: gray;
+    font-size: 13px;
+    padding: 0px 20px;
+    letter-spacing: 0.7px;
+    line-height: 25px;
+    text-justify: inter-word;
+}
+
+.trip-card-footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+
+    height: 30px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: flex-end;
+}

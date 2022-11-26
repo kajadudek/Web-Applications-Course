@@ -20,6 +20,14 @@
     overflow: hidden;
 }
 
+.max-price {
+    box-shadow: 0px 0px 7px 3px rgb(169, 208, 127);
+}
+
+.min-price {
+    box-shadow: 0px 0px 7px 3px rgb(231, 111, 77);
+}
+
 .img-container {
     width: 300px;
     height: 300px;
@@ -120,6 +128,10 @@ button {
     font-weight: bold;
     border: 0;
     cursor: pointer;
+
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none;
 }
 
 button:hover {

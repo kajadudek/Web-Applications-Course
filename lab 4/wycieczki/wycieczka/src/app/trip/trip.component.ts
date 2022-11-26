@@ -53,4 +53,28 @@ export class TripComponent implements OnInit {
      selectedTrip.vacants += 1; 
     }
   }
+
+  findMaxPrice() {
+    let maxi = 0;
+    let mostExpTrip = <Trip>{};
+    for (let trip of this.trips){
+      if(maxi < trip.cost && trip.vacants > 0){
+        mostExpTrip = trip;
+        maxi = trip.cost
+      }
+    }
+    return mostExpTrip;
+  }
+
+  findMinPrice() {
+    let mini = Number.MAX_VALUE;
+    let leastExpTrip = <Trip>{};
+    for (let trip of this.trips){
+      if(mini > trip.cost && trip.vacants > 0){
+        leastExpTrip = trip;
+        mini = trip.cost
+      }
+    }
+    return leastExpTrip;
+  }
 }

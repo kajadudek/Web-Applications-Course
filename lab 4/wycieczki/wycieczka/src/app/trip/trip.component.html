@@ -1,6 +1,6 @@
 <div class="trip-cards" *ngIf="trips != []">
 
-    <div class="trip-card" *ngFor="let trip of trips">
+    <div class="trip-card" *ngFor="let trip of trips" [ngClass]="{'max-price': trip === findMaxPrice(), 'min-price': trip === findMinPrice()}">
 
         <div class="img-container">
             <div class="trip-name">

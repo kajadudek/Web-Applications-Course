@@ -10,27 +10,32 @@
 
 .trip-card {
     width: 27vw;
-    height: 570px;
+    height: 600px;
     margin: auto;
-    box-shadow: 0px 0px 5px 3px rgb(205, 205, 205);
+    box-shadow: 0px 0px 5px 3px rgb(238, 238, 238);
     position: relative;
     border-radius: 5px;
+    padding: 30px 0px;
 
     overflow: hidden;
 }
 
 .img-container {
-    width: 100%;
-    height: 230px;
+    width: 300px;
+    height: 300px;
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     position: relative;
+
+    border-radius: 150px;
+    box-shadow: 0px 2px 8px 3px rgb(202, 202, 202);
 }
 
 .trip-img {
-    max-width: 110%;
+    max-width: 170%;
     min-height: 100%;
 }
 
@@ -44,10 +49,12 @@
     align-items: center;
 
     color: rgb(255, 255, 255);
-    background-color: rgba(0, 0, 0, 0.39);
+    background-color: rgba(0, 0, 0, 0.45);
     width: 100%;
     height: 40px;
     bottom: 0;
+    top: 0;
+    margin: auto;
 }
 
 .info {
@@ -91,4 +98,39 @@
     padding: 15px 20px;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+}
+
+.vacants {
+    width: 90px;
+    color: black;
+}
+
+.few-left {
+    color: red;
+}
+
+button {
+    width: 30px;
+    height: 30px;
+    border-radius: 18px;
+    color: white;
+    font-size: 25px;
+    margin: 5px;
+    font-weight: bold;
+    border: 0;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 75%;
+}
+
+.buy-button {
+    background-color: rgb(229, 124, 3);
+}
+
+.resign-button {
+    background-color: gray;
+    font-size: 15px;
 }

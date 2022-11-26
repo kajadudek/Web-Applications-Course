@@ -10,6 +10,7 @@ export interface Trip{
   vacants: number;
   shortInfo: string;
   imgUrl: string;
+  addedToCart: number;
 }
 
 @Component({
@@ -36,7 +37,20 @@ export class TripComponent implements OnInit {
         vacants: this.data[trip]["vacants"],
         shortInfo: this.data[trip]["info"],
         imgUrl: this.data[trip]["image"],
+        addedToCart: 0
       } as Trip)
+    }
+  }
+
+  addTripToCart(selectedTrip: Trip) {
+    selectedTrip.addedToCart += 1;
+    selectedTrip.vacants -= 1;
+  }
+
+  rmvTripFromCart(selectedTrip: Trip) {
+    if(selectedTrip.addedToCart>0){
+     selectedTrip.addedToCart -= 1;
+     selectedTrip.vacants += 1; 
     }
   }
 }

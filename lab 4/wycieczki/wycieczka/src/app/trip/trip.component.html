@@ -23,8 +23,14 @@
         </div>
 
         <div class="trip-card-footer">
-            <p class="vacants">
+            <button *ngIf="trip.vacants > 0" (click)="addTripToCart(trip)" class="buy-button">+</button>
+            <button *ngIf="trip.addedToCart >= 0" (click)="rmvTripFromCart(trip)" class="resign-button">X</button>
+            <p class="vacants" *ngIf="trip.vacants > 0" [class.few-left]="trip.vacants <= 3">
                 <b>Vacants:</b> {{trip.vacants}}
+            </p>
+
+            <p class="few-left" *ngIf="trip.vacants == 0">
+                <b>Not available!</b>
             </p>
         </div>
         

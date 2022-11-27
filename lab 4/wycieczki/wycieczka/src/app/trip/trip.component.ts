@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import tripData from 'src/assets/trips.json';
+import {faTrashCan} from '@fortawesome/free-solid-svg-icons'
 
 export interface Trip{
   name: string;
@@ -18,9 +19,12 @@ export interface Trip{
   templateUrl: './trip.component.html',
   styleUrls: ['./trip.component.css']
 })
+
 export class TripComponent implements OnInit {
   data!: any;
-  trips: Trip[] = [];
+  public trips: Trip[] = [];
+  howManyTrips = 0;
+  faTrashCan = faTrashCan;
 
   constructor() {
     this.data = tripData["Trips"];
@@ -45,12 +49,14 @@ export class TripComponent implements OnInit {
   addTripToCart(selectedTrip: Trip) {
     selectedTrip.addedToCart += 1;
     selectedTrip.vacants -= 1;
+    this.howManyTrips += 1;
   }
 
   rmvTripFromCart(selectedTrip: Trip) {
     if(selectedTrip.addedToCart>0){
      selectedTrip.addedToCart -= 1;
      selectedTrip.vacants += 1; 
+     this.howManyTrips -= 1;
     }
   }
 
@@ -77,4 +83,15 @@ export class TripComponent implements OnInit {
     }
     return leastExpTrip;
   }
+
+  deleteTrip(trip: Trip) {
+    const id = this.trips.indexOf(trip,0);
+    this.trips.splice(id,1);
+  }
+
+  onSubmitHandler(trip: any) {
+    console.log('trip dodany: ' + trip)
+    this.trips.push(trip)
+  }
+
 }

@@ -1,7 +1,7 @@
 {
     "Trips": [
         {
-            "Name": "The Royal Route", 
+            "Name": "The Royal route", 
             "Country": "United Kingdom",
             "startDate": "10/07/2023",
             "endDate": "15/07/2023",
@@ -23,7 +23,7 @@
         },
 
         {
-            "Name": "Wrapping Up", 
+            "Name": "Wrapping up", 
             "Country": "United Kingdom",
             "startDate": "12/07/2023",
             "endDate": "17/07/2023",

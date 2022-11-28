@@ -2,7 +2,7 @@
     <p>Add trip</p>
     <label for="name"> Trip name: </label>
     <input id="name" type="text" formControlName="name">
-    <p class="error" *ngIf="name != null && name.invalid && name.touched">Invalid name: max 25 characters, only letters</p>
+    <p class="error" *ngIf="name != null && name.invalid && name.touched">Invalid name: max 20 characters, only letters</p>
 
     <label for="country"> Country of destination: </label>
     <input id="country" type="text" formControlName="country">
@@ -16,6 +16,7 @@
         <input id="end-date" type="text" formControlName="endDate">
         <p class="error" *ngIf="startDate != null && startDate.invalid && startDate.touched">Invalid start date format. Try DD/MM/YYYY</p>
         <p class="error" *ngIf="endDate != null && endDate.invalid && endDate.touched">Invalid end date format. Try DD/MM/YYYY</p>
+        <p class="error" *ngIf="!isDateValid">Enter proper dates</p>
     </div>
 
     <div class="cost-vac">

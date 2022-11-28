@@ -86,6 +86,7 @@ export class TripComponent implements OnInit {
 
   deleteTrip(trip: Trip) {
     const id = this.trips.indexOf(trip,0);
+    this.howManyTrips -= trip.addedToCart;
     this.trips.splice(id,1);
   }
 

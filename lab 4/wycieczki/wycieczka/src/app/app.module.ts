@@ -7,12 +7,16 @@ import { TripComponent } from './trip/trip.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddTripComponent } from './add-trip/add-trip.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RatingComponent } from './rating/rating.component';
+import { StarComponent } from './star/star.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TripComponent,
-    AddTripComponent
+    AddTripComponent,
+    RatingComponent,
+    StarComponent
   ],
   imports: [
     BrowserModule,

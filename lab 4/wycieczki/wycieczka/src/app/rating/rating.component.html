@@ -1,0 +1,11 @@
+<div class="rating">
+    <ng-container *ngFor="let star of stars">
+    <app-star [starId]="star" 
+        [rating]="hoverStars || rating" 
+        (enter)="enter($event)" 
+        (chooseStars)="newRate()"
+        (clicked)="updateRating(star)">
+    </app-star>
+    </ng-container>
+    <p class="rating-result" *ngIf="rating > 0">{{rating}}</p>
+</div>

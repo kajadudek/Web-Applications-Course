@@ -12,6 +12,7 @@ export interface Trip{
   shortInfo: string;
   imgUrl: string;
   addedToCart: number;
+  rating: number;
 }
 
 @Component({
@@ -23,6 +24,7 @@ export interface Trip{
 export class TripComponent implements OnInit {
   data!: any;
   public trips: Trip[] = [];
+
   howManyTrips = 0;
   faTrashCan = faTrashCan;
 
@@ -41,7 +43,8 @@ export class TripComponent implements OnInit {
         vacants: this.data[trip]["vacants"],
         shortInfo: this.data[trip]["info"],
         imgUrl: this.data[trip]["image"],
-        addedToCart: 0
+        addedToCart: 0,
+        rating: 0
       } as Trip)
     }
   }
@@ -93,6 +96,10 @@ export class TripComponent implements OnInit {
   onSubmitHandler(trip: any) {
     console.log('trip dodany: ' + trip)
     this.trips.push(trip)
+  }
+
+  getRating(rating: number, trip: Trip){
+    trip.rating = rating
   }
 
 }

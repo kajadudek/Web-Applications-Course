@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import tripData from 'src/assets/trips.json';
-import {faTrashCan} from '@fortawesome/free-solid-svg-icons'
+import {faTrashCan,faShoppingCart} from '@fortawesome/free-solid-svg-icons'
 
 export interface Trip{
   name: string;
@@ -27,6 +27,8 @@ export class TripComponent implements OnInit {
 
   howManyTrips = 0;
   faTrashCan = faTrashCan;
+  faShoppingCart = faShoppingCart;
+  displayCartFlag = false;
 
   constructor() {
     this.data = tripData["Trips"];
@@ -100,6 +102,20 @@ export class TripComponent implements OnInit {
 
   getRating(rating: number, trip: Trip){
     trip.rating = rating
+  }
+
+  displayCart(){
+    this.displayCartFlag = true;
+  }
+
+  hideCart() {
+    this.displayCartFlag = false;
+  }
+
+  updateFromCart(selectedTrip: Trip) {
+    this.howManyTrips -= selectedTrip.addedToCart;
+    selectedTrip.vacants += selectedTrip.addedToCart;
+    selectedTrip.addedToCart = 0;
   }
 
 }

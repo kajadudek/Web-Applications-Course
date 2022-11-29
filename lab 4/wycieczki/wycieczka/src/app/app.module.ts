@@ -9,6 +9,8 @@ import { AddTripComponent } from './add-trip/add-trip.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RatingComponent } from './rating/rating.component';
 import { StarComponent } from './star/star.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { StarComponent } from './star/star.component';
     TripComponent,
     AddTripComponent,
     RatingComponent,
-    StarComponent
+    StarComponent,
+    FilterPipe,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,

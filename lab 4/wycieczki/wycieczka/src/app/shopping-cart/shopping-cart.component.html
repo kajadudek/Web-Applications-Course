@@ -1,0 +1,19 @@
+<div class="shopping-cart">
+    <div *ngFor="let product of tripsInCart">
+        <div class="product" *ngIf="product.addedToCart > 0">
+            <h4>{{product.name}}</h4>
+            
+
+            <div class="product-info">
+                <p class="cost">{{product.cost}} PLN</p>
+                <p>x {{product.addedToCart}}</p>
+                <button class="delete-product" (click)="deleteProductFromCart(product)">X</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="cart-total">
+        <p>Total: {{totalCost}} PLN </p>
+        <button class="finalize">SHOPPING CART</button>
+    </div>
+</div>

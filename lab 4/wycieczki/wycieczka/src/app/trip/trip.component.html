@@ -1,6 +1,19 @@
-<div class="how-many-trips">
-    trips in the cart: {{howManyTrips}}
+<div class="how-many-trips"
+        [style.color]="howManyTrips < 10 ? 'brown': '#e57c03'">
+        
+    <p class="trips-in-cart">{{howManyTrips}}</p>
+    <fa-icon [icon]="faShoppingCart"
+        (mouseenter)="displayCart()"
+        (click)="displayCartFlag ? hideCart(): displayCart()">
+    </fa-icon>
 </div>
+
+<app-shopping-cart *ngIf="displayCartFlag" 
+        [tripsInCart]="trips"
+        [howManyTrips]="howManyTrips"
+        (deleteProduct)="updateFromCart($event)"
+        (mouseenter)="displayCart()"
+        (mouseleave)="hideCart()"></app-shopping-cart>
 
 <div class="trip-cards" *ngIf="trips != []">
 

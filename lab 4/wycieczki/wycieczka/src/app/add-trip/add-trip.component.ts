@@ -116,6 +116,12 @@ export class AddTripComponent {
       
       if (this.checkDates(this.addingTripForms.get('startDate')!.value, this.addingTripForms.get('endDate')!.value)){
         this.isDateValid = true;
+        let imageUrl = this.addingTripForms.get('imgUrl')!.value;
+
+        if (imageUrl == ''){
+          imageUrl = 'assets/images/defaultImage.jpg'
+        }
+
         let trip = {
           name: this.addingTripForms.get('name')!.value,
           destinationCountry: this.addingTripForms.get('country')!.value,
@@ -124,9 +130,11 @@ export class AddTripComponent {
           cost: this.addingTripForms.get('cost')!.value,
           vacants: this.addingTripForms.get('vacants')!.value,
           shortInfo: this.addingTripForms.get('shortInfo')!.value,
-          imgUrl: this.addingTripForms.get('imgUrl')!.value,
+          imgUrl: imageUrl,
           addedToCart: 0
         } as unknown as Trip;
+
+        
 
         console.log(trip)
         this.onSubmitSend.emit(<Trip>trip);

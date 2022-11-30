@@ -5,7 +5,7 @@
             
 
             <div class="product-info">
-                <p class="cost">{{product.cost}} PLN</p>
+                <p class="cost">{{product.cost * currencyConvert}} {{currentCurrency}}</p>
                 <p>x {{product.addedToCart}}</p>
                 <button class="delete-product" (click)="deleteProductFromCart(product)">X</button>
             </div>
@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="cart-total">
-        <p>Total: {{totalCost}} PLN </p>
+        <p>Total: {{totalCost * currencyConvert}} {{currentCurrency}} </p>
         <button class="finalize">SHOPPING CART</button>
     </div>
 </div>

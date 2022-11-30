@@ -29,6 +29,8 @@ export class TripComponent implements OnInit {
   faTrashCan = faTrashCan;
   faShoppingCart = faShoppingCart;
   displayCartFlag = false;
+  currentCurrency = "PLN";
+  currencyConvert = 1;
 
   constructor() {
     this.data = tripData["Trips"];
@@ -118,4 +120,18 @@ export class TripComponent implements OnInit {
     selectedTrip.addedToCart = 0;
   }
 
+  changeCurrency(toCurrency: string){
+    if (this.currentCurrency != toCurrency){
+
+      if (this.currentCurrency == "PLN"){
+        this.currencyConvert = 0.2;
+        this.currentCurrency = "USD"
+      }
+      else {
+        this.currencyConvert = 1;
+        this.currentCurrency = "PLN";
+      }
+    }
+ 
+  }
 }

@@ -12,6 +12,8 @@ export class ShoppingCartComponent implements OnInit {
 
   @Input() tripsInCart!: Trip[];
   @Input() howManyTrips!: number;
+  @Input() currentCurrency!: string;
+  @Input() currencyConvert!: number;
 
   @Output() deleteProduct: EventEmitter<Trip> = new EventEmitter();
 

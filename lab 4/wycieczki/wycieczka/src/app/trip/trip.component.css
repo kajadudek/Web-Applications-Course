@@ -18,6 +18,17 @@
     z-index: 2;
 }
 
+.currencies {
+    color: black !important;
+    display: flex;
+    flex-direction: row;
+}
+
+.currencies > p {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
 .trips-in-cart {
     width: 40px;
 }

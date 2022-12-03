@@ -1,3 +1,15 @@
+.sidebar {
+    position: fixed;
+    padding: 100px 10px;
+    background-color: rgb(255, 255, 255);
+    width: 150px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    box-shadow: 0px 0px 5px 3px rgb(238, 238, 238);
+}
+
 .how-many-trips {
     position: fixed;
     top: 0;

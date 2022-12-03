@@ -9,8 +9,9 @@ import { AddTripComponent } from './add-trip/add-trip.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RatingComponent } from './rating/rating.component';
 import { StarComponent } from './star/star.component';
-import { FilterPipe } from './pipes/filter.pipe';
+import { FilterPipe } from './pipes/country.pipe';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     RatingComponent,
     StarComponent,
     FilterPipe,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

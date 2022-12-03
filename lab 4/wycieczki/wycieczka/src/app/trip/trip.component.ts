@@ -132,6 +132,14 @@ export class TripComponent implements OnInit {
         this.currentCurrency = "PLN";
       }
     }
- 
+  }
+
+
+
+//FILTER
+  countryFilter = [''];
+
+  getCountryFilter(list: string[]){
+    this.countryFilter = list;
   }
 }

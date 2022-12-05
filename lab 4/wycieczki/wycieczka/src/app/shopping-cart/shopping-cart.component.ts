@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Trip } from '../trip/trip.component';
+import { ServicedataService, Trip } from '../servicedata.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -7,21 +7,23 @@ import { Trip } from '../trip/trip.component';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
-
+  tripsInCart!: Trip[];
   totalCost = 0;
 
-  @Input() tripsInCart!: Trip[];
+
+  constructor(public servicedata: ServicedataService) {
+  }
+
+  ngOnInit(): void {
+    this.tripsInCart = this.servicedata.trips;
+    this.total();
+  }
+
   @Input() howManyTrips!: number;
   @Input() currentCurrency!: string;
   @Input() currencyConvert!: number;
 
   @Output() deleteProduct: EventEmitter<Trip> = new EventEmitter();
-
-  constructor() { }
-
-  ngOnInit(): void {
-    this.total();
-  }
 
   deleteProductFromCart(selectedTrip: Trip){
     this.deleteProduct.emit(selectedTrip);

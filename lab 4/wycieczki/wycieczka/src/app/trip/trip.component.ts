@@ -1,19 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import tripData from 'src/assets/trips.json';
 import {faTrashCan,faShoppingCart} from '@fortawesome/free-solid-svg-icons'
+import { ServicedataService, Trip } from '../servicedata.service';
 
-export interface Trip{
-  name: string;
-  destinationCountry: string;
-  startDate: string;
-  endDate: string;
-  cost: number;
-  vacants: number;
-  shortInfo: string;
-  imgUrl: string;
-  addedToCart: number;
-  rating: number;
-}
 
 @Component({
   selector: 'app-trip',
@@ -25,32 +14,20 @@ export class TripComponent implements OnInit {
   data!: any;
   public trips: Trip[] = [];
 
+  @Input() countryFilter!: string[];
+  @Input() currentCurrency!: string;
+  @Input() currencyConvert!: number;
+
   howManyTrips = 0;
   faTrashCan = faTrashCan;
   faShoppingCart = faShoppingCart;
   displayCartFlag = false;
-  currentCurrency = "PLN";
-  currencyConvert = 1;
 
-  constructor() {
-    this.data = tripData["Trips"];
+  constructor(public servicedata: ServicedataService) {
   }
 
   ngOnInit(): void {
-    for (let trip in this.data){
-      this.trips.push({
-        name: this.data[trip]["Name"],
-        destinationCountry: this.data[trip]["Country"],
-        startDate: this.data[trip]["startDate"],
-        endDate: this.data[trip]["endDate"],
-        cost: this.data[trip]["cost"],
-        vacants: this.data[trip]["vacants"],
-        shortInfo: this.data[trip]["info"],
-        imgUrl: this.data[trip]["image"],
-        addedToCart: 0,
-        rating: 0
-      } as Trip)
-    }
+    this.trips = this.servicedata.trips;
   }
 
   addTripToCart(selectedTrip: Trip) {
@@ -97,11 +74,6 @@ export class TripComponent implements OnInit {
     this.trips.splice(id,1);
   }
 
-  onSubmitHandler(trip: any) {
-    console.log('trip dodany: ' + trip)
-    this.trips.push(trip)
-  }
-
   getRating(rating: number, trip: Trip){
     trip.rating = rating
   }
@@ -134,12 +106,6 @@ export class TripComponent implements OnInit {
     }
   }
 
+  
 
-
-//FILTER
-  countryFilter = [''];
-
-  getCountryFilter(list: string[]){
-    this.countryFilter = list;
-  }
 }

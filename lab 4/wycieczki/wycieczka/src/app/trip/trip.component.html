@@ -14,7 +14,6 @@
 </div>
 
 <app-shopping-cart *ngIf="displayCartFlag" 
-        [tripsInCart]="trips"
         [howManyTrips]="howManyTrips"
         [currentCurrency]="currentCurrency"
         [currencyConvert]="currencyConvert"
@@ -22,11 +21,6 @@
         (mouseenter)="displayCart()"
         (mouseleave)="hideCart()"></app-shopping-cart>
 
-<app-sidebar
-    class = "sidebar"
-    [tripList]="trips"
-    (sendCountryFilter) = "getCountryFilter($event)"
-></app-sidebar>
 
 <div class="trip-cards" *ngIf="trips != []">
     <div class="trip-card" *ngFor="let trip of trips | localisation: countryFilter" [ngClass]="{'max-price': trip === findMaxPrice(), 'min-price': trip === findMinPrice()}">
@@ -77,7 +71,3 @@
         
     </div>
 </div>
-
-
-<app-add-trip (onSubmitSend)="onSubmitHandler($event)">
-</app-add-trip>

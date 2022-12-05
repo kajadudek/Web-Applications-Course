@@ -1,27 +1,28 @@
 import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Trip, TripComponent } from '../trip/trip.component';
+import { ServicedataService, Trip } from '../servicedata.service';
+import { TripComponent } from '../trip/trip.component';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
+
 export class SidebarComponent implements OnInit {
-
-  constructor() { }
-
   uniqueCountries!: string[];
   filteredCountryList!: string[];
+  tripList!: Trip[];
 
-
-  @Input() tripList!: Trip[];
+  constructor(public servicedata: ServicedataService) {
+  }
 
   @Output() sendCountryFilter: EventEmitter<string[]> = new EventEmitter();
 
   ngOnInit(): void {
-    console.log('sidebar ' + this.tripList);
+    this.tripList = this.servicedata.trips;
     this.uniqueCountries = [...new Set(this.tripList.map(trip => trip.destinationCountry))];
+    console.log(this.tripList, this.uniqueCountries);
   }
 
   updateListOfCountries(selectedCountry: string){

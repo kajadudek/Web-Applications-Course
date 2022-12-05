@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'wycieczka';
+  currentCurrency = "PLN";
+  currencyConvert = 1;
+
+
+  //FILTER
+  countryFilter = [''];
+
+  getCountryFilter(list: string[]){
+    this.countryFilter = list;
+  }
 }

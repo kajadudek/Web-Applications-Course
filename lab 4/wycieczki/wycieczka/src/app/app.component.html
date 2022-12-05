@@ -1,3 +1,14 @@
 <div class="main">
-  <app-trip></app-trip>
+  <app-sidebar
+    class = "sidebar"
+    (sendCountryFilter) = "getCountryFilter($event)"
+  ></app-sidebar>
+
+  <app-trip 
+  [countryFilter] = "countryFilter"
+  [currentCurrency]="currentCurrency"
+  [currencyConvert]="currencyConvert"
+  ></app-trip>
+  
+  <app-add-trip></app-add-trip>
 </div>

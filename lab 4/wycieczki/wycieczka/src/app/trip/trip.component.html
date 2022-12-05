@@ -1,27 +1,3 @@
-<div class="how-many-trips"
-        [style.color]="howManyTrips < 10 ? 'brown': '#e57c03'">
-        
-    <div class="currencies">
-        <p (click)="changeCurrency('PLN')">PLN</p>
-        <p (click)="changeCurrency('USD')">USD</p>
-    </div>
-
-    <p class="trips-in-cart">{{howManyTrips}}</p>
-    <fa-icon [icon]="faShoppingCart"
-        (mouseenter)="displayCart()"
-        (click)="displayCartFlag ? hideCart(): displayCart()">
-    </fa-icon>
-</div>
-
-<app-shopping-cart *ngIf="displayCartFlag" 
-        [howManyTrips]="howManyTrips"
-        [currentCurrency]="currentCurrency"
-        [currencyConvert]="currencyConvert"
-        (deleteProduct)="updateFromCart($event)"
-        (mouseenter)="displayCart()"
-        (mouseleave)="hideCart()"></app-shopping-cart>
-
-
 <div class="trip-cards" *ngIf="trips != []">
     <div class="trip-card" *ngFor="let trip of trips | localisation: countryFilter" [ngClass]="{'max-price': trip === findMaxPrice(), 'min-price': trip === findMinPrice()}">
         <div class="delete-button">

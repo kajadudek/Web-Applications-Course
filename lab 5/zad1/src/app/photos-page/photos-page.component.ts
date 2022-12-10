@@ -9,7 +9,6 @@ import { DataserviceService } from '../dataservice.service';
 export class PhotosPageComponent {
 
   constructor(private photoData: DataserviceService) {
-
   }
 
   photos: any[] = []

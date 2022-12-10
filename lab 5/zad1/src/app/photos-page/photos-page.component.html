@@ -1,17 +1,15 @@
-<p>photos-page works!</p>
+<div *ngIf="photos!=undefined" >
+    <div class="photos-container">
 
-<h1>Photos</h1>
-<h3>(showing only 25 images)</h3>
-<h1 *ngIf="photos.length==0">Loading...</h1>
-<ng-container *ngIf="photos!=undefined" >
-    <ng-container *ngFor="let photo of photos">
-        <ng-container *ngIf="photo.id<=25">
-            <div class="photo">
-                <h3>AlbumID: {{photo.albumId}}, ImageID:{{photo.id}}</h3>
-                <p>Naciśnij na obrazek aby odtworzyć pełne zdjęcie</p>
-                <a routerLink="/photos/{{photo.id}}"><img src={{photo.thumbnailUrl}} alt=""></a>
+        <div class="photo" *ngFor="let photo of photos">
+            <a routerLink="/photos/{{photo.id}}">
+                <img src={{photo.thumbnailUrl}} alt="">
+            </a>
+
+            <div class="photo-footer">
+                <p>Naciśnij by zobaczyć więcej</p>
+                <p>Title: {{photo.title}}, imgID:{{photo.id}}</p>
             </div>
-
-        </ng-container>
-    </ng-container>
-</ng-container>
+        </div>
+    </div>
+</div>

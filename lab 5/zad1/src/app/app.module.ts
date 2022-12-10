@@ -8,6 +8,7 @@ import { PostPageComponent } from './post-page/post-page.component';
 import { PhotosPageComponent } from './photos-page/photos-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PhotoComponent } from './photo/photo.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     HomePageComponent,
     PostPageComponent,
-    PhotosPageComponent
+    PhotosPageComponent,
+    PhotoComponent
   ],
   imports: [
     BrowserModule,

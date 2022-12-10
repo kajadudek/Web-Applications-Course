@@ -23,6 +23,7 @@ import { PhotoComponent } from './photo/photo.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],

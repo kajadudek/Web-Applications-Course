@@ -8,7 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddTripComponent } from './add-trip/add-trip.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RatingComponent } from './rating/rating.component';
-import { StarComponent } from './star/star.component';
+import { StarComponent } from './rating/star/star.component';
 import { FilterPipe } from './pipes/country.pipe';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { SidebarComponent } from './sidebar/sidebar.component';

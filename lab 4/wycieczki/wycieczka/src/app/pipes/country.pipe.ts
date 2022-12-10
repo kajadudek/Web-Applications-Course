@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Trip } from '../trip/trip.component';
+import { Trip } from '../servicedata.service';
 
 @Pipe({
   name: 'localisation',

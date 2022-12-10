@@ -1,0 +1,113 @@
+{
+    "Trips": [
+        {
+            "Name": "The Royal route", 
+            "Country": "United Kingdom",
+            "startDate": "10/07/2023",
+            "endDate": "15/07/2023",
+            "cost": 2000,
+            "vacants": 13,
+            "info": "This tour hints exploring the cultural heritage of the Queens Elisabeth's region, in one way or another. It will attract people keen to visit everything from ancient castles and historic places to famous museums and houses.",
+            "image": "assets/images/royalRoute.jpg"
+        },
+
+        {
+            "Name": "Keep Calm and Travel On", 
+            "Country": "Iceland",
+            "startDate": "14/07/2023",
+            "endDate": "18/07/2023",
+            "cost": 2500,
+            "vacants": 7,
+            "info": "Are you tired of perpetual social media notifications? This trip is perfect for you! Travel across the Iceland landscapes and connect with nature.",
+            "image": "assets/images/keepCalm.webp"
+        },
+
+        {
+            "Name": "Wrapping up", 
+            "Country": "United Kingdom",
+            "startDate": "12/07/2023",
+            "endDate": "17/07/2023",
+            "cost": 3400,
+            "vacants": 23,
+            "info": "Don't underestimate the significance of words and go on a trip to United Kingdom. Take your time and travel through England, Scotland and Wales in 5 days!",
+            "image": "assets/images/wrappingUp.jpg"
+        },
+
+        {
+            "Name": "Hop-on, Hop-off", 
+            "Country": "Italy",
+            "startDate": "16/08/2023",
+            "endDate": "23/08/2023",
+            "cost": 3600,
+            "vacants": 12,
+            "info": "Hop-on, Hop-off is a good example of a travel experience most people don't know. It's a bus tour that follows a circular route in Italian Amalfi Coast region. Fantastic choice for those of you who want flexible and adventurous travel!",
+            "image": "assets/images/hopOn.jpg"
+        },
+
+        {
+            "Name": "Destination Vacation", 
+            "Country": "Thailand",
+            "startDate": "13/08/2023",
+            "endDate": "27/08/2023",
+            "cost": 4300,
+            "vacants": 9,
+            "info": "The destination of your dreams. This trip would be perfect for those seeking days full of relax and sunbathing",
+            "image": "assets/images/destinationVac.jpg"
+        },
+
+        {
+            "Name": "Don't mind the Gap", 
+            "Country": "Peru",
+            "startDate": "10/08/2023",
+            "endDate": "25/08/2023",
+            "cost": 6200,
+            "vacants": 14,
+            "info": "Want to experience another culture? Don't mind the cultural gap and go on a bus trip to Peru!",
+            "image": "assets/images/mindGap.jpg"
+        },
+
+        {
+            "Name": "Green Escapes", 
+            "Country": "Norway",
+            "startDate": "04/07/2023",
+            "endDate": "11/07/2023",
+            "cost": 3200,
+            "vacants": 7,
+            "info": "Green Escapes is one of our customers' favorites. Name of the journe perfectly infers its nature. This trip highlights the best the importance of connecting with nature and inspires to imagine the relaxing expedition that the tour will provide.",
+            "image": "assets/images/greenEscapes.webp"
+        },
+
+        {
+            "Name": "The Landmark Tour", 
+            "Country": "Egypt",
+            "startDate": "20/08/2023",
+            "endDate": "27/08/2023",
+            "cost": 4050,
+            "vacants": 3,
+            "info": "Don't hesitate! This tour combines all the special places that one would love to visit when traveling to Egypt or exploring the local culture.",
+            "image": "assets/images/landmark.jpg"
+        },
+
+        {
+            "Name": "Looking for colors", 
+            "Country": "Norway",
+            "startDate": "09/09/2023",
+            "endDate": "16/09/2023",
+            "cost": 3870,
+            "vacants": 16,
+            "info": "Give your life some colors by going on our trip to north Norway and see aurora borealis",
+            "image": "assets/images/looking4colors.webp"
+        },
+
+        {
+            "Name": "The ancient city", 
+            "Country": "Italy",
+            "startDate": "28/07/2023",
+            "endDate": "02/08/2023",
+            "cost": 2700,
+            "vacants": 6,
+            "info": "7 cities in 5 days? Everything is possible in Rome! Rome is often referred to as the City of Seven Hills due to its geographic location. You can't miss such oportunity.",
+            "image": "assets/images/ancientCity.webp"
+        }
+    ]
+}

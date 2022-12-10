@@ -2,7 +2,8 @@ import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Output, ViewChild, ViewChildren } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, AbstractControl} from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { Trip, TripComponent } from '../trip/trip.component';
+import { ServicedataService, Trip } from '../servicedata.service';
+import { TripComponent } from '../trip/trip.component';
 
 
 @Component({
@@ -13,8 +14,14 @@ import { Trip, TripComponent } from '../trip/trip.component';
 
 export class AddTripComponent {
   isDateValid = true;
+  trips!: Trip[]
 
-  @Output() onSubmitSend = new EventEmitter<Trip>();
+  constructor(public servicedata: ServicedataService) {
+  }
+
+  ngOnInit(): void {
+    this.trips = this.servicedata.trips;
+  }
 
   addingTripForms = new FormGroup({
     name: new FormControl('', 
@@ -135,9 +142,7 @@ export class AddTripComponent {
         } as unknown as Trip;
 
         
-
-        console.log(trip)
-        this.onSubmitSend.emit(<Trip>trip);
+        this.trips.push(trip);
         this.addingTripForms.reset();
 
       }else{

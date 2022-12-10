@@ -1,19 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import tripData from 'src/assets/trips.json';
-import {faTrashCan,faShoppingCart} from '@fortawesome/free-solid-svg-icons'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {faTrashCan} from '@fortawesome/free-solid-svg-icons'
+import { ServicedataService, Trip } from '../servicedata.service';
 
-export interface Trip{
-  name: string;
-  destinationCountry: string;
-  startDate: string;
-  endDate: string;
-  cost: number;
-  vacants: number;
-  shortInfo: string;
-  imgUrl: string;
-  addedToCart: number;
-  rating: number;
-}
 
 @Component({
   selector: 'app-trip',
@@ -24,39 +12,34 @@ export interface Trip{
 export class TripComponent implements OnInit {
   data!: any;
   public trips: Trip[] = [];
-
   howManyTrips = 0;
-  faTrashCan = faTrashCan;
-  faShoppingCart = faShoppingCart;
-  displayCartFlag = false;
-  currentCurrency = "PLN";
-  currencyConvert = 1;
 
-  constructor() {
-    this.data = tripData["Trips"];
+  @Input() howManyTripsDeleted!: number;
+  @Input() countryFilter!: string[];
+  @Input() currentCurrency!: string;
+  @Input() currencyConvert!: number;
+  @Output() sendHowManyTrips: EventEmitter<number> = new EventEmitter();
+
+  faTrashCan = faTrashCan;
+  displayCartFlag = false;
+
+  constructor(public servicedata: ServicedataService) {
   }
 
   ngOnInit(): void {
-    for (let trip in this.data){
-      this.trips.push({
-        name: this.data[trip]["Name"],
-        destinationCountry: this.data[trip]["Country"],
-        startDate: this.data[trip]["startDate"],
-        endDate: this.data[trip]["endDate"],
-        cost: this.data[trip]["cost"],
-        vacants: this.data[trip]["vacants"],
-        shortInfo: this.data[trip]["info"],
-        imgUrl: this.data[trip]["image"],
-        addedToCart: 0,
-        rating: 0
-      } as Trip)
-    }
+    this.trips = this.servicedata.trips;
+    this.howManyTrips -= this.howManyTripsDeleted;
+  }
+
+  updateHowManyTrips(i: number){
+    this.sendHowManyTrips.emit(this.howManyTrips);
   }
 
   addTripToCart(selectedTrip: Trip) {
     selectedTrip.addedToCart += 1;
     selectedTrip.vacants -= 1;
     this.howManyTrips += 1;
+    this.updateHowManyTrips(this.howManyTrips);
   }
 
   rmvTripFromCart(selectedTrip: Trip) {
@@ -64,6 +47,7 @@ export class TripComponent implements OnInit {
      selectedTrip.addedToCart -= 1;
      selectedTrip.vacants += 1; 
      this.howManyTrips -= 1;
+     this.updateHowManyTrips(this.howManyTrips);
     }
   }
 
@@ -95,51 +79,10 @@ export class TripComponent implements OnInit {
     const id = this.trips.indexOf(trip,0);
     this.howManyTrips -= trip.addedToCart;
     this.trips.splice(id,1);
-  }
-
-  onSubmitHandler(trip: any) {
-    console.log('trip dodany: ' + trip)
-    this.trips.push(trip)
+    this.updateHowManyTrips(this.howManyTrips);
   }
 
   getRating(rating: number, trip: Trip){
     trip.rating = rating
-  }
-
-  displayCart(){
-    this.displayCartFlag = true;
-  }
-
-  hideCart() {
-    this.displayCartFlag = false;
-  }
-
-  updateFromCart(selectedTrip: Trip) {
-    this.howManyTrips -= selectedTrip.addedToCart;
-    selectedTrip.vacants += selectedTrip.addedToCart;
-    selectedTrip.addedToCart = 0;
-  }
-
-  changeCurrency(toCurrency: string){
-    if (this.currentCurrency != toCurrency){
-
-      if (this.currentCurrency == "PLN"){
-        this.currencyConvert = 0.2;
-        this.currentCurrency = "USD"
-      }
-      else {
-        this.currencyConvert = 1;
-        this.currentCurrency = "PLN";
-      }
-    }
-  }
-
-
-
-//FILTER
-  countryFilter = [''];
-
-  getCountryFilter(list: string[]){
-    this.countryFilter = list;
   }
 }

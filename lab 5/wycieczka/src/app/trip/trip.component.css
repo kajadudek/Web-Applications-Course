@@ -1,0 +1,177 @@
+.trip-cards {
+    width: 70vw;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 90px;
+}
+
+.trip-card {
+    width: 27vw;
+    min-width: 360px;
+    height: 600px;
+    margin: auto;
+    box-shadow: 0px 0px 5px 3px rgb(238, 238, 238);
+    position: relative;
+    border-radius: 5px;
+    padding: 30px 0px;
+
+    overflow: hidden;
+}
+
+.delete-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: rgb(159, 159, 159);
+    cursor: pointer;
+}
+
+.delete-button:hover {  
+    color: rgb(105, 105, 105);
+}
+
+.max-price {
+    box-shadow: 0px 0px 7px 3px rgb(169, 208, 127);
+}
+
+.min-price {
+    box-shadow: 0px 0px 7px 3px rgb(231, 111, 77);
+}
+
+.img-container {
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+
+    border-radius: 150px;
+    box-shadow: 0px 2px 8px 3px rgb(202, 202, 202);
+}
+
+.trip-img {
+    max-width: 170%;
+    min-height: 100%;
+}
+
+.trip-name {
+    position: absolute;
+    text-align: center;
+    font-size: calc(20px + 0.2vw);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.45);
+    width: 100%;
+    height: 40px;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 290px;
+}
+
+.dates {
+    display: flex;
+    color: gray;
+    justify-content: space-around;
+    margin: 5px 20px;
+}
+
+.country {
+    font-size: 12px;
+    margin: 0;
+    text-align: center;
+}
+
+.cost {
+    font-size: 35px;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+}
+
+.trip-info {
+    color: gray;
+    font-size: 13px;
+    padding: 0px 20px;
+    letter-spacing: 0.7px;
+    line-height: 25px;
+    text-justify: inter-word;
+}
+
+.trip-card-footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+
+    height: 30px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buying-features {
+    display: flex;
+}
+
+.vacants {
+    width: 90px;
+    color: black;
+}
+
+.few-left {
+    color: red;
+}
+
+button {
+    width: 30px;
+    height: 30px;
+    border-radius: 18px;
+    color: white;
+    font-size: 25px;
+    margin: 5px;
+    font-weight: bold;
+    border: 0;
+    cursor: pointer;
+
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none;
+}
+
+button:hover {
+    opacity: 75%;
+}
+
+.buy-button {
+    background-color: rgb(229, 124, 3);
+}
+
+.resign-button {
+    background-color: gray;
+    font-size: 15px;
+}
+
+@media screen and (max-width: 850px) {
+    .trip-cards{
+        grid-template-columns: 1fr;
+    }
+}

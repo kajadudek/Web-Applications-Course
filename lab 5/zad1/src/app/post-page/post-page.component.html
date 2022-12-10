@@ -1,0 +1,15 @@
+<div class="posts-container">
+    <div *ngIf="postsArr!=undefined" >
+        <div class="post-card" *ngFor="let post of postsArr">
+
+            <div class="post-header">
+                <p class="title">{{ post.title }}</p>
+                <p class="username">User: {{ post.userId }}</p>
+            </div>
+            
+            <p class="content">{{ post.body }}</p>
+            <p class="post-id"> Post no.: {{ post.id }}</p>
+
+        </div>
+    </div>
+</div>

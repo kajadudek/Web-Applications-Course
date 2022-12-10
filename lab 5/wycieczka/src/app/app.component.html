@@ -1,0 +1,39 @@
+<div class="main">
+  <app-sidebar
+    class = "sidebar"
+    (sendCountryFilter) = "getCountryFilter($event)"
+  ></app-sidebar>
+
+  <div class="how-many-trips"
+        [style.color]="howManyTrips < 10 ? 'brown': '#e57c03'">
+        
+    <div class="currencies">
+        <p (click)="changeCurrency('PLN')">PLN</p>
+        <p (click)="changeCurrency('USD')">USD</p>
+    </div>
+
+    <p class="trips-in-cart">{{howManyTrips}}</p>
+    <fa-icon [icon]="faShoppingCart"
+        (mouseenter)="displayCart()"
+        (click)="displayCartFlag ? hideCart(): displayCart()">
+    </fa-icon>
+</div>
+
+  <app-shopping-cart *ngIf="displayCartFlag" 
+        [howManyTrips]="howManyTrips"
+        [currentCurrency]="currentCurrency"
+        [currencyConvert]="currencyConvert"
+        (deleteProduct)="updateFromCart($event)"
+        (mouseenter)="displayCart()"
+        (mouseleave)="hideCart()"></app-shopping-cart>
+
+  <app-trip 
+  [countryFilter] = "countryFilter"
+  [currentCurrency]="currentCurrency"
+  [currencyConvert]="currencyConvert"
+  [howManyTripsDeleted]="howManyTrips"
+  (sendHowManyTrips)="getHowManyTrips($event)"
+  ></app-trip>
+  
+  <app-add-trip></app-add-trip>
+</div>

@@ -1,0 +1,9 @@
+<div class="sidebar">
+    <div class="country-filter">
+        <p class="">Countries</p>
+        <div *ngFor="let box of uniqueCountries" class="checkbox-container">
+            <input type="checkbox" (change)="updateListOfCountries(box)"> 
+            <p>{{box}}</p>
+        </div>
+    </div>
+</div>

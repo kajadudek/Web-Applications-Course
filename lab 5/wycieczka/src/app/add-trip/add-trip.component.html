@@ -1,0 +1,40 @@
+<form [formGroup]="addingTripForms" class="form">
+    <p>Add trip</p>
+    <label for="name"> Trip name: </label>
+    <input id="name" type="text" formControlName="name">
+    <p class="error" *ngIf="name != null && name.invalid && name.touched">Invalid name: max 20 characters, only letters</p>
+
+    <label for="country"> Country of destination: </label>
+    <input id="country" type="text" formControlName="country">
+    <p class="error" *ngIf="country != null && country.invalid && country.touched">Invalid name of country</p>
+
+    <div class="dates">
+        <label for="start-date"> Date of start: </label>
+        <input id="start-date" type="text" formControlName="startDate">
+    
+        <label for="end-date"> End of trip: </label>
+        <input id="end-date" type="text" formControlName="endDate">
+        <p class="error" *ngIf="startDate != null && startDate.invalid && startDate.touched">Invalid start date format. Try DD/MM/YYYY</p>
+        <p class="error" *ngIf="endDate != null && endDate.invalid && endDate.touched">Invalid end date format. Try DD/MM/YYYY</p>
+        <p class="error" *ngIf="!isDateValid">Enter proper dates</p>
+    </div>
+
+    <div class="cost-vac">
+        <label for="cost"> Cost: </label>
+        <input id="cost" type="number" formControlName="cost">
+    
+        <label for="vacants"> Vacants: </label>
+        <input id="vacants" type="number" formControlName="vacants">
+        <p class="error" *ngIf="cost != null && cost.invalid && cost.touched">Invalid cost format: 99 or 99.99</p>
+        <p class="error" *ngIf="vacants != null && vacants.invalid && vacants.touched">Invalid vacants format: only numbers</p>
+    </div>
+
+    <label id="info"> Short description: </label>
+    <input id="info" type="text" formControlName="shortInfo">
+    <p class="error" *ngIf="info != null && info.invalid && info.touched">Max. 255 characters</p>
+
+    <label id="url"> Image url: </label>
+    <input id="url" type="text" formControlName="imgUrl">
+
+    <button class="submit-button" (click)="onSubmit()">SUBMIT</button>
+</form>

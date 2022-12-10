@@ -1,0 +1,7 @@
+.star-rated {
+    fill: rgb(238, 186, 15);
+}
+  
+.star-not-clicked {
+    fill: rgb(197, 197, 197);
+}

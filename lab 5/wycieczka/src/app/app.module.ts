@@ -12,6 +12,8 @@ import { StarComponent } from './rating/star/star.component';
 import { FilterPipe } from './pipes/country.pipe';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { HomePageComponent } from './home-page/home-page.component';
+// import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     StarComponent,
     FilterPipe,
     ShoppingCartComponent,
-    SidebarComponent
+    SidebarComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule
+    // AgmCoreModule.forRoot( {
+    //   apiKey: ''
+    // })
   ],
   providers: [],
   bootstrap: [AppComponent]

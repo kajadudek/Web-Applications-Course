@@ -1,3 +1,8 @@
+<app-sidebar
+class = "sidebar"
+(sendCountryFilter) = "getCountryFilter($event)"
+></app-sidebar>
+
 <div class="trip-cards" *ngIf="trips != []">
     <div class="trip-card" *ngFor="let trip of trips | localisation: countryFilter" [ngClass]="{'max-price': trip === findMaxPrice(), 'min-price': trip === findMinPrice()}">
         <div class="delete-button">

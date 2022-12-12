@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {faTrashCan} from '@fortawesome/free-solid-svg-icons'
+import { DataService } from '../data.service';
 import { ServicedataService, Trip } from '../servicedata.service';
 
 
@@ -13,33 +14,48 @@ export class TripComponent implements OnInit {
   data!: any;
   public trips: Trip[] = [];
   howManyTrips = 0;
-
-  @Input() howManyTripsDeleted!: number;
-  @Input() countryFilter!: string[];
-  @Input() currentCurrency!: string;
-  @Input() currencyConvert!: number;
-  @Output() sendHowManyTrips: EventEmitter<number> = new EventEmitter();
+  currentCurrency = "PLN";
+  currencyConvert = 1;
 
   faTrashCan = faTrashCan;
   displayCartFlag = false;
 
-  constructor(public servicedata: ServicedataService) {
+
+  constructor(public servicedata: ServicedataService, private dataService: DataService) {}
+
+  updateTripsInCart(data: number) {
+    this.dataService.updateTripsInCart(data);
+  }
+
+  updateCountryFilter(data: string[]) {
+    this.dataService.updateCountryFilter(data);
   }
 
   ngOnInit(): void {
     this.trips = this.servicedata.trips;
-    this.howManyTrips -= this.howManyTripsDeleted;
-  }
 
-  updateHowManyTrips(i: number){
-    this.sendHowManyTrips.emit(this.howManyTrips);
+    this.dataService.getCurrency().subscribe((data) => {
+      this.currentCurrency = data as string;
+    })
+
+    this.dataService.getCurrencyConv().subscribe((data) => {
+      this.currencyConvert = data as number;
+    })
+
+    this.dataService.getTripsInCart().subscribe(data => {
+      this.howManyTrips = data as number;
+    })
+
+    this.dataService.getCountryFilter().subscribe(data => {
+      this.countryFilter = data as string[];
+    })
   }
 
   addTripToCart(selectedTrip: Trip) {
     selectedTrip.addedToCart += 1;
     selectedTrip.vacants -= 1;
     this.howManyTrips += 1;
-    this.updateHowManyTrips(this.howManyTrips);
+    this.updateTripsInCart(this.howManyTrips);
   }
 
   rmvTripFromCart(selectedTrip: Trip) {
@@ -47,7 +63,7 @@ export class TripComponent implements OnInit {
      selectedTrip.addedToCart -= 1;
      selectedTrip.vacants += 1; 
      this.howManyTrips -= 1;
-     this.updateHowManyTrips(this.howManyTrips);
+     this.updateTripsInCart(this.howManyTrips);
     }
   }
 
@@ -79,10 +95,18 @@ export class TripComponent implements OnInit {
     const id = this.trips.indexOf(trip,0);
     this.howManyTrips -= trip.addedToCart;
     this.trips.splice(id,1);
-    this.updateHowManyTrips(this.howManyTrips);
+    this.updateTripsInCart(this.howManyTrips);
   }
 
   getRating(rating: number, trip: Trip){
     trip.rating = rating
+  }
+
+  //FILTER
+  countryFilter = [''];
+
+  getCountryFilter(list: string[]){
+    this.countryFilter = list;
+    this.updateCountryFilter(this.countryFilter);
   }
 }

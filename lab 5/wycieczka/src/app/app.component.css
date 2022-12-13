@@ -45,6 +45,10 @@ a {
     text-decoration: underline;
 }
 
+.menu > .icon {
+    display: none;
+}
+
 .how-many-trips {
     flex: 1;
     text-align: center;
@@ -69,4 +73,40 @@ a {
 
 .trips-in-cart {
     width: 40px;
+}
+
+@media screen and (max-width: 1150px) {
+    .main {
+        margin-top: 150px;
+    }
+}
+
+
+@media screen and (max-width: 650px) {
+    .logo {
+        font-size: 19px;
+    }
+
+    .menu > a {
+        display: none;
+    }
+
+    .menu > .icon {
+        display: block;
+    }
+
+    .currencies > p {
+        font-size: 15px;
+        margin-right: 5px;
+    }
+
+    .trips-in-cart {
+        width: 30px;
+        margin-left: 5px;
+    }
+
+    .how-many-trips {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }

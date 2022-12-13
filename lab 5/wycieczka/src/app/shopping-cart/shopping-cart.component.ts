@@ -11,25 +11,22 @@ export class ShoppingCartComponent implements OnInit {
   tripsInCart!: Trip[];
   selectedTrip!: any;
   totalCost = 0;
-  currentCurrency = "PLN";
-  currencyConvert = 1;
 
+  @Input() currentCurrency!: string;
+  @Input() currencyConvert!: number;
 
   constructor(public servicedata: ServicedataService,
     private service: DataService) {
   }
 
+  updateTotal(data: number) {
+    this.service.updateTotal(data);
+  }
+
   ngOnInit(): void {
-    this.service.getCurrency().subscribe((data) => {
-      this.currentCurrency = data as string;
-    })
-
-    this.service.getCurrencyConv().subscribe((data) => {
-      this.currencyConvert = data as number;
-    })
-
     this.tripsInCart = this.servicedata.trips;
     this.total();
+    this.updateTotal(this.totalCost);
   }
 
   @Input() howManyTrips!: number;
@@ -39,6 +36,7 @@ export class ShoppingCartComponent implements OnInit {
   deleteProductFromCart(selectedTrip: Trip){
     this.deleteProduct.emit(selectedTrip);
     this.total();
+    this.updateTotal(this.totalCost);
   }
 
   total(){

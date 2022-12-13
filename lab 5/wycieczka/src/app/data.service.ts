@@ -11,8 +11,20 @@ export class DataService {
   private totalTripsObs = new Subject();
   private countryFilter = new Subject();
   private trips = new Subject();
+  private totalCost = new Subject();
+  howManyTrips!: number;
 
-  constructor() { }
+  constructor(){
+    this.howManyTrips = 0;
+   }
+
+    setHowManyTrips(data: number) {
+      this.howManyTrips += data;
+    }
+
+    getHowManyTrips(){
+      return this.howManyTrips
+    }
 
     getCurrency() {
       return this.currencyObs;
@@ -52,5 +64,13 @@ export class DataService {
   
     updateTrip(data: Trip){
       this.trips.next(data);
+    }
+
+    getTotal() {
+      return this.totalCost;
+    }
+
+    updateTotal(data: number) {
+      this.totalCost.next(data);
     }
 }

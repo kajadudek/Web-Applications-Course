@@ -7,13 +7,17 @@
       <a routerLink="/">HOME</a>
       <a routerLink="/trips">TRIPS</a>
       <a routerLink="/add-trip">ADD TRIP</a>
+      <fa-icon [icon]="faHome" class="icon" routerLink="/"></fa-icon>
+      <fa-icon [icon]="faPlane" class="icon" routerLink="/trips"></fa-icon>
+      <fa-icon [icon]="faPlus" class="icon" routerLink="/add-trip"></fa-icon>
     </div>
     
     <div class="how-many-trips"
       [style.color]="howManyTrips < 10 ? 'brown': '#e57c03'"
-      routerLink="/shopping-cart">
+      >
         
       <div class="currencies">
+          <fa-icon class="icon" [icon]="faPerson"></fa-icon>
           <p (click)="changeCurrency('PLN')">PLN</p>
           <p (click)="changeCurrency('USD')">USD</p>
       </div>
@@ -21,7 +25,8 @@
       <p class="trips-in-cart">{{howManyTrips}}</p>
       <fa-icon [icon]="faShoppingCart"
           (mouseenter)="displayCart()"
-          (click)="displayCartFlag ? hideCart(): displayCart()">
+          (click)="displayCartFlag ? hideCart(): displayCart()"
+          routerLink="/shopping-cart">
       </fa-icon>
     </div>
   </div>
@@ -29,6 +34,8 @@
 
   <app-shopping-cart *ngIf="displayCartFlag" 
         [howManyTrips]="howManyTrips"
+        [currentCurrency]="currentCurrency"
+        [currencyConvert]="currencyConvert"
         (deleteProduct)="updateFromCart($event)"
         (mouseenter)="displayCart()"
         (mouseleave)="hideCart()"></app-shopping-cart>

@@ -13,7 +13,6 @@ export class ShoppingCartExtendedComponent implements OnInit {
   currencyConvert = 1;
   currentCurrency = "PLN";
 
-
   constructor(public servicedata: ServicedataService,
     private dataService: DataService) {
   }
@@ -29,10 +28,16 @@ export class ShoppingCartExtendedComponent implements OnInit {
 
     this.dataService.getCurrency().subscribe((data) => {
       this.currentCurrency = data as string;
+      
     })
 
     this.dataService.getCurrencyConv().subscribe((data) => {
       this.currencyConvert = data as number;
+     
+    })
+
+    this.dataService.getTotal().subscribe((data) => {
+      this.totalCost = data as number;
     })
   }
 

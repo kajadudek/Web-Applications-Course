@@ -10,10 +10,12 @@
                     <p>{{product.addedToCart}} x &nbsp;</p>
                     <p class="cost">{{product.cost * currencyConvert}} {{currentCurrency}}</p>
                     <button class="delete-product" (click)="updateSelectedTrip(product)">X</button>
-
                 </div>
-    
             </div>
+        </div>
+        <div class="finalization">
+            <p><b>Total: </b>{{totalCost * currencyConvert}} {{currentCurrency}}</p>
+            <button class="buy-button">BUY</button>
         </div>
     </div>
 </div>

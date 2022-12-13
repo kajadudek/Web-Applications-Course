@@ -184,8 +184,23 @@ button:hover {
     font-size: 15px;
 }
 
+@media screen and (max-width: 1180px) {
+    .sidebar {
+        top: 0px;
+        left: -10px;
+        right: 0;
+        width: 100vw;
+        height: 0px;
+        margin: auto;
+        bottom: auto;
+        background-color: transparent;
+        box-shadow: none;
+    }
+}
+
 @media screen and (max-width: 850px) {
     .trip-cards{
         grid-template-columns: 1fr;
     }
 }
+

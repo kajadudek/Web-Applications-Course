@@ -14,6 +14,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ShoppingCartExtendedComponent } from './shopping-cart-extended/shopping-cart-extended.component';
+import { DatePipe } from '@angular/common';
 // import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
@@ -39,7 +40,7 @@ import { ShoppingCartExtendedComponent } from './shopping-cart-extended/shopping
     //   apiKey: ''
     // })
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

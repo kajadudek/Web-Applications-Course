@@ -15,7 +15,31 @@
         </div>
         <div class="finalization">
             <p><b>Total: </b>{{totalCost * currencyConvert}} {{currentCurrency}}</p>
-            <button class="buy-button">BUY</button>
+            <button class="buy-button" (click)="buyTrips()">BUY</button>
+        </div>
+
+        <div class="post-finalization">
+            <div class="bought-section">
+                <h4>BOUGHT</h4>
+                <div *ngFor="let product of tripsInCart">
+                    <div class="product-bought" *ngIf="product.bought > 0">
+                        <h3>{{product.name}} ({{product.bought}})</h3>
+                        <p class="cost">{{product.cost * currencyConvert * product.bought}} {{currentCurrency}}</p>
+
+                    </div>
+                </div>
+            </div>
+            
+            <div class="soon-section">
+                <h4>SOON</h4>
+                <div *ngFor="let product of tripsInCart">
+                    <div class="product" *ngIf="isSoon(product) && product.bought>0">
+    
+                        <h3>{{product.name}} </h3>
+                        <p class="cost">{{product.cost * currencyConvert * product.bought}} {{currentCurrency}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

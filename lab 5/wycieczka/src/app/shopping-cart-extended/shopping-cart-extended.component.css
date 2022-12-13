@@ -81,3 +81,27 @@ h4 {
     border: 2px solid rgb(229, 124, 3);
     background-color: white;
 }
+
+.post-finalization {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+}
+
+.bought-section,
+.soon-section {
+    width: 30vw;
+}
+
+.product-bought {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 850px) {
+    .post-finalization{
+        flex-direction: column;
+    }
+}

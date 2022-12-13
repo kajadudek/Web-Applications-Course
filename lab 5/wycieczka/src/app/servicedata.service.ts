@@ -13,6 +13,7 @@ export interface Trip{
   imgUrl: string;
   addedToCart: number;
   rating: number;
+  bought: number;
 }
 
 @Injectable({
@@ -34,7 +35,8 @@ export class ServicedataService {
         shortInfo: this.data[trip]["info"],
         imgUrl: this.data[trip]["image"],
         addedToCart: 0,
-        rating: 0
+        rating: 0,
+        bought: 0
       } as Trip)
     }
   }

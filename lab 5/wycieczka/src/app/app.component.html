@@ -17,6 +17,11 @@
       >
         
       <div class="currencies">
+        <div class="icon-container">
+          <fa-icon [icon]="faBell" class="notification-icon" routerLink="/shopping-cart"></fa-icon>
+          <div *ngIf="notification == true" class="notification-dot"></div>
+        </div>  
+
           <fa-icon class="icon" [icon]="faPerson"></fa-icon>
           <p (click)="changeCurrency('PLN')">PLN</p>
           <p (click)="changeCurrency('USD')">USD</p>

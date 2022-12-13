@@ -22,7 +22,6 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.tripList = this.servicedata.trips;
     this.uniqueCountries = [...new Set(this.tripList.map(trip => trip.destinationCountry))];
-    console.log(this.tripList, this.uniqueCountries);
   }
 
   updateListOfCountries(selectedCountry: string){

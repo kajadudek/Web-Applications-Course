@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Trip, ServicedataService } from '../servicedata.service';
@@ -9,17 +10,27 @@ import { Trip, ServicedataService } from '../servicedata.service';
 })
 export class ShoppingCartExtendedComponent implements OnInit {
   tripsInCart!: Trip[];
+  boughtTrips: Trip[] = [];
   totalCost = 0;
   currencyConvert = 1;
   currentCurrency = "PLN";
+  todaysDate!: any;
+  date = new Date();
 
   constructor(public servicedata: ServicedataService,
     private dataService: DataService) {
   }
 
   updateSelectedTrip(data: Trip) {
-    console.log("klik", data);
     this.dataService.updateTrip(data);
+  }
+
+  updateTripsInCart(data: number) {
+    this.dataService.updateTripsInCart(data);
+  }
+
+  updateNotification(data: boolean) {
+    this.dataService.updateNotification(data);
   }
 
   ngOnInit(): void {
@@ -28,12 +39,10 @@ export class ShoppingCartExtendedComponent implements OnInit {
 
     this.dataService.getCurrency().subscribe((data) => {
       this.currentCurrency = data as string;
-      
     })
 
     this.dataService.getCurrencyConv().subscribe((data) => {
       this.currencyConvert = data as number;
-     
     })
 
     this.dataService.getTotal().subscribe((data) => {
@@ -49,5 +58,36 @@ export class ShoppingCartExtendedComponent implements OnInit {
       }
     }
     return this.totalCost
+  }
+
+  buyTrips() {
+    this.updateTripsInCart(0);
+    for (let trip of this.tripsInCart){
+      if( trip.addedToCart > 0){        
+        trip.bought = trip.addedToCart;
+        trip.addedToCart = 0;
+
+        if (this.isSoon(trip)){
+          this.updateNotification(true);
+        }
+      }
+    }
+    this.total();
+  }
+
+  isSoon(selectedTrip: Trip){
+    let tripDate = Number(selectedTrip.startDate.slice(3,5));
+    
+    if (
+      (((tripDate - this.date.getMonth()-1) == 0 
+    || (tripDate - this.date.getMonth()-1) == -1 ) 
+    && (Number(selectedTrip.startDate.slice(6,10)) - this.date.getFullYear()) == 0)
+
+    || ((tripDate - this.date.getMonth()-1) == -11 
+    && (Number(selectedTrip.startDate.slice(6,10)) - this.date.getFullYear()) == 1))
+    {
+      return true;
+    }
+    return false;
   }
 }

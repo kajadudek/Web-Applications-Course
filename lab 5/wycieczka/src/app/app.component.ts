@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicedataService, Trip } from './servicedata.service';
-import {faShoppingCart, faPerson, faHome, faPlus, faPlane, faPersonCirclePlus} from '@fortawesome/free-solid-svg-icons'
+import {faShoppingCart, faPerson, faHome, faPlus, faPlane, faBell} from '@fortawesome/free-solid-svg-icons'
 import { DataService } from './data.service';
 
 
@@ -18,11 +18,12 @@ export class AppComponent implements OnInit {
   faHome = faHome;
   faPlus = faPlus;
   faPlane = faPlane;
-  faPersonCircle = faPersonCirclePlus;
+  faBell = faBell;
   title = 'wycieczka';
   totalCost = 0;
   currentCurrency = "PLN";
   tripToRmv!: Trip;
+  notification!: boolean;
   currencyConvert = 1;
   howManyTrips = 0;
   deletedTrips = 0;
@@ -57,11 +58,13 @@ export class AppComponent implements OnInit {
       this.howManyTrips = data as number;
     })
 
-    console.log(this.howManyTrips);
-
     this.dataService.getTrip().subscribe(data => {
       this.tripToRmv = data as Trip;
       this.updateFromCart(this.tripToRmv);
+    })
+
+    this.dataService.getNotification().subscribe(data => {
+      this.notification = data as boolean;
     })
 
     this.total();

@@ -12,24 +12,13 @@ export class DataService {
   private countryFilter = new Subject();
   private trips = new Subject();
   private totalCost = new Subject();
-  howManyTrips!: number;
+  private notificationObs = new Subject();
 
-  constructor(){
-    this.howManyTrips = 0;
-   }
-
-    setHowManyTrips(data: number) {
-      this.howManyTrips += data;
-    }
-
-    getHowManyTrips(){
-      return this.howManyTrips
-    }
+  constructor() { }
 
     getCurrency() {
       return this.currencyObs;
     }
-
     updateCurrency(data: string){
       this.currencyObs.next(data);
     }
@@ -37,7 +26,6 @@ export class DataService {
     getCurrencyConv() {
       return this.currencyConvert;
     }
-
     updateCurrencyConv(data: number){
       this.currencyConvert.next(data);
     }
@@ -45,7 +33,6 @@ export class DataService {
     getTripsInCart() {
       return this.totalTripsObs;
     }
-
     updateTripsInCart(data: number){
       this.totalTripsObs.next(data);
     }
@@ -53,7 +40,6 @@ export class DataService {
     getCountryFilter() {
       return this.countryFilter;
     }
-
     updateCountryFilter(data: string[]){
       this.countryFilter.next(data);
     }
@@ -61,7 +47,6 @@ export class DataService {
     getTrip() {
       return this.trips;
     }
-  
     updateTrip(data: Trip){
       this.trips.next(data);
     }
@@ -69,8 +54,14 @@ export class DataService {
     getTotal() {
       return this.totalCost;
     }
-
     updateTotal(data: number) {
       this.totalCost.next(data);
+    }
+
+    getNotification() {
+      return this.notificationObs;
+    }
+    updateNotification(data: boolean) {
+      this.notificationObs.next(data);
     }
 }

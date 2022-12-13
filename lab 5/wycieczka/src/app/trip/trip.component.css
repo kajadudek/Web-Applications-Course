@@ -195,6 +195,7 @@ button:hover {
         bottom: auto;
         background-color: transparent;
         box-shadow: none;
+        z-index: 3;
     }
 }
 

@@ -52,6 +52,5 @@ export class DataService {
   
     updateTrip(data: Trip){
       this.trips.next(data);
-      console.log(data);
     }
 }

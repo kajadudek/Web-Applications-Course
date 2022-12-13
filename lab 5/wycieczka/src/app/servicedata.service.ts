@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import tripData from 'src/assets/trips.json';
 
 export interface Trip{
@@ -37,5 +38,4 @@ export class ServicedataService {
       } as Trip)
     }
   }
-
 }

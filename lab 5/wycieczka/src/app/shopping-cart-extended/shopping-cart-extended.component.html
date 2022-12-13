@@ -1,0 +1,19 @@
+<div class="main">
+    <div class="shopping-cart">
+        <div *ngFor="let product of tripsInCart">
+            <div class="product" *ngIf="product.addedToCart > 0">
+                <div class="product-name-quantity">
+                    <h4>{{product.name}}</h4>
+                </div>
+    
+                <div class="product-info">
+                    <p>{{product.addedToCart}} x &nbsp;</p>
+                    <p class="cost">{{product.cost * currencyConvert}} {{currentCurrency}}</p>
+                    <button class="delete-product" (click)="updateSelectedTrip(product)">X</button>
+
+                </div>
+    
+            </div>
+        </div>
+    </div>
+</div>

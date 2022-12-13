@@ -138,6 +138,11 @@ form > input {
     border-radius: 5px;
 }
 
+.send-button:hover {
+    background-color: white;
+    color: rgb(229, 124, 3);
+}
+
 @keyframes darken-background {
     from { opacity: 0%;}
     to { opacity: 40%;}

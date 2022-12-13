@@ -10,7 +10,8 @@
     </div>
     
     <div class="how-many-trips"
-      [style.color]="howManyTrips < 10 ? 'brown': '#e57c03'">
+      [style.color]="howManyTrips < 10 ? 'brown': '#e57c03'"
+      routerLink="/shopping-cart">
         
       <div class="currencies">
           <p (click)="changeCurrency('PLN')">PLN</p>
@@ -28,8 +29,6 @@
 
   <app-shopping-cart *ngIf="displayCartFlag" 
         [howManyTrips]="howManyTrips"
-        [currentCurrency]="currentCurrency"
-        [currencyConvert]="currencyConvert"
         (deleteProduct)="updateFromCart($event)"
         (mouseenter)="displayCart()"
         (mouseleave)="hideCart()"></app-shopping-cart>

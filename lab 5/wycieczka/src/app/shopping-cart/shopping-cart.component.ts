@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DataService } from '../data.service';
 import { ServicedataService, Trip } from '../servicedata.service';
 
 @Component({
@@ -8,20 +9,30 @@ import { ServicedataService, Trip } from '../servicedata.service';
 })
 export class ShoppingCartComponent implements OnInit {
   tripsInCart!: Trip[];
+  selectedTrip!: any;
   totalCost = 0;
+  currentCurrency = "PLN";
+  currencyConvert = 1;
 
 
-  constructor(public servicedata: ServicedataService) {
+  constructor(public servicedata: ServicedataService,
+    private service: DataService) {
   }
 
   ngOnInit(): void {
+    this.service.getCurrency().subscribe((data) => {
+      this.currentCurrency = data as string;
+    })
+
+    this.service.getCurrencyConv().subscribe((data) => {
+      this.currencyConvert = data as number;
+    })
+
     this.tripsInCart = this.servicedata.trips;
     this.total();
   }
 
   @Input() howManyTrips!: number;
-  @Input() currentCurrency!: string;
-  @Input() currencyConvert!: number;
 
   @Output() deleteProduct: EventEmitter<Trip> = new EventEmitter();
 

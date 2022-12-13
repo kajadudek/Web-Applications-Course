@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Trip } from './servicedata.service';
+import { ServicedataService, Trip } from './servicedata.service';
 import {faShoppingCart} from '@fortawesome/free-solid-svg-icons'
 import { DataService } from './data.service';
 
@@ -12,15 +12,18 @@ import { DataService } from './data.service';
 
 export class AppComponent implements OnInit {
   
+  trips: Trip[] = [];
   faShoppingCart = faShoppingCart;
   title = 'wycieczka';
   currentCurrency = "PLN";
+  tripToRmv!: Trip;
   currencyConvert = 1;
   howManyTrips = 0;
   deletedTrips = 0;
   displayCartFlag = false;
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService,
+    private tripData: ServicedataService) {}
 
   updateCurrency(data: string){
     this.dataService.updateCurrency(data);
@@ -33,10 +36,21 @@ export class AppComponent implements OnInit {
   updateTripsInCart(data: number) {
     this.dataService.updateTripsInCart(data);
   }
+  
+  updateTrip(data: Trip) {
+    this.dataService.updateTrip(data);
+  }
 
   ngOnInit(): void { 
+    this.trips = this.tripData.trips;
     this.dataService.getTripsInCart().subscribe(data => {
       this.howManyTrips = data as number;
+    })
+
+    this.dataService.getTrip().subscribe(data => {
+      console.log("siupp");
+      this.tripToRmv = data as Trip;
+      this.updateFromCart(this.tripToRmv);
     })
   }
 

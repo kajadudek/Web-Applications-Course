@@ -13,6 +13,7 @@ import { FilterPipe } from './pipes/country.pipe';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { ShoppingCartExtendedComponent } from './shopping-cart-extended/shopping-cart-extended.component';
 // import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
@@ -25,7 +26,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     FilterPipe,
     ShoppingCartComponent,
     SidebarComponent,
-    HomePageComponent
+    HomePageComponent,
+    ShoppingCartExtendedComponent
   ],
   imports: [
     BrowserModule,

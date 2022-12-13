@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/internal/Subject';
+import { Trip } from './servicedata.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class DataService {
   private currencyConvert = new Subject();
   private totalTripsObs = new Subject();
   private countryFilter = new Subject();
+  private trips = new Subject();
 
   constructor() { }
 
@@ -42,5 +44,14 @@ export class DataService {
 
     updateCountryFilter(data: string[]){
       this.countryFilter.next(data);
+    }
+
+    getTrip() {
+      return this.trips;
+    }
+  
+    updateTrip(data: Trip){
+      this.trips.next(data);
+      console.log(data);
     }
 }

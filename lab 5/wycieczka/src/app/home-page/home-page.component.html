@@ -21,11 +21,17 @@
 
     <div class="contact-form">
         <p>Contact us</p>
-        <form>
-            <input type="text" id="name" placeholder="Name">
-            <input type="email" id="email" placeholder="E-mail">
-            <input type="text" id="question" placeholder="Ask a question">
-            <button class="send-button">SEND</button>
+        <form [formGroup]="contactForm">
+            <input type="text" id="name" placeholder="Name" formControlName="name"
+            [ngStyle]="name!= null && name.invalid && name.touched ? {'border':  '2px solid red'} : {'border': '0'}">
+
+            <input type="email" id="email" placeholder="E-mail" formControlName="email"
+            [ngStyle]="email!= null && email.invalid && email.touched ? {'border':  '2px solid red'} : {'border': '0'}">
+
+            <input type="text" id="question" placeholder="Ask a question" formControlName="question"
+            [ngStyle]="question!= null && question.invalid && question.touched ? {'border':  '2px solid red'} : {'border': '0'}">
+            
+            <button class="send-button" (click)="onSubmit()">SEND</button>
         </form>
     </div>
 </div>

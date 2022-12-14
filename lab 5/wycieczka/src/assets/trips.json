@@ -1,6 +1,7 @@
 {
     "Trips": [
         {
+            "id": 0,
             "name": "The Royal route", 
             "country": "United Kingdom",
             "startDate": "10/07/2023",
@@ -15,6 +16,7 @@
         },
 
         {
+            "id": 1,
             "name": "Keep Calm and Travel On", 
             "country": "Iceland",
             "startDate": "14/07/2023",
@@ -29,6 +31,7 @@
         },
 
         {
+            "id": 2,
             "name": "Wrapping up", 
             "country": "United Kingdom",
             "startDate": "12/07/2023",
@@ -43,6 +46,7 @@
         },
 
         {
+            "id": 3,
             "name": "Hop-on, Hop-off", 
             "country": "Italy",
             "startDate": "16/08/2023",
@@ -57,6 +61,7 @@
         },
 
         {
+            "id": 4,
             "name": "Destination Vacation", 
             "country": "Thailand",
             "startDate": "13/08/2023",
@@ -71,6 +76,7 @@
         },
 
         {
+            "id": 5,
             "name": "Don't mind the Gap", 
             "country": "Peru",
             "startDate": "10/08/2023",
@@ -85,6 +91,7 @@
         },
 
         {
+            "id": 6,
             "name": "Green Escapes", 
             "country": "Norway",
             "startDate": "04/07/2023",
@@ -99,6 +106,7 @@
         },
 
         {
+            "id": 7,
             "name": "The Landmark Tour", 
             "country": "Egypt",
             "startDate": "20/08/2023",
@@ -113,6 +121,7 @@
         },
 
         {
+            "id": 8,
             "name": "Looking for colors", 
             "country": "Norway",
             "startDate": "09/09/2023",
@@ -127,6 +136,7 @@
         },
 
         {
+            "id": 9,
             "name": "The ancient city", 
             "country": "Italy",
             "startDate": "28/07/2023",

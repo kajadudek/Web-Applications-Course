@@ -1,5 +1,6 @@
 import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FirebaseService } from '../firebase.service';
 import { ServicedataService, Trip } from '../servicedata.service';
 import { TripComponent } from '../trip/trip.component';
 
@@ -14,13 +15,16 @@ export class SidebarComponent implements OnInit {
   filteredCountryList!: string[];
   tripList!: Trip[];
 
-  constructor(public servicedata: ServicedataService) {
+  constructor(public servicedata: ServicedataService,
+    private db: FirebaseService) {
   }
 
   @Output() sendCountryFilter: EventEmitter<string[]> = new EventEmitter();
 
   ngOnInit(): void {
     this.tripList = this.servicedata.trips;
+    // this.tripList = this.db.getTrips();
+
     this.uniqueCountries = [...new Set(this.tripList.map(trip => trip.country))];
   }
 

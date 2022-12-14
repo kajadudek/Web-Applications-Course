@@ -3,6 +3,7 @@ import { Observable, of, Subject } from 'rxjs';
 import tripData from 'src/assets/trips.json';
 
 export interface Trip{
+  id: number;
   name: string;
   country: string;
   startDate: string;
@@ -26,6 +27,7 @@ export class ServicedataService {
   constructor() { 
     for (let trip in this.data){
       this.trips.push({
+        id: this.data[trip]["id"],
         name: this.data[trip]["name"],
         country: this.data[trip]["country"],
         startDate: this.data[trip]["startDate"],
@@ -41,9 +43,9 @@ export class ServicedataService {
     }
   }
 
-  getTrips(id: number): Observable<Trip> {
-    const hero = this.trips.find(h => h.vacants === id)!;
-    console.log(`HeroService: fetched hero id=${id}`);
-    return of(hero);
-  }
+  // getTrips(id: number): Observable<Trip> {
+  //   const hero = this.trips.find(h => h.vacants === id)!;
+  //   console.log(`HeroService: fetched hero id=${id}`);
+  //   return of(hero);
+  // }
 }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {faTrashCan} from '@fortawesome/free-solid-svg-icons'
 import { DataService } from '../data.service';
+import { FirebaseService } from '../firebase.service';
 import { ServicedataService, Trip } from '../servicedata.service';
 
 
@@ -21,7 +22,8 @@ export class TripComponent implements OnInit {
   displayCartFlag = false;
 
 
-  constructor(public servicedata: ServicedataService, private dataService: DataService) {}
+  constructor(public servicedata: ServicedataService, private dataService: DataService,
+    private db: FirebaseService) {}
 
   updateTripsInCart(data: number) {
     this.dataService.updateTripsInCart(data);
@@ -32,7 +34,8 @@ export class TripComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.trips = this.servicedata.trips;
+    // this.trips = this.servicedata.trips;
+    this.trips = this.db.getTrips();
 
     this.dataService.getCurrency().subscribe((data) => {
       this.currentCurrency = data as string;

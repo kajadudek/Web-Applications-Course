@@ -6,6 +6,7 @@ import { FirebaseService } from '../firebase.service';
 import { ServicedataService, Trip } from '../servicedata.service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { TripComponent } from '../trip/trip.component';
+import { DataService } from '../data.service';
 
 
 @Component({
@@ -19,11 +20,14 @@ export class AddTripComponent {
   trips!: Trip[]
 
   constructor(public servicedata: ServicedataService,
-    private db: AngularFireDatabase) {
+    private dataService: DataService,
+    private dbf: AngularFireDatabase,
+    private db: FirebaseService) {
   }
 
   ngOnInit(): void {
-    this.trips = this.servicedata.trips;
+    // this.trips = this.servicedata.trips;
+    this.trips = this.db.getTrips();
   }
 
   addingTripForms = new FormGroup({
@@ -141,10 +145,15 @@ export class AddTripComponent {
           vacants: this.addingTripForms.get('vacants')!.value,
           info: this.addingTripForms.get('shortInfo')!.value,
           image: imageUrl,
-          addedToCart: 0
+          addedToCart: 0,
+          rating: 0,
+          bought: 0,
+          id: this.trips.length + 1
         } as unknown as Trip;
 
-        this.db.list('Trips').push({
+        console.log(this.trips.length);
+        this.dbf.list('Trips').push({
+          id: this.trips.length + 1,
           name: trip.name,
           country: trip.country,
           startDate: trip.startDate,

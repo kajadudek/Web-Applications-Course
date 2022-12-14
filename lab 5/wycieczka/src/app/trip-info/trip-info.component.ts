@@ -21,6 +21,6 @@ export class TripInfoComponent implements OnInit {
         this.name = params['vacants'];
     })
 
-    this.service.getTrips(this.name);
+    // this.service.getTrips(this.name);
   }  
 }

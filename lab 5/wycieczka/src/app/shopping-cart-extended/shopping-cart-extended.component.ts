@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { FirebaseService } from '../firebase.service';
 import { Trip, ServicedataService } from '../servicedata.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class ShoppingCartExtendedComponent implements OnInit {
   date = new Date();
 
   constructor(public servicedata: ServicedataService,
-    private dataService: DataService) {
+    private dataService: DataService,
+    private db: FirebaseService) {
   }
 
   updateSelectedTrip(data: Trip) {
@@ -34,7 +36,9 @@ export class ShoppingCartExtendedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tripsInCart = this.servicedata.trips;
+    // this.tripsInCart = this.servicedata.trips;
+    this.tripsInCart = this.db.getTrips();
+
     this.total();
 
     this.dataService.getCurrency().subscribe((data) => {

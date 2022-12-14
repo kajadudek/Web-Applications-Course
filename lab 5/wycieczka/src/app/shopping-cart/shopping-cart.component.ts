@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DataService } from '../data.service';
+import { FirebaseService } from '../firebase.service';
 import { ServicedataService, Trip } from '../servicedata.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class ShoppingCartComponent implements OnInit {
   @Input() currencyConvert!: number;
 
   constructor(public servicedata: ServicedataService,
-    private service: DataService) {
+    private service: DataService,
+    private db: FirebaseService) {
   }
 
   updateTotal(data: number) {
@@ -24,7 +26,9 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tripsInCart = this.servicedata.trips;
+    // this.tripsInCart = this.servicedata.trips;
+    this.tripsInCart = this.db.getTrips();
+
     this.total();
     this.updateTotal(this.totalCost);
   }

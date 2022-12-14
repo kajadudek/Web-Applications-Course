@@ -13,7 +13,7 @@ import { FirebaseService } from './firebase.service';
 })
 
 export class AppComponent implements OnInit {
-  
+  data!: any;
   trips: Trip[] = [];
   faShoppingCart = faShoppingCart;
   faPerson = faPerson;

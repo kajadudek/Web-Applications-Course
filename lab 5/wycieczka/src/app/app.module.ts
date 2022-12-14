@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { environment } from '../environments/environment'; 
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireDatabaseModule} from '@angular/fire/compat/database';
 
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { TripComponent } from './trip/trip.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -15,7 +19,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ShoppingCartExtendedComponent } from './shopping-cart-extended/shopping-cart-extended.component';
 import { DatePipe } from '@angular/common';
-// import { AgmCoreModule } from '@agm/core';
+import { TripInfoComponent } from './trip-info/trip-info.component';
 
 @NgModule({
   declarations: [
@@ -28,17 +32,18 @@ import { DatePipe } from '@angular/common';
     ShoppingCartComponent,
     SidebarComponent,
     HomePageComponent,
-    ShoppingCartExtendedComponent
+    ShoppingCartExtendedComponent,
+    TripInfoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
-    ReactiveFormsModule
-    // AgmCoreModule.forRoot( {
-    //   apiKey: ''
-    // })
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    HttpClientModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

@@ -2,7 +2,9 @@ import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Output, ViewChild, ViewChildren } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, AbstractControl} from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { FirebaseService } from '../firebase.service';
 import { ServicedataService, Trip } from '../servicedata.service';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { TripComponent } from '../trip/trip.component';
 
 
@@ -16,7 +18,8 @@ export class AddTripComponent {
   isDateValid = true;
   trips!: Trip[]
 
-  constructor(public servicedata: ServicedataService) {
+  constructor(public servicedata: ServicedataService,
+    private db: AngularFireDatabase) {
   }
 
   ngOnInit(): void {
@@ -131,17 +134,30 @@ export class AddTripComponent {
 
         let trip = {
           name: this.addingTripForms.get('name')!.value,
-          destinationCountry: this.addingTripForms.get('country')!.value,
+          country: this.addingTripForms.get('country')!.value,
           startDate: this.addingTripForms.get('startDate')!.value,
           endDate: this.addingTripForms.get('endDate')!.value,
           cost: this.addingTripForms.get('cost')!.value,
           vacants: this.addingTripForms.get('vacants')!.value,
-          shortInfo: this.addingTripForms.get('shortInfo')!.value,
-          imgUrl: imageUrl,
+          info: this.addingTripForms.get('shortInfo')!.value,
+          image: imageUrl,
           addedToCart: 0
         } as unknown as Trip;
 
-        
+        this.db.list('Trips').push({
+          name: trip.name,
+          country: trip.country,
+          startDate: trip.startDate,
+          endDate: trip.endDate,
+          cost: trip.cost,
+          vacants: trip.vacants,
+          info: trip.info,
+          image: imageUrl,
+          addedToCart: 0,
+          rating: 0,
+          bought: 0
+        })
+
         this.trips.push(trip);
         this.addingTripForms.reset();
 

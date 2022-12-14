@@ -92,6 +92,8 @@
 
 .map {
     width: 30vw;
+    min-height: 20vh;
+    height: auto;
     background-color: gray;
 }
 

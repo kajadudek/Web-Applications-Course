@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ServicedataService, Trip } from './servicedata.service';
 import {faShoppingCart, faPerson, faHome, faPlus, faPlane, faBell} from '@fortawesome/free-solid-svg-icons'
 import { DataService } from './data.service';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { FirebaseService } from './firebase.service';
 
 
 @Component({
@@ -30,7 +32,8 @@ export class AppComponent implements OnInit {
   displayCartFlag = false;
 
   constructor(private dataService: DataService,
-    private tripData: ServicedataService) {}
+    private tripData: ServicedataService,
+    private db: FirebaseService) {}
 
   updateCurrency(data: string){
     this.dataService.updateCurrency(data);
@@ -53,7 +56,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void { 
-    this.trips = this.tripData.trips;
+    // this.trips = this.tripData.trips;
+    this.trips = this.db.getTrips();
+
     this.dataService.getTripsInCart().subscribe(data => {
       this.howManyTrips = data as number;
     })

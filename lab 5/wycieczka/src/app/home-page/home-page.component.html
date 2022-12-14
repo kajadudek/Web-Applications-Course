@@ -15,7 +15,7 @@
                  &nbsp;  &nbsp;  &nbsp;  &nbsp; 
                 People are the strongest point of our company. Pilots and residents - the best on the market - and employees of customer service offices, call centers, marketing and other departments - we all stand out not only with knowledge and experience resulting from many years of practice.
             </p>
-            <div class="map">MAP</div>
+            <div id="map" class="map">MAP</div>
         </div>
     </div>
 
@@ -30,9 +30,8 @@
 
             <input type="text" id="question" placeholder="Ask a question" formControlName="question"
             [ngStyle]="question!= null && question.invalid && question.touched ? {'border':  '2px solid red'} : {'border': '0'}">
-            
+
             <button class="send-button" (click)="onSubmit()">SEND</button>
         </form>
     </div>
 </div>
-

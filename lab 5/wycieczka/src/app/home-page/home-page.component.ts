@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TitleStrategy } from '@angular/router';
+import { Loader } from '@googlemaps/js-api-loader';
 
 @Component({
   selector: 'app-home-page',
@@ -12,6 +13,22 @@ export class HomePageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    let loader = new Loader({
+      apiKey: "AIzaSyAfYnpXlVOno92bF-4eIYPvawO0PsC_dm"
+    })
+
+    loader.load().then(() => {
+      var map = new google.maps.Map(document.getElementById("map")!, {
+        center: {lat: 50.061216, lng: 19.939477},
+        zoom: 13
+      })
+      var marker = new google.maps.Marker({
+        position: {lat: 50.061216, lng: 19.939477},
+        title:"That's us!"
+    })
+    marker.setMap(map);
+
+  });
   }
 
   contactForm = new FormGroup({

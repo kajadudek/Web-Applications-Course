@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import tripData from 'src/assets/trips.json';
 
 export interface Trip{
   name: string;
-  destinationCountry: string;
+  country: string;
   startDate: string;
   endDate: string;
   cost: number;
   vacants: number;
-  shortInfo: string;
-  imgUrl: string;
+  info: string;
+  image: string;
   addedToCart: number;
   rating: number;
   bought: number;
@@ -26,18 +26,24 @@ export class ServicedataService {
   constructor() { 
     for (let trip in this.data){
       this.trips.push({
-        name: this.data[trip]["Name"],
-        destinationCountry: this.data[trip]["Country"],
+        name: this.data[trip]["name"],
+        country: this.data[trip]["country"],
         startDate: this.data[trip]["startDate"],
         endDate: this.data[trip]["endDate"],
         cost: this.data[trip]["cost"],
         vacants: this.data[trip]["vacants"],
-        shortInfo: this.data[trip]["info"],
-        imgUrl: this.data[trip]["image"],
+        info: this.data[trip]["info"],
+        image: this.data[trip]["image"],
         addedToCart: 0,
         rating: 0,
         bought: 0
       } as Trip)
     }
+  }
+
+  getTrips(id: number): Observable<Trip> {
+    const hero = this.trips.find(h => h.vacants === id)!;
+    console.log(`HeroService: fetched hero id=${id}`);
+    return of(hero);
   }
 }

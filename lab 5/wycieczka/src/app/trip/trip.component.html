@@ -12,7 +12,7 @@ class = "sidebar"
             <div class="trip-name">
                 {{trip.name | titlecase}}
             </div>
-            <img src="{{ trip.imgUrl }}" class="trip-img">
+            <img src="{{ trip.image }}" routerLink="/trip/{{trip.vacants}}" class="trip-img">
         </div>
         
         <div class="info">
@@ -21,13 +21,13 @@ class = "sidebar"
                 <p>To: {{trip.endDate}}</p>
             </div>
             <p class="country">
-                {{trip.destinationCountry | uppercase}}
+                {{trip.country | uppercase}}
             </p>
             <p class="cost">
                 {{trip.cost * currencyConvert}}{{currentCurrency}}
             </p>
             <p class="trip-info">
-                {{trip.shortInfo}}
+                {{trip.info}}
             </p>            
         </div>
 

@@ -72,6 +72,7 @@
 .trip-img {
     max-width: 170%;
     min-height: 100%;
+    cursor: pointer;
 }
 
 .trip-name {

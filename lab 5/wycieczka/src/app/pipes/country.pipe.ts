@@ -33,7 +33,7 @@ export class FilterPipe implements PipeTransform {
 }
 function searchThroughList(search: string, tripList: Trip[]) {
   return tripList.filter(trip => {
-    return trip.destinationCountry.toLowerCase().includes(search);
+    return trip.country.toLowerCase().includes(search);
   });
 }
 

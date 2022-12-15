@@ -9,7 +9,7 @@
                 <div class="product-info">
                     <p>{{product.addedToCart}} x &nbsp;</p>
                     <p class="cost">{{product.cost * currencyConvert}} {{currentCurrency}}</p>
-                    <button class="delete-product" (click)="updateSelectedTrip(product)">X</button>
+                    <button class="delete-product" (click)="deleteTripFromCart(product)">X</button>
                 </div>
             </div>
         </div>

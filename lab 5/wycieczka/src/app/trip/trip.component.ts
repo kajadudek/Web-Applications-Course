@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import {faTrashCan} from '@fortawesome/free-solid-svg-icons'
+import { first } from 'rxjs';
 import { DataService } from '../data.service';
 import { FirebaseService } from '../firebase.service';
 import { ServicedataService, Trip } from '../servicedata.service';
@@ -14,6 +16,7 @@ import { ServicedataService, Trip } from '../servicedata.service';
 export class TripComponent implements OnInit {
   data!: any;
   public trips: Trip[] = [];
+  cart: Trip[] = [];
   howManyTrips = 0;
   currentCurrency = "PLN";
   currencyConvert = 1;
@@ -23,7 +26,8 @@ export class TripComponent implements OnInit {
 
 
   constructor(public servicedata: ServicedataService, private dataService: DataService,
-    private db: FirebaseService) {}
+    private db: FirebaseService,
+    private fb: AngularFireDatabase) {}
 
   updateTripsInCart(data: number) {
     this.dataService.updateTripsInCart(data);
@@ -34,8 +38,18 @@ export class TripComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.trips = this.servicedata.trips;
-    this.trips = this.db.getTrips();
+    this.db.getTrips().subscribe(change => {
+      if (this.trips == undefined ||this.trips.length < 1) {
+        for (let trip of change){
+          this.trips.push(trip as Trip);
+        }
+      }else {
+        this.trips = [];
+        for (let trip of change){
+          this.trips.push(trip as Trip);
+        }
+      }
+    })
 
     this.dataService.getCurrency().subscribe((data) => {
       this.currentCurrency = data as string;
@@ -56,17 +70,19 @@ export class TripComponent implements OnInit {
 
   addTripToCart(selectedTrip: Trip) {
     selectedTrip.addedToCart += 1;
-    selectedTrip.vacants -= 1;
+    // selectedTrip.vacants -= 1;
+    this.db.addToCart(selectedTrip, selectedTrip.addedToCart);
     this.howManyTrips += 1;
     this.updateTripsInCart(this.howManyTrips);
   }
 
   rmvTripFromCart(selectedTrip: Trip) {
     if(selectedTrip.addedToCart>0){
-     selectedTrip.addedToCart -= 1;
-     selectedTrip.vacants += 1; 
-     this.howManyTrips -= 1;
-     this.updateTripsInCart(this.howManyTrips);
+    //  selectedTrip.addedToCart -= 1;
+    //  selectedTrip.vacants += 1; 
+      this.db.removeFromCart(selectedTrip, 1);
+      this.howManyTrips -= 1;
+      this.updateTripsInCart(this.howManyTrips);
     }
   }
 
@@ -96,8 +112,8 @@ export class TripComponent implements OnInit {
 
   deleteTrip(trip: Trip) {
     const id = this.trips.indexOf(trip,0);
-    this.howManyTrips -= trip.addedToCart;
-    console.log(this.howManyTrips + trip.addedToCart, " - ", trip.addedToCart);
+    // this.howManyTrips -= trip.addedToCart;
+    this.db.deleteTrip(trip);
     this.trips.splice(id,1);
     this.updateTripsInCart(this.howManyTrips);
   }

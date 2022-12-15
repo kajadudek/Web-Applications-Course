@@ -9,7 +9,7 @@ import { ServicedataService, Trip } from '../servicedata.service';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
-  tripsInCart!: Trip[];
+  tripsInCart: Trip[] = [];
   selectedTrip!: any;
   totalCost = 0;
 
@@ -26,11 +26,19 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.tripsInCart = this.servicedata.trips;
-    this.tripsInCart = this.db.getTrips();
-
-    this.total();
-    this.updateTotal(this.totalCost);
+    this.db.getTrips().subscribe(change => {
+      if (this.tripsInCart == undefined || this.tripsInCart.length < 1) {
+        for (let trip of change){
+          this.tripsInCart.push(trip as Trip);
+        }
+      }else {
+        this.tripsInCart = [];
+        for (let trip of change){
+          this.tripsInCart.push(trip as Trip);
+        }
+      }
+      this.total();
+    })
   }
 
   @Input() howManyTrips!: number;
@@ -38,7 +46,8 @@ export class ShoppingCartComponent implements OnInit {
   @Output() deleteProduct: EventEmitter<Trip> = new EventEmitter();
 
   deleteProductFromCart(selectedTrip: Trip){
-    this.deleteProduct.emit(selectedTrip);
+    // this.deleteProduct.emit(selectedTrip);
+    this.db.removeFromCart(selectedTrip, 1)
     this.total();
     this.updateTotal(this.totalCost);
   }
@@ -52,6 +61,4 @@ export class ShoppingCartComponent implements OnInit {
     }
     return this.totalCost
   }
-
-
 }

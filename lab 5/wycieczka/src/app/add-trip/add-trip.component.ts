@@ -17,7 +17,7 @@ import { DataService } from '../data.service';
 
 export class AddTripComponent {
   isDateValid = true;
-  trips!: Trip[]
+  trips: Trip[] = [];
 
   constructor(public servicedata: ServicedataService,
     private dataService: DataService,
@@ -27,7 +27,20 @@ export class AddTripComponent {
 
   ngOnInit(): void {
     // this.trips = this.servicedata.trips;
-    this.trips = this.db.getTrips();
+    // this.trips = this.db.getTrips();
+
+    this.db.getTrips().subscribe(change => {
+      if (this.trips == undefined || this.trips.length < 1) {
+        for (let trip of change){
+          this.trips.push(trip as Trip);
+        }
+      }else {
+        this.trips = [];
+        for (let trip of change){
+          this.trips.push(trip as Trip);
+        }
+      }
+    })
   }
 
   addingTripForms = new FormGroup({
@@ -148,26 +161,10 @@ export class AddTripComponent {
           addedToCart: 0,
           rating: 0,
           bought: 0,
-          id: this.trips.length + 1
+          id: this.trips.length
         } as unknown as Trip;
 
-        console.log(this.trips.length);
-        this.dbf.list('Trips').push({
-          id: this.trips.length + 1,
-          name: trip.name,
-          country: trip.country,
-          startDate: trip.startDate,
-          endDate: trip.endDate,
-          cost: trip.cost,
-          vacants: trip.vacants,
-          info: trip.info,
-          image: imageUrl,
-          addedToCart: 0,
-          rating: 0,
-          bought: 0
-        })
-
-        this.trips.push(trip);
+        this.db.addTrip(trip);
         this.addingTripForms.reset();
 
       }else{

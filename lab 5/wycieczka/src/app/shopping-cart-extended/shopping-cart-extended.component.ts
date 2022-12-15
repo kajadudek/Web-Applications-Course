@@ -10,7 +10,7 @@ import { Trip, ServicedataService } from '../servicedata.service';
   styleUrls: ['./shopping-cart-extended.component.css']
 })
 export class ShoppingCartExtendedComponent implements OnInit {
-  tripsInCart!: Trip[];
+  tripsInCart: Trip[] = [];
   boughtTrips: Trip[] = [];
   totalCost = 0;
   currencyConvert = 1;
@@ -36,10 +36,21 @@ export class ShoppingCartExtendedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.tripsInCart = this.servicedata.trips;
-    this.tripsInCart = this.db.getTrips();
+    this.db.getTrips().subscribe(change => {
+      if (this.tripsInCart.length < 1) {
+        for (let trip of change){
+          this.tripsInCart.push(trip as Trip);
+        }
+      }else {
+        this.tripsInCart = [];
+        for (let trip of change){
+          this.tripsInCart.push(trip as Trip);
+        }
+      }
+      this.total();
+    })
 
-    this.total();
+    
 
     this.dataService.getCurrency().subscribe((data) => {
       this.currentCurrency = data as string;
@@ -65,9 +76,10 @@ export class ShoppingCartExtendedComponent implements OnInit {
   }
 
   buyTrips() {
-    this.updateTripsInCart(0);
     for (let trip of this.tripsInCart){
       if( trip.addedToCart > 0){        
+
+        this.db.buyTrip(trip, trip.bought + trip.addedToCart);
         trip.bought = trip.addedToCart;
         trip.addedToCart = 0;
 
@@ -76,6 +88,11 @@ export class ShoppingCartExtendedComponent implements OnInit {
         }
       }
     }
+    this.total();
+  }
+
+  deleteTripFromCart(selectedTrip: Trip){
+    this.db.removeFromCart(selectedTrip, selectedTrip.addedToCart);
     this.total();
   }
 

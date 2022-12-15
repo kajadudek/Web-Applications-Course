@@ -57,7 +57,21 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void { 
     // this.trips = this.tripData.trips;
-    this.trips = this.db.getTrips();
+    // this.trips = this.db.getTrips();
+
+    this.db.getTrips().subscribe(change => {
+      if (this.trips == undefined ||this.trips.length < 1) {
+        for (let trip of change){
+          this.trips.push(trip as Trip);
+        }
+      }else {
+        this.trips = [];
+        for (let trip of change){
+          this.trips.push(trip as Trip);
+        }
+      }
+      this.howManyInCart();
+    })
 
     this.dataService.getTripsInCart().subscribe(data => {
       this.howManyTrips = data as number;
@@ -85,9 +99,6 @@ export class AppComponent implements OnInit {
   }
 
   updateFromCart(selectedTrip: Trip) {
-    // this.deletedTrips += selectedTrip.addedToCart;
-    this.howManyTrips -= selectedTrip.addedToCart;
-    this.updateTripsInCart(this.howManyTrips);
     selectedTrip.vacants += selectedTrip.addedToCart;
     selectedTrip.addedToCart = 0;
     this.total();
@@ -110,6 +121,16 @@ export class AppComponent implements OnInit {
         this.updateCurrencyCont(this.currencyConvert);
       }
     }
+  }
+
+  howManyInCart(){
+    this.howManyTrips = 0;
+    for (let trip of this.trips){
+      if( trip.addedToCart > 0){
+        this.howManyTrips += trip.addedToCart;
+      }
+    }
+    return this.howManyTrips;
   }
 
   total(){

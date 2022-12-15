@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
 import { Trip } from './servicedata.service';
 
@@ -13,6 +14,7 @@ export class DataService {
   private trips = new Subject();
   private totalCost = new Subject();
   private notificationObs = new Subject();
+  cart: Trip[] = [];
 
   constructor() { }
 
@@ -63,5 +65,12 @@ export class DataService {
     }
     updateNotification(data: boolean) {
       this.notificationObs.next(data);
+    }
+
+    updateCart(cart: Trip[]){
+      this.cart = cart;
+    }
+    getCart(): Trip[]{
+      return this.cart;
     }
 }

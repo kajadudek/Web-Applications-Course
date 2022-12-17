@@ -66,6 +66,16 @@ export class FirebaseService {
     } )
   }
 
+  rateTrip(selectedTrip: Trip, newValue: any){
+    this.db.list('Trips').snapshotChanges().pipe(first()).subscribe((items:any) =>{
+      for(let i of items){
+        if(i.payload.val().id==selectedTrip.id){
+          this.db.list('Trips').update(i.payload.key, {rating: newValue});
+        }
+      }
+    } )
+  }
+
   addTrip(trip: Trip){
     this.db.list('Trips').push ({
           id: trip.id,

@@ -34,6 +34,7 @@ class = "sidebar"
         <div class="trip-card-footer">
             <app-rating 
                 [height]="starHeight"
+                [trip]="trip"
                 (ratingSend)="getRating($event, trip)"
                 class="rating"></app-rating>
             

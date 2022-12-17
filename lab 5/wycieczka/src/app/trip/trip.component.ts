@@ -111,7 +111,8 @@ export class TripComponent implements OnInit {
   }
 
   getRating(rating: number, trip: Trip){
-    trip.rating = rating
+    trip.rating = rating;
+    this.db.rateTrip(trip, rating);
   }
 
   //FILTER

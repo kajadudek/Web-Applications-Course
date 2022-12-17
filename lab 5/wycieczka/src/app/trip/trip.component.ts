@@ -20,6 +20,7 @@ export class TripComponent implements OnInit {
   howManyTrips = 0;
   currentCurrency = "PLN";
   currencyConvert = 1;
+  starHeight = 27;
 
   faTrashCan = faTrashCan;
   displayCartFlag = false;
@@ -70,19 +71,12 @@ export class TripComponent implements OnInit {
 
   addTripToCart(selectedTrip: Trip) {
     selectedTrip.addedToCart += 1;
-    // selectedTrip.vacants -= 1;
     this.db.addToCart(selectedTrip, selectedTrip.addedToCart);
-    this.howManyTrips += 1;
-    this.updateTripsInCart(this.howManyTrips);
   }
 
   rmvTripFromCart(selectedTrip: Trip) {
     if(selectedTrip.addedToCart>0){
-    //  selectedTrip.addedToCart -= 1;
-    //  selectedTrip.vacants += 1; 
       this.db.removeFromCart(selectedTrip, 1);
-      this.howManyTrips -= 1;
-      this.updateTripsInCart(this.howManyTrips);
     }
   }
 
@@ -112,10 +106,8 @@ export class TripComponent implements OnInit {
 
   deleteTrip(trip: Trip) {
     const id = this.trips.indexOf(trip,0);
-    // this.howManyTrips -= trip.addedToCart;
     this.db.deleteTrip(trip);
     this.trips.splice(id,1);
-    this.updateTripsInCart(this.howManyTrips);
   }
 
   getRating(rating: number, trip: Trip){

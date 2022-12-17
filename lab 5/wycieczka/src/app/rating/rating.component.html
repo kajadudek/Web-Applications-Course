@@ -3,6 +3,7 @@
         <app-star 
             [starId]="star" 
             [rating]="hoverStars || rating" 
+            [height]="height"
             (enter)="enter($event)" 
             (chooseStars)="newRate()"
             (clicked)="updateRating(star)">

@@ -11,6 +11,7 @@ export class StarComponent implements OnInit {
   
   @Input() starId!: number;
   @Input() rating!: number;
+  @Input() height!: number;
 
   @Output() chooseStars: EventEmitter<number> = new EventEmitter();
   @Output() enter: EventEmitter<number> = new EventEmitter();

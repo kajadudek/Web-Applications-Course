@@ -56,9 +56,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void { 
-    // this.trips = this.tripData.trips;
-    // this.trips = this.db.getTrips();
-
     this.db.getTrips().subscribe(change => {
       if (this.trips == undefined ||this.trips.length < 1) {
         for (let trip of change){
@@ -71,10 +68,6 @@ export class AppComponent implements OnInit {
         }
       }
       this.howManyInCart();
-    })
-
-    this.dataService.getTripsInCart().subscribe(data => {
-      this.howManyTrips = data as number;
     })
 
     this.dataService.getTrip().subscribe(data => {

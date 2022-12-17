@@ -12,7 +12,7 @@ class = "sidebar"
             <div class="trip-name">
                 {{trip.name | titlecase}}
             </div>
-            <img src="{{ trip.image }}" routerLink="/trip/{{trip.vacants}}" class="trip-img">
+            <img src="{{ trip.image }}" routerLink="/trips/{{trip.id}}" class="trip-img">
         </div>
         
         <div class="info">
@@ -33,6 +33,7 @@ class = "sidebar"
 
         <div class="trip-card-footer">
             <app-rating 
+                [height]="starHeight"
                 (ratingSend)="getRating($event, trip)"
                 class="rating"></app-rating>
             

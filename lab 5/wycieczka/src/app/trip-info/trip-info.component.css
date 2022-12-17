@@ -1,0 +1,271 @@
+.main-container {
+    width: 70vw;
+    height: auto;
+    margin: auto;
+    margin-top: 20px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 30px;
+}
+
+.trip-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 40px;
+}
+
+.photo-slider {
+    width: 30vw;
+    min-width: 230px;
+    height: 30vw;
+    min-height: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px 3px rgb(210, 210, 210);
+    position: relative;
+}
+
+.prev,
+.next {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(56, 56, 56, 0.434);
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
+
+.photo-slider > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.main-info {
+    margin-left: 20px;
+}
+
+.trip-name {
+    font-size: calc(20px + 0.5vw);
+    font-weight: bold;
+}
+
+.dates {
+    color: gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.cost {
+    font-size: calc(25px + 3vw);
+    margin: 0;
+}
+
+.buying-features {
+    display: flex;
+}
+
+.vacants {
+    width: 90px;
+    color: black;
+}
+
+.few-left {
+    color: red;
+}
+
+button {
+    width: 30px;
+    height: 30px;
+    border-radius: 18px;
+    color: white;
+    font-size: 25px;
+    margin: 5px;
+    font-weight: bold;
+    border: 0;
+    cursor: pointer;
+
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none;
+}
+
+button:hover {
+    opacity: 75%;
+}
+
+.buy-button {
+    background-color: rgb(229, 124, 3);
+}
+
+.resign-button {
+    background-color: gray;
+    font-size: 15px;
+}
+
+.other-info {
+    margin-top: 30px;
+}
+
+.description {
+    color: gray;
+    text-align: justify;
+    border-bottom: 1px solid rgb(220, 220, 220);
+    font-size: 18px;
+    padding: 0 20px 15px 20px;
+}
+
+.rating {
+    margin-bottom: 20px;
+    margin-left: 40px;
+}
+
+.forms {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 30px;
+    border-bottom: 1px solid rgb(220, 220, 220);
+}
+
+input {
+    height: 25px;
+}
+
+.nick-input {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#nick {
+    width: 30vw;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 3px rgba(224, 224, 224, 0.699);
+}
+
+.trip-name-select {
+    margin-top: 20px;
+    width: 30.5vw;
+    height: 30px;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 3px rgba(224, 224, 224, 0.699);
+}
+
+.opinion-input {
+    margin-top: 20px;
+}
+
+#opinion {
+    width: 100%;
+    height: 90px;
+    margin-top: 5px;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 3px rgba(224, 224, 224, 0.699);
+}
+
+.date-input {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#date {
+    margin-top: 5px;
+    border: 0;
+    width: 30vw;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 3px rgba(224, 224, 224, 0.699);
+}
+
+.submit-button {
+    width: 200px;
+    height: 35px;
+    background-color: rgba(237, 107, 0);
+    border: 0;
+    border-radius: 7px;
+    color: white;
+    letter-spacing: 2px;
+    cursor: pointer;
+    align-self: center;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.comments {
+    margin-top: 50px;
+}
+
+.post-card {
+    background-color: white;
+    padding: 10px 20px;
+
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 3px rgba(224, 224, 224, 0.699);
+    margin-bottom: 25px;
+}
+
+.post-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+    align-items: baseline;
+}
+
+.title {
+    font-size: calc(15px + 0.5vw);
+    text-transform: capitalize;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.nick {
+    margin-left: 10px;
+    font-size: calc(10px + 0.3vw);
+    margin-bottom: 0;
+}
+
+.content {
+    line-height: 30px;
+    color: rgb(100, 100, 100);
+    margin-left: 20px;
+    margin-top: 0;
+}
+
+.date-of-purchase {
+    color: rgb(100, 100, 100);
+    font-size: 10px;
+    text-align: right;
+}
+
+
+@media screen and (max-width: 650px) {
+    .trip-header{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main-info{
+        margin: 0;
+    }
+}

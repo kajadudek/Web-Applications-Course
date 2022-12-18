@@ -10,7 +10,6 @@ import { first, Observable } from 'rxjs';
 export class FirebaseService {
 
   trips: Trip[] = [];
-  nextId: number | undefined;
 
   constructor(private db: AngularFireDatabase) {
 

@@ -79,9 +79,11 @@
 
 .buying-features {
     display: flex;
+    align-items: center;
 }
 
 .vacants {
+    margin-top: 15px;
     width: 90px;
     color: black;
 }
@@ -100,6 +102,9 @@ button {
     font-weight: bold;
     border: 0;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */

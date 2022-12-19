@@ -24,15 +24,19 @@
 }
 
 h4 {
-    font-size: calc(15px + 1vw);
+    font-size: calc(15px + 0.5vw);
     margin-right: 10px;
 }
 
-.product-info {
+.product-info { 
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
     align-items: center;
+    justify-content: flex-end;
+}
+
+.product-info > p {
+    margin-top: 13px;
 }
 
 .cost {

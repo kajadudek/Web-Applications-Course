@@ -29,10 +29,14 @@
     font-weight: bold;
 }
 
-.product-info {
+.product-info { 
     display: flex;
-    justify-content: flex-end;
+    flex-direction: row;
     align-items: center;
+}
+
+.product-info > p {
+    margin-top: 13px;
 }
 
 .delete-product {

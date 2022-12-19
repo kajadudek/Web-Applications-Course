@@ -24,7 +24,7 @@
 .trip-card {
     width: 27vw;
     min-width: 360px;
-    height: 600px;
+    height: 620px;
     margin: auto;
     background-color: white;
     box-shadow: 0px 0px 5px 3px rgb(238, 238, 238);
@@ -133,7 +133,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 7px;
     margin: auto;
 
     height: 30px;
@@ -148,6 +148,7 @@
 }
 
 .vacants {
+    margin-top: 10px;
     width: 90px;
     color: black;
 }
@@ -166,6 +167,9 @@ button {
     font-weight: bold;
     border: 0;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */

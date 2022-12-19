@@ -7,7 +7,7 @@
                 </div>
     
                 <div class="product-info">
-                    <p>{{product.addedToCart}} x &nbsp;</p>
+                    <p class="quantity">{{product.addedToCart}} x &nbsp;</p>
                     <p class="cost">{{product.cost * currencyConvert}} {{currentCurrency}}</p>
                     <button class="delete-product" (click)="deleteTripFromCart(product)">X</button>
                 </div>
@@ -22,9 +22,21 @@
             <div class="bought-section">
                 <div class="bought-header">
                     <h4>BOUGHT</h4>
+                    <div>
+                        <input type="checkbox" (change)="updateFilter(1)">
+                        <p>ENDED</p>
+                    </div>
+                    <div>
+                        <input type="checkbox"  (change)="updateFilter(2)">
+                        <p>IN PROGRESS</p>
+                    </div>
+                    <div>
+                        <input type="checkbox"  (change)="updateFilter(0)">
+                        <p>SOON</p>
+                    </div>                        
 
                 </div>
-                <div *ngFor="let product of boughtTrips">
+                <div *ngFor="let product of boughtTrips | tripStatus: filter" class="bought-product">
                     <div class="product-bought">
                         <h5>{{product.name}} ({{product.addedToCart}})</h5>
                         <p class="cost">{{product.cost * currencyConvert * product.addedToCart}} {{currentCurrency}}</p>

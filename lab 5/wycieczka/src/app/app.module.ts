@@ -20,6 +20,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ShoppingCartExtendedComponent } from './shopping-cart-extended/shopping-cart-extended.component';
 import { DatePipe } from '@angular/common';
 import { TripInfoComponent } from './trip-info/trip-info.component';
+import { TripStatusPipe } from './pipes/trip-status.pipe';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { TripInfoComponent } from './trip-info/trip-info.component';
     SidebarComponent,
     HomePageComponent,
     ShoppingCartExtendedComponent,
-    TripInfoComponent
+    TripInfoComponent,
+    TripStatusPipe
   ],
   imports: [
     BrowserModule,

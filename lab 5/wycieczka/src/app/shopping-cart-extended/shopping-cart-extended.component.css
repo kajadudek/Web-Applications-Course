@@ -23,6 +23,10 @@
     align-items: center;
 }
 
+.quantity {
+    min-width: 30px;
+}
+
 h4 {
     font-size: calc(15px + 0.5vw);
     margin-right: 10px;
@@ -99,8 +103,27 @@ h4 {
     margin-top: 20px;
 }
 
-.bought-section > h4 {
+.bought-header {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.bought-header > h4 {
     font-weight: bold;
+}
+
+.bought-header > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 20px;
+}
+
+.bought-header > div > p{
+    margin-top: 15px;
+    margin-left: 5px;
+    font-size: 15px;
 }
 
 .product-bought {
@@ -128,6 +151,47 @@ h4 {
 
 @media screen and (max-width: 850px) {
     .post-finalization{
+        flex-direction: column;
+    }
+
+    .bought-section {
+        width: auto;
+    }
+
+    .product-bought{
+        display: block;
+    }
+
+    .product-bought-info {
+        display: block;
+    }
+
+    .product-bought-info > .details {
+        font-size: 11px;
+        margin: 0;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .product-bought-info > .details > p {
+        margin: 0;
+    }
+
+    .finalization {
+        padding: 5px;
+        justify-content: space-between;
+    }
+
+    .buy-button {
+        width: 70px;
+    }
+
+    .bought-product {
+        margin-top: 20px;
+        border-bottom: 1px solid grey;
+    }
+
+    .bought-header {
         flex-direction: column;
     }
 }

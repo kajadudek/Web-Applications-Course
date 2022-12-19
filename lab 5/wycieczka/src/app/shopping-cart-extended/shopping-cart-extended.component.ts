@@ -18,6 +18,7 @@ export class ShoppingCartExtendedComponent implements OnInit {
   currentCurrency = "PLN";
   todaysDate!: any;
   date = new Date();
+  filter: boolean[] = [false, false, false];
 
   constructor(public servicedata: ServicedataService,
     private dataService: DataService,
@@ -124,19 +125,8 @@ export class ShoppingCartExtendedComponent implements OnInit {
     }
   }
 
-  isSoon(selectedTrip: Trip){
-    let tripDate = Number(selectedTrip.startDate.slice(3,5));
-    
-    if (
-      (((tripDate - this.date.getMonth()-1) == 0 
-    || (tripDate - this.date.getMonth()-1) == -1 ) 
-    && (Number(selectedTrip.startDate.slice(6,10)) - this.date.getFullYear()) == 0)
-
-    || ((tripDate - this.date.getMonth()-1) == -11 
-    && (Number(selectedTrip.startDate.slice(6,10)) - this.date.getFullYear()) == 1))
-    {
-      return true;
-    }
-    return false;
+  updateFilter(idx: number){
+    this.filter[idx] = !this.filter[idx];
+    console.log(idx, this.filter)
   }
 }

@@ -100,16 +100,20 @@ export class AppComponent implements OnInit {
 
   changeCurrency(toCurrency: string){
     if (this.currentCurrency != toCurrency){
-
-      if (this.currentCurrency == "PLN"){
+      if (toCurrency == "USD"){
         this.currencyConvert = 0.2;
         this.currentCurrency = "USD"
         this.updateCurrency(this.currentCurrency);
         this.updateCurrencyCont(this.currencyConvert);
       }
-      else {
+      else if (toCurrency == "PLN") {
         this.currencyConvert = 1;
         this.currentCurrency = "PLN";
+        this.updateCurrency(this.currentCurrency);
+        this.updateCurrencyCont(this.currencyConvert);
+      } else if (toCurrency == "£") {
+        this.currencyConvert = 0.2;
+        this.currentCurrency = "£";
         this.updateCurrency(this.currentCurrency);
         this.updateCurrencyCont(this.currencyConvert);
       }

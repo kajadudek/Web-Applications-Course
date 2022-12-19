@@ -118,7 +118,8 @@ export class FirebaseService {
           dateOfBought: trip.dateOfBought,
           toBe: false,
           ended: false,
-          during: false
+          during: false,
+          lessThan2Weeks: false
     })
   }
 

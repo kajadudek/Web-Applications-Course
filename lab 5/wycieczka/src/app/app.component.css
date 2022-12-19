@@ -71,8 +71,9 @@ a {
 
 .currencies > p {
     margin-top: 15px;
-    margin-left: 10px;
+    margin-left: 5px;
     cursor: pointer;
+    font-size: 15px;
 }
 
 .currencies > fa-icon,
@@ -83,6 +84,7 @@ a {
 
 .trips-in-cart {
     margin-top: 15px;
+    margin-right: -5px;
     width: 40px;
 }
 
@@ -130,7 +132,6 @@ a {
 
     .trips-in-cart {
         width: 30px;
-        margin-left: 5px;
     }
 
     .how-many-trips {

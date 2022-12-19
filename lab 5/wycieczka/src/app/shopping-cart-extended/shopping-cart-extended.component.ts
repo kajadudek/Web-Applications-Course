@@ -59,12 +59,14 @@ export class ShoppingCartExtendedComponent implements OnInit {
         for (let trip of change){
           this.boughtTrips.push(trip as Trip);
           this.statusCheck(trip);
+          this.isSoon(trip);
         }
       }else {
         this.boughtTrips = [];
         for (let trip of change){
           this.boughtTrips.push(trip as Trip);
           this.statusCheck(trip);
+          this.isSoon(trip);
         }
       }
     })  
@@ -117,7 +119,7 @@ export class ShoppingCartExtendedComponent implements OnInit {
 
     if ( startDate <= this.date && endDate >= this.date){
       this.db.tripStatus(selectedTrip, false, false, true);
-      this.updateNotification(true);
+      // this.updateNotification(true);
     } else if (endDate < this.date) {
       this.db.tripStatus(selectedTrip, true, false, false);
     } else if (startDate > this.date){
@@ -125,8 +127,18 @@ export class ShoppingCartExtendedComponent implements OnInit {
     }
   }
 
+  isSoon(selectedTrip: any) {
+    if(selectedTrip.toBe){
+      if (((new Date(selectedTrip.startDate).getTime() - this.date.getTime()) / 1000 / 60 / 60 / 24) <= 14 ) {
+        this.updateNotification(true);
+        selectedTrip.lessThan2Weeks = true;
+        return;
+      }
+    }
+    selectedTrip.lessThan2Weeks = false;
+  }
+
   updateFilter(idx: number){
     this.filter[idx] = !this.filter[idx];
-    console.log(idx, this.filter)
   }
 }

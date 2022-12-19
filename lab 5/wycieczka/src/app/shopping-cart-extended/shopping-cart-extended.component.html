@@ -38,7 +38,7 @@
                 </div>
                 <div *ngFor="let product of boughtTrips | tripStatus: filter" class="bought-product">
                     <div class="product-bought">
-                        <h5>{{product.name}} ({{product.addedToCart}})</h5>
+                        <h5 [style.color]="product.lessThan2Weeks ? '#c03900': 'black'">{{product.name}} ({{product.addedToCart}})</h5>
                         <p class="cost">{{product.cost * currencyConvert * product.addedToCart}} {{currentCurrency}}</p>
 
                     </div>

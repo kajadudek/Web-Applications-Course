@@ -15,6 +15,7 @@ export interface Trip{
   addedToCart: number;
   rating: number;
   bought: number;
+  dateOfBought: any;
 }
 
 @Injectable({

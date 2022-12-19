@@ -10,12 +10,11 @@
 
     <div class="dates">
         <label for="start-date"> Date of start: </label>
-        <input id="start-date" type="text" formControlName="startDate">
+        <input id="start-date" type="date" formControlName="startDate">
     
         <label for="end-date"> End of trip: </label>
-        <input id="end-date" type="text" formControlName="endDate">
-        <p class="error" *ngIf="startDate != null && startDate.invalid && startDate.touched">Invalid start date format. Try DD/MM/YYYY</p>
-        <p class="error" *ngIf="endDate != null && endDate.invalid && endDate.touched">Invalid end date format. Try DD/MM/YYYY</p>
+        <input id="end-date" type="date" formControlName="endDate">
+
         <p class="error" *ngIf="!isDateValid">Enter proper dates</p>
     </div>
 

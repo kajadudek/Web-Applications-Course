@@ -95,13 +95,35 @@ h4 {
 
 .bought-section,
 .soon-section {
-    width: 30vw;
+    width: 70vw;
+    margin-top: 20px;
+}
+
+.bought-section > h4 {
+    font-weight: bold;
 }
 
 .product-bought {
+    margin-top: 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.product-bought-info {
+    margin-top: -12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 13px;
+    color: gray;
+}
+
+.product-bought-info > .details {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    text-align: center;
 }
 
 @media screen and (max-width: 850px) {

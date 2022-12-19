@@ -7,11 +7,12 @@ import { Trip, ServicedataService } from '../servicedata.service';
 @Component({
   selector: 'app-shopping-cart-extended',
   templateUrl: './shopping-cart-extended.component.html',
-  styleUrls: ['./shopping-cart-extended.component.css']
+  styleUrls: ['./shopping-cart-extended.component.css'],
+  providers: [DatePipe]
 })
 export class ShoppingCartExtendedComponent implements OnInit {
   tripsInCart: Trip[] = [];
-  boughtTrips: Trip[] = [];
+  boughtTrips: any[] = [];
   totalCost = 0;
   currencyConvert = 1;
   currentCurrency = "PLN";
@@ -20,8 +21,9 @@ export class ShoppingCartExtendedComponent implements OnInit {
 
   constructor(public servicedata: ServicedataService,
     private dataService: DataService,
-    private db: FirebaseService) {
-  }
+    private db: FirebaseService,
+    private datePipe: DatePipe) {
+    }
 
   updateSelectedTrip(data: Trip) {
     this.dataService.updateTrip(data);
@@ -48,9 +50,23 @@ export class ShoppingCartExtendedComponent implements OnInit {
         }
       }
       this.total();
-    })
+    })  
 
-    
+    this.db.getBoughtTrips().subscribe(change => {
+      this.updateNotification(false);
+      if (this.boughtTrips.length < 1) {
+        for (let trip of change){
+          this.boughtTrips.push(trip as Trip);
+          this.statusCheck(trip);
+        }
+      }else {
+        this.boughtTrips = [];
+        for (let trip of change){
+          this.boughtTrips.push(trip as Trip);
+          this.statusCheck(trip);
+        }
+      }
+    })  
 
     this.dataService.getCurrency().subscribe((data) => {
       this.currentCurrency = data as string;
@@ -80,12 +96,10 @@ export class ShoppingCartExtendedComponent implements OnInit {
       if( trip.addedToCart > 0){        
 
         this.db.buyTrip(trip, trip.bought + trip.addedToCart);
+        trip.dateOfBought = this.datePipe.transform(this.date, 'yyyy-MM-dd')
+        this.db.addBought(trip)
         trip.bought = trip.addedToCart;
         trip.addedToCart = 0;
-
-        if (this.isSoon(trip)){
-          this.updateNotification(true);
-        }
       }
     }
     this.total();
@@ -94,6 +108,20 @@ export class ShoppingCartExtendedComponent implements OnInit {
   deleteTripFromCart(selectedTrip: Trip){
     this.db.removeFromCart(selectedTrip, selectedTrip.addedToCart);
     this.total();
+  }
+
+  statusCheck(selectedTrip: any) {
+    const startDate = new Date(selectedTrip.startDate);
+    const endDate = new Date(selectedTrip.endDate);
+
+    if ( startDate <= this.date && endDate >= this.date){
+      this.db.tripStatus(selectedTrip, false, false, true);
+      this.updateNotification(true);
+    } else if (endDate < this.date) {
+      this.db.tripStatus(selectedTrip, true, false, false);
+    } else if (startDate > this.date){
+      this.db.tripStatus(selectedTrip, false, true, false);
+    }
   }
 
   isSoon(selectedTrip: Trip){

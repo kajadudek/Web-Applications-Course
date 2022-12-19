@@ -58,12 +58,12 @@ export class AddTripComponent {
     startDate: new FormControl('',
     [
       Validators.required,
-      Validators.pattern("([0]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[\/]{1}[0-9]{2}[\/]{1}[0-9]{4}")
+      // Validators.pattern("([0]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[\/]{1}[0-9]{2}[\/]{1}[0-9]{4}")
     ]),
     endDate: new FormControl('',
     [
       Validators.required,
-      Validators.pattern("([0]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[\/]{1}[0-9]{2}[\/]{1}[0-9]{4}")
+      // Validators.pattern("([0]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[\/]{1}[0-9]{2}[\/]{1}[0-9]{4}")
     ]),
     cost: new FormControl('',
     [
@@ -112,29 +112,21 @@ export class AddTripComponent {
     return this.addingTripForms.get('shortInfo')
   }
 
+  checkDates(startDate: any, endDate: any){
+    startDate = new Date(startDate);
+    endDate = new Date(endDate);
+    console.log(startDate, endDate);
+    if (startDate.getFullYear() <= endDate.getFullYear()){
+      if (startDate.getFullYear() < endDate.getFullYear()){ return true; }
+    
+        if (startDate.getMonth() <= endDate.getMonth()) {
+          if (startDate.getMonth() < endDate.getMonth()) { return true; }
 
-  checkDates(startDate: any, endDate: any) {
-    let year1 = Number(startDate.slice(6,10));
-    let year2 = Number(endDate.slice(6,10));
-
-    if (year1 <= year2){
-      if (year1 == year2) {
-        let month1 = Number(startDate.slice(3,5));
-        let month2 = Number(endDate.slice(3,5));
-
-        if (month1 <= month2) {
-          if (month1 == month2) {
-            let day1 = Number(startDate.slice(0,2));
-            let day2 = Number(endDate.slice(0,2));
-
-            if (day1 <= day2) {
-
+            if (startDate.getDate() <= endDate.getDate()) {
               return true;
-            }return false;
-          }return true;
+            } return false;
         } return false;
-      }return true;
-    }return false;
+    } return false;
   }
 
 

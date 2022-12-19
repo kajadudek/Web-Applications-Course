@@ -13,23 +13,27 @@ export class FirebaseService {
 
   constructor(private db: AngularFireDatabase) {
 
-    this.db.list('Trips').valueChanges().subscribe(change => {
-      if (this.trips.length < 1) {
-        for (let trip of change){
-          this.trips.push(trip as Trip);
-        }
-      } else {
-        this.trips = [];
-        for (let trip of change){
-          this.trips.push(trip as Trip);
-        }
-      }
-    })
-    console.log(this.trips);
+    // this.db.list('Trips').valueChanges().subscribe(change => {
+    //   if (this.trips.length < 1) {
+    //     for (let trip of change){
+    //       this.trips.push(trip as Trip);
+    //     }
+    //   } else {
+    //     this.trips = [];
+    //     for (let trip of change){
+    //       this.trips.push(trip as Trip);
+    //     }
+    //   }
+    // })
+    // console.log(this.trips);
    }
 
    getTrips(): Observable<any>{
     return this.db.list('Trips').valueChanges();
+   }
+
+   getBoughtTrips(): Observable<any>{
+    return this.db.list('Bought').valueChanges();
    }
 
    addToCart(selectedTrip: Trip, newValue: any){
@@ -97,6 +101,34 @@ export class FirebaseService {
       for(let i of items){
         if(i.payload.val().id==selectedTrip.id){
           this.db.list('Trips').remove(i.payload.key);
+        }
+      }
+    } )
+  }
+
+  addBought(trip: Trip) {
+    this.db.list('Bought').push ({
+          id: trip.id,
+          name: trip.name,
+          country: trip.country,
+          startDate: trip.startDate,
+          endDate: trip.endDate,
+          cost: trip.cost,
+          addedToCart: trip.addedToCart,
+          dateOfBought: trip.dateOfBought,
+          toBe: false,
+          ended: false,
+          during: false
+    })
+  }
+
+  tripStatus(selectedTrip: Trip, end: boolean, willBe: boolean, inProgress: boolean){
+    this.db.list('Bought').snapshotChanges().pipe(first()).subscribe((items:any) =>{
+      for(let i of items){
+        if(i.payload.val().id==selectedTrip.id){
+          this.db.list('Bought').update(i.payload.key, {ended: end});
+          this.db.list('Bought').update(i.payload.key, {toBe: willBe});
+          this.db.list('Bought').update(i.payload.key, {during: inProgress});
         }
       }
     } )

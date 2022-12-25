@@ -1,0 +1,100 @@
+<div class="main-container" *ngIf="trip == undefined">
+    <b>LOADING</b>
+</div>
+
+<div class="main-container" *ngIf="trip != undefined">
+
+    <div class="trip-header">
+        <div class="photo-slider">
+            <button class="prev" (click)="prevImg()">&lt;</button>
+            <img src="{{images[currImg]}}">
+            <button class="next" (click)="nextImg()">&gt;</button>
+        </div>
+    
+        <div class="main-info">
+            <p class="trip-name"> {{trip.name | titlecase }} </p>
+            <p class="country"> {{trip.country | uppercase }}</p>
+            <div class="dates">
+                <p>From: {{trip.startDate}}</p>
+                <p>To: {{trip.endDate}}</p>
+            </div>
+            <p class="cost"> {{trip.cost * currencyConvert}}{{currentCurrency}} </p>
+            <div class="buying-features">
+                <button *ngIf="trip.vacants > 0" (click)="addTripToCart(trip)" class="buy-button">+</button>
+                <button *ngIf="trip.addedToCart >= 0" (click)="rmvTripFromCart(trip)" class="resign-button">X</button>
+                <p class="vacants" *ngIf="trip.vacants > 0" [class.few-left]="trip.vacants <= 3">
+                    <b>Vacants:</b> {{trip.vacants}}
+                </p>
+
+                <p class="few-left" *ngIf="trip.vacants == 0">
+                    <b>Not available!</b>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="other-info">
+        <p class="description"> {{trip.info}} </p>  
+        
+        <div class="rating">
+            <app-rating 
+                [height]="height"
+                [trip]="trip"
+                (ratingSend)="getRating($event, trip)">
+            </app-rating>
+        </div>
+
+        <div class="forms">
+            
+            <form [formGroup]="opinionForm">
+
+                <div class="nick-input">
+                    <label for="nick"> Nick: </label>
+                    <input id="nick" type="text" formControlName="nick"
+                    [ngStyle]="name!= null && name.invalid && name.touched ? {'border':  '2px solid red'} : {'border': '0'}">
+                </div>
+                   
+                    <select
+                        class="trip-name-select"
+                        formControlName="tripName"
+                        (change)="changeTripName($event)"
+                        [ngStyle]="tripNameError ? {'border':  '2px solid red'} : {'border': '0'}">
+                        <option value="" disabled>Choose trip name</option>
+                        <option *ngFor="let t of trips" [ngValue]="t.name">
+                            {{t.name}}
+                        </option>
+                    </select>
+
+                <div class="opinion-input">
+                    <label for="opinion"> Opinion: </label>
+                    <textarea id="opinion" cols="40" rows="5" formControlName="opinion"
+                    [ngStyle]="opinion!= null && opinion.invalid && opinion.touched ? {'border':  '2px solid red'} : {'border': '0'}">
+                    </textarea>
+                </div>
+            
+                <div class="date-input">
+                    <label for="date"> Date of purchase (optional): </label>
+                    <input id="date" type="date" formControlName="date">
+                </div>
+                
+            </form>
+            <button class="submit-button" (click)="onSubmit()">Submit</button>
+        </div>
+
+        <div class="comments">
+            <div *ngIf="comments.length > 0" >
+                <div class="post-card" *ngFor="let comment of comments">
+        
+                    <div class="post-header">
+                        <p class="title">{{ comment.tripName }}</p>
+                        <p class="nick">Nick: {{ comment.nick }}</p>
+                    </div>
+                    
+                    <p class="content">{{ comment.opinion }}</p>
+                    <p class="date-of-purchase" *ngIf="comment.date != ''"> Date of purchase: {{ comment.date }}</p>
+        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

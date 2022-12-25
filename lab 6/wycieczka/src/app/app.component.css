@@ -1,0 +1,141 @@
+.main {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.logo {
+    font-size: 22px;
+    flex: 1;
+    padding-left: 30px;
+    margin-top: 15px;
+}
+
+.header {
+    background-color: white;
+    z-index: 4;
+    color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-around;
+
+    flex: 3;
+}
+
+.menu > a {
+    color: black;
+}
+
+.menu > a:hover {
+    text-decoration: underline;
+}
+
+.menu > .icon {
+    display: none;
+}
+
+.how-many-trips {
+    flex: 1;
+    text-align: center;
+    font-size: 20px; 
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 30px;
+}
+
+.currencies {
+    color: black !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.currencies > p {
+    margin-top: 15px;
+    margin-left: 5px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.currencies > fa-icon,
+.notification-icon {
+    color: rgb(101, 101, 101);
+    cursor: pointer;
+}
+
+.trips-in-cart {
+    margin-top: 15px;
+    margin-right: -5px;
+    width: 40px;
+}
+
+.icon-container {
+    position: relative;
+    margin-right: 10px;
+}
+
+.notification-dot {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 5px;
+
+    z-index: 5;
+}
+
+@media screen and (max-width: 1150px) {
+    .main {
+        margin-top: 150px;
+    }
+}
+
+
+@media screen and (max-width: 650px) {
+    .logo {
+        font-size: 19px;
+    }
+
+    .menu > a {
+        display: none;
+    }
+
+    .menu > .icon {
+        display: block;
+    }
+
+    .currencies > p {
+        font-size: 15px;
+        margin-right: 5px;
+    }
+
+    .trips-in-cart {
+        width: 30px;
+    }
+
+    .how-many-trips {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}

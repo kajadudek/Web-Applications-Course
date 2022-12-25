@@ -1,0 +1,56 @@
+<app-sidebar
+class = "sidebar"
+(sendCountryFilter) = "getCountryFilter($event)"
+></app-sidebar>
+
+<div class="trip-cards" *ngIf="trips != []">
+    <div class="trip-card" *ngFor="let trip of trips | localisation: countryFilter" [ngClass]="{'max-price': trip === findMaxPrice(), 'min-price': trip === findMinPrice()}">
+        <div class="delete-button">
+            <fa-icon [icon]="faTrashCan" (click)="deleteTrip(trip)"></fa-icon>
+        </div>
+        <div class="img-container">
+            <div class="trip-name">
+                {{trip.name | titlecase}}
+            </div>
+            <img src="{{ trip.image }}" routerLink="/trips/{{trip.id}}" class="trip-img">
+        </div>
+        
+        <div class="info">
+            <div class="dates">
+                <p>From: {{trip.startDate}}</p>
+                <p>To: {{trip.endDate}}</p>
+            </div>
+            <p class="country">
+                {{trip.country | uppercase}}
+            </p>
+            <p class="cost">
+                {{trip.cost * currencyConvert}}{{currentCurrency}}
+            </p>
+            <p class="trip-info">
+                {{trip.info}}
+            </p>            
+        </div>
+
+        <div class="trip-card-footer">
+            <app-rating 
+                [height]="starHeight"
+                [trip]="trip"
+                (ratingSend)="getRating($event, trip)"
+                class="rating"></app-rating>
+            
+            <div class="buying-features">
+                <button *ngIf="trip.vacants > 0" (click)="addTripToCart(trip)" class="buy-button">+</button>
+                <button *ngIf="trip.addedToCart >= 0" (click)="rmvTripFromCart(trip)" class="resign-button">X</button>
+                <p class="vacants" *ngIf="trip.vacants > 0" [class.few-left]="trip.vacants <= 3">
+                    <b>Vacants:</b> {{trip.vacants}}
+                </p>
+
+                <p class="few-left" *ngIf="trip.vacants == 0">
+                    <b>Not available!</b>
+                </p>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>

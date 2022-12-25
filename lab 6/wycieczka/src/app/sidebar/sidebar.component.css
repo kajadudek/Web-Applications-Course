@@ -1,0 +1,40 @@
+.sidebar {
+    display: flex;
+    padding: 100px 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+.filter-name {
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.checkbox-container {
+    display: flex;
+    font-size: 13px;
+}
+
+.checkbox-container > p, input {
+    margin: 3px;
+}
+
+@media screen and (max-width: 1180px) {
+    .sidebar {
+        padding: 10px;
+        margin-top: -50px;
+        height: auto;
+        width: 100vw;
+    }
+
+    .country-filter {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .checkbox-container {
+        align-items: center;
+    }
+}

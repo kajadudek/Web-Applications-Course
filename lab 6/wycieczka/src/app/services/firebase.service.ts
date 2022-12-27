@@ -90,6 +90,7 @@ export class FirebaseService {
           vacants: trip.vacants,
           info: trip.info,
           image: trip.image,
+          images: trip.images,
           addedToCart: trip.addedToCart,
           rating: trip.rating,
           bought: trip.bought
@@ -130,6 +131,26 @@ export class FirebaseService {
           this.db.list('Bought').update(i.payload.key, {ended: end});
           this.db.list('Bought').update(i.payload.key, {toBe: willBe});
           this.db.list('Bought').update(i.payload.key, {during: inProgress});
+        }
+      }
+    } )
+  }
+
+  updateTrip(selectedTrip: Trip, name: any, country: any, dateOfStart: any, dateOfEnd: any, cost: any,
+            vacants: any, description: any, image: any, images: any){
+    this.db.list('Trips').snapshotChanges().pipe(first()).subscribe((items:any) =>{
+      for(let i of items){
+        if(i.payload.val().id==selectedTrip.id){
+          this.db.list('Trips').update(i.payload.key, {name: name});
+          this.db.list('Trips').update(i.payload.key, {country: country});
+          this.db.list('Trips').update(i.payload.key, {startDate: dateOfStart});
+          this.db.list('Trips').update(i.payload.key, {endDate: dateOfEnd});
+          this.db.list('Trips').update(i.payload.key, {cost: cost});
+          this.db.list('Trips').update(i.payload.key, {vacants: vacants});
+          this.db.list('Trips').update(i.payload.key, {info: description});
+          this.db.list('Trips').update(i.payload.key, {country: country});
+          this.db.list('Trips').update(i.payload.key, {image: image});
+          this.db.list('Trips').update(i.payload.key, {images: images});
         }
       }
     } )

@@ -1,0 +1,31 @@
+<div class="user-list">
+    <h3>USERS</h3>
+    <div class="user-container" *ngFor="let user of users">
+
+        <div class="user-info">
+            <p>{{user.name}}</p>
+            <p class="email">{{user.email}}</p>
+        </div>
+
+        <div class="buttons">
+            <div>
+                <button style="background-color: rgb(71, 130, 199)" (click)="userService.updateAdmin(user)">
+                    SET ADMIN
+                </button>
+                <button style="background-color: rgb(199, 148, 71)" (click)="userService.updateManager(user)">
+                    SET MANAGER
+                </button>
+            </div>
+            
+            <div>
+                <button style="background-color: rgb(109, 187, 89)" (click)="userService.updateUser(user)">
+                    SET USER
+                </button>
+                <button style="background-color: rgb(204, 78, 78)" (click)="userService.banUser(user)">
+                    BAN
+               </button>
+            </div>
+        </div>
+    </div>
+</div>
+<app-trip-manage></app-trip-manage>

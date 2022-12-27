@@ -2,11 +2,11 @@ import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Output, ViewChild, ViewChildren } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, AbstractControl} from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { FirebaseService } from '../firebase.service';
-import { ServicedataService, Trip } from '../servicedata.service';
+import { FirebaseService } from '../../services/firebase.service';
+import { ServicedataService, Trip } from '../../services/servicedata.service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { TripComponent } from '../trip/trip.component';
-import { DataService } from '../data.service';
+import { TripComponent } from '../../trip/trip.component';
+import { DataService } from '../../services/data.service';
 
 
 @Component({
@@ -58,12 +58,10 @@ export class AddTripComponent {
     startDate: new FormControl('',
     [
       Validators.required,
-      // Validators.pattern("([0]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[\/]{1}[0-9]{2}[\/]{1}[0-9]{4}")
     ]),
     endDate: new FormControl('',
     [
       Validators.required,
-      // Validators.pattern("([0]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[\/]{1}[0-9]{2}[\/]{1}[0-9]{4}")
     ]),
     cost: new FormControl('',
     [
@@ -150,6 +148,7 @@ export class AddTripComponent {
           vacants: this.addingTripForms.get('vacants')!.value,
           info: this.addingTripForms.get('shortInfo')!.value,
           image: imageUrl,
+          images: [imageUrl],
           addedToCart: 0,
           rating: 0,
           bought: 0,

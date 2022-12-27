@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Trip } from '../servicedata.service';
+import { Trip } from '../services/servicedata.service';
 
 @Component({
   selector: 'app-rating',

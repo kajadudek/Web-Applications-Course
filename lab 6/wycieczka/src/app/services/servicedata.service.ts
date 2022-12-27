@@ -12,6 +12,7 @@ export interface Trip{
   vacants: number;
   info: string;
   image: string;
+  images: string[];
   addedToCart: number;
   rating: number;
   bought: number;
@@ -27,6 +28,7 @@ export class ServicedataService {
 
   constructor() { 
     for (let trip in this.data){
+      let imgArr = [];
       this.trips.push({
         id: this.data[trip]["id"],
         name: this.data[trip]["name"],
@@ -37,16 +39,11 @@ export class ServicedataService {
         vacants: this.data[trip]["vacants"],
         info: this.data[trip]["info"],
         image: this.data[trip]["image"],
+        images: imgArr.push(this.data[trip]["image"]),
         addedToCart: 0,
         rating: 0,
         bought: 0
-      } as Trip)
+      } as unknown as Trip)
     }
   }
-
-  // getTrips(id: number): Observable<Trip> {
-  //   const hero = this.trips.find(h => h.vacants === id)!;
-  //   console.log(`HeroService: fetched hero id=${id}`);
-  //   return of(hero);
-  // }
 }

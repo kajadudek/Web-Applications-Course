@@ -1,7 +1,7 @@
 import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FirebaseService } from '../firebase.service';
-import { ServicedataService, Trip } from '../servicedata.service';
+import { FirebaseService } from '../services/firebase.service';
+import { ServicedataService, Trip } from '../services/servicedata.service';
 import { TripComponent } from '../trip/trip.component';
 
 @Component({

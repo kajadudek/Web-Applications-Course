@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DataService } from '../data.service';
-import { FirebaseService } from '../firebase.service';
-import { ServicedataService, Trip } from '../servicedata.service';
+import { DataService } from '../services/data.service';
+import { FirebaseService } from '../services/firebase.service';
+import { ServicedataService, Trip } from '../services/servicedata.service';
 
 @Component({
   selector: 'app-shopping-cart',

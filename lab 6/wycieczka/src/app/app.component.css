@@ -50,6 +50,10 @@ a {
     display: none;
 }
 
+.mobile-menu {
+    opacity: hidden;
+}
+
 .how-many-trips {
     flex: 1;
     text-align: center;
@@ -59,6 +63,18 @@ a {
     justify-content: flex-end;
     align-items: center;
     padding-right: 30px;
+}
+
+.profile-info {
+    font-size: 15px;
+    width: 90px;
+    color: black;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.how-many-trips > div > p:hover {
+    color: gray;
 }
 
 .currencies {
@@ -90,7 +106,7 @@ a {
 
 .icon-container {
     position: relative;
-    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .notification-dot {

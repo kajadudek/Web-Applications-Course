@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ServicedataService, Trip } from './servicedata.service';
-import {faShoppingCart, faPerson, faHome, faPlus, faPlane, faBell} from '@fortawesome/free-solid-svg-icons'
-import { DataService } from './data.service';
+import { ServicedataService, Trip } from './services/servicedata.service';
+import {faShoppingCart, faPerson, faHome, faPlus, faPlane, faBell, faHamburger} from '@fortawesome/free-solid-svg-icons'
+import { DataService } from './services/data.service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { FirebaseService } from './firebase.service';
+import { FirebaseService } from './services/firebase.service';
+import { AuthService, User } from './services/auth.service';
+import { UserService } from './services/user.service';
 
 
 @Component({
@@ -30,10 +32,12 @@ export class AppComponent implements OnInit {
   howManyTrips = 0;
   deletedTrips = 0;
   displayCartFlag = false;
+  user = new User('guest', 'guest', 'guest', 'guest', []);
 
   constructor(private dataService: DataService,
-    private tripData: ServicedataService,
-    private db: FirebaseService) {}
+    private db: FirebaseService,
+    private auth: AuthService,
+    private userService: UserService) {}
 
   updateCurrency(data: string){
     this.dataService.updateCurrency(data);
@@ -70,6 +74,16 @@ export class AppComponent implements OnInit {
       this.howManyInCart();
     })
 
+    this.auth.userData.subscribe(user => {
+      if (user != null){
+        this.userService.users.subscribe(data => {
+          this.user = data.filter((u: {id: string;}) => u.id == user.uid)[0];
+        })
+      } else {
+        this.user = new User('guest', 'guest', 'guest', 'guest', []);
+      }
+    })
+
     this.dataService.getTrip().subscribe(data => {
       this.tripToRmv = data as Trip;
       this.updateFromCart(this.tripToRmv);
@@ -81,6 +95,10 @@ export class AppComponent implements OnInit {
 
     this.total();
     this.updateTotal(this.totalCost);
+  }
+
+  logOut() {
+    this.auth.logOut();
   }
 
   displayCart(){

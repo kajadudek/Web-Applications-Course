@@ -1,10 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import {faTrashCan} from '@fortawesome/free-solid-svg-icons'
 import { first } from 'rxjs';
-import { DataService } from '../data.service';
-import { FirebaseService } from '../firebase.service';
-import { ServicedataService, Trip } from '../servicedata.service';
+import { AuthService, User } from '../services/auth.service';
+import { DataService } from '../services/data.service';
+import { FirebaseService } from '../services/firebase.service';
+import { ServicedataService, Trip } from '../services/servicedata.service';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -21,6 +24,7 @@ export class TripComponent implements OnInit {
   currentCurrency = "PLN";
   currencyConvert = 1;
   starHeight = 27;
+  user = new User('guest', 'guest', 'guest', 'guest', []);
 
   faTrashCan = faTrashCan;
   displayCartFlag = false;
@@ -28,7 +32,9 @@ export class TripComponent implements OnInit {
 
   constructor(public servicedata: ServicedataService, private dataService: DataService,
     private db: FirebaseService,
-    private fb: AngularFireDatabase) {}
+    private fb: AngularFireDatabase,
+    private auth: AuthService,
+    private userService: UserService) {}
 
   updateTripsInCart(data: number) {
     this.dataService.updateTripsInCart(data);
@@ -49,6 +55,16 @@ export class TripComponent implements OnInit {
         for (let trip of change){
           this.trips.push(trip as Trip);
         }
+      }
+    })
+
+    this.auth.userData.subscribe(user => {
+      if (user != null){
+        this.userService.users.subscribe((data: any[]) => {
+          this.user = data.filter((u: {id: string;}) => u.id == user.uid)[0];
+        })
+      } else {
+        this.user = new User('guest', 'guest', 'guest', 'guest', []);
       }
     })
 

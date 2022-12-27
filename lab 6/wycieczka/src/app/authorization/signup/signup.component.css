@@ -1,0 +1,91 @@
+.container{
+    display: flex;
+    justify-content: center;
+}
+  
+.signup-form {
+    display: flex;
+    width: 55vw;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(237, 107, 0, 0.808);
+    color: white;
+    border-radius: 15px;
+    padding: 2%;
+    margin: 2% 1% 0 1%;
+}
+  
+h1 {
+    font-size: 30px;
+    color: rgb(52, 49, 45);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+  
+.field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 10px;
+}
+  
+.submit-button {
+    width: 300px;
+    height: 35px;
+    background-color: rgb(52, 49, 45);
+    border: 0;
+    border-radius: 7px;
+    color: white;
+    letter-spacing: 2px;
+    cursor: pointer;
+    align-self: center;
+    font-weight: bold;
+    margin-top: 10px;
+    opacity: 100%;
+}
+
+.submit-button:hover {
+    background-color: rgb(246, 232, 224);
+    color: rgb(52, 49, 45);
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+}
+
+.invalid {
+    color: red;
+    margin-top: -15px;
+    font-size: 12px;
+}
+
+label {
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    color: rgb(52, 49, 45);
+}
+
+input {
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    width: 300px;
+    background-color: rgb(246, 232, 224);
+    border: 0;
+    min-height: 30px;
+    border-radius: 5px;
+}
+
+.footer > a {
+    margin-top: 10px;
+    align-self: center;
+    color: black;
+}
+
+.footer > a:hover {
+    color: rgb(74, 74, 74);
+}

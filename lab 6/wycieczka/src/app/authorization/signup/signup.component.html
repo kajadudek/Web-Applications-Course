@@ -1,0 +1,40 @@
+<div class="container">
+    <form class="signup-form" [formGroup]="newAccount" (ngSubmit)="onSubmit()">
+      <h1>Sign up</h1>
+
+      <div class="field name">
+        <label for="name">Name</label>
+        <input id="name" type="text" formControlName="name">
+        <p class="invalid" *ngIf="newAccount.get('name')!.hasError('required') &&
+        (newAccount.get('name')!.touched || newAccount.get('name')!.dirty)">Name is required</p>
+      </div>
+
+      <div class="field email">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" formControlName="email">
+        <p class="invalid" *ngIf="newAccount.get('email')!.hasError('required') &&
+        (newAccount.get('email')!.touched || newAccount.get('email')!.dirty)">E-mail is required</p>
+      </div>
+
+      <div class="field password1">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password">
+        <p class="invalid" *ngIf="newAccount.get('password')!.hasError('required') &&
+        (newAccount.get('password')!.touched || newAccount.get('password')!.dirty)">Password is required</p>
+      </div>
+
+      <div class="field password2">
+        <label for="confirmPass">Confirm password</label>
+        <input id="confirmPass" type="password" formControlName="confirmPass">
+        <p class="invalid" *ngIf="newAccount.get('confirmPass')!.hasError('required') &&
+        (newAccount.get('confirmPass')!.touched || newAccount.get('confirmPass')!.dirty)">Password is required</p>
+        <p class="invalid" *ngIf="newAccount.get('confirmPass')!.hasError('confirmPass') &&
+        (newAccount.get('confirmPass')!.touched || newAccount.get('confirmPass')!.dirty)">Passwords don't match</p>
+      </div>
+
+      <div class="footer">
+        <button class="submit-button">SIGN UP</button>
+        <a class="login-link" routerLink="/login">Already have an account?</a>
+      </div>
+    </form>
+  </div>

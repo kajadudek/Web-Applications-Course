@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { first, Subscription } from 'rxjs';
-import { DataService } from '../data.service';
-import { FirebaseService } from '../firebase.service';
-import { ServicedataService, Trip } from '../servicedata.service';
+import { DataService } from '../services/data.service';
+import { FirebaseService } from '../services/firebase.service';
+import { ServicedataService, Trip } from '../services/servicedata.service';
 
 interface comment {
   nick: string;

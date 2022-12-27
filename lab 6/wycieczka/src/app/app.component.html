@@ -3,26 +3,39 @@
 
   <div class="header">
     <p class="logo">LOGO</p>
+    <p  *ngIf="user.type != 'guest'">Witaj {{user.name}}</p>
     <div class="menu">
       <a routerLink="/">HOME</a>
       <a routerLink="/trips">TRIPS</a>
-      <a routerLink="/add-trip">ADD TRIP</a>
+      <a routerLink="/admin"  *ngIf="user.type == 'admin'">ADMIN</a>
+      <a routerLink="/trip-manage"  *ngIf="user.type == 'manager'">MANAGE</a>
       <fa-icon [icon]="faHome" class="icon" routerLink="/"></fa-icon>
       <fa-icon [icon]="faPlane" class="icon" routerLink="/trips"></fa-icon>
-      <fa-icon [icon]="faPlus" class="icon" routerLink="/add-trip"></fa-icon>
+      <fa-icon [icon]="faPlus" class="icon" routerLink="/admin"  *ngIf="user.type == 'admin'"></fa-icon>
+    </div>
+
+    <div class="mobile-menu">
+      <!-- <p routerLink="/login" routerLinkActive="active" *ngIf="user.type == 'user'">LOG OUT</p>
+      <p routerLink="/login" routerLinkActive="active" *ngIf="user.type == 'guest'">LOG IN</p> -->
     </div>
     
     <div class="how-many-trips"
       [style.color]="howManyTrips < 10 ? 'brown': '#e57c03'"
       >
-        
+      
+      <div class="profile-info">
+        <p routerLink="/login" routerLinkActive="active" *ngIf="user.type != 'guest'" (click)="logOut()">LOG OUT</p>
+        <p routerLink="/login" routerLinkActive="active" *ngIf="user.type == 'guest'">LOG IN</p>
+      </div>
+      
       <div class="currencies">
+        <fa-icon class="icon" [icon]="faPerson"></fa-icon>
+
         <div class="icon-container">
           <fa-icon [icon]="faBell" class="notification-icon" routerLink="/shopping-cart"></fa-icon>
           <div *ngIf="notification == true" class="notification-dot"></div>
         </div>  
 
-          <fa-icon class="icon" [icon]="faPerson"></fa-icon>
           <p (click)="changeCurrency('PLN')">PLN</p>
           <p (click)="changeCurrency('USD')">USD</p>
           <p (click)="changeCurrency('£')">£</p>

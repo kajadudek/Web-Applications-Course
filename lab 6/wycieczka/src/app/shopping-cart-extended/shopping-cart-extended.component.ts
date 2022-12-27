@@ -1,8 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
-import { FirebaseService } from '../firebase.service';
-import { Trip, ServicedataService } from '../servicedata.service';
+import { DataService } from '../services/data.service';
+import { FirebaseService } from '../services/firebase.service';
+import { Trip, ServicedataService } from '../services/servicedata.service';
 
 @Component({
   selector: 'app-shopping-cart-extended',

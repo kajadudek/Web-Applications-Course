@@ -35,10 +35,11 @@ class = "sidebar"
             <app-rating 
                 [height]="starHeight"
                 [trip]="trip"
+                [rating]="trip.rating"
                 (ratingSend)="getRating($event, trip)"
                 class="rating"></app-rating>
             
-            <div class="buying-features">
+            <div class="buying-features" *ngIf="user.type != 'guest' && user.type != 'banned'" >
                 <button *ngIf="trip.vacants > 0" (click)="addTripToCart(trip)" class="buy-button">+</button>
                 <button *ngIf="trip.addedToCart >= 0" (click)="rmvTripFromCart(trip)" class="resign-button">X</button>
                 <p class="vacants" *ngIf="trip.vacants > 0" [class.few-left]="trip.vacants <= 3">
@@ -47,6 +48,16 @@ class = "sidebar"
 
                 <p class="few-left" *ngIf="trip.vacants == 0">
                     <b>Not available!</b>
+                </p>
+            </div>
+
+            <div class="buing-features" *ngIf="user.type == 'guest' || user.type == 'banned'">
+                <p class="vacants" *ngIf="trip.vacants > 0">
+                    <b>Few left!</b>
+                </p>
+
+                <p class="few-left" *ngIf="trip.vacants == 0">
+                    <b>Not available</b>
                 </p>
             </div>
             

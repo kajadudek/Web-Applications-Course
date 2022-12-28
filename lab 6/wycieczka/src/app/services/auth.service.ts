@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { Observable } from 'rxjs';
 import { UserService } from './user.service';
+import { FirebaseService } from './firebase.service';
 
 export class User{
   public constructor(
@@ -10,7 +11,7 @@ export class User{
     public name: string,
     public email: string,
     public type: string,
-    public history: Array<{id: number, name: string, quantity: number, rated: boolean, rating: number}>,
+    public history: Array<{id: number; name: string; country: string; startDate: string; endDate: string; cost: number; addedToCart: number; dateOfBought: any; boughtID: number; toBe: boolean; ended: boolean; during: boolean; lessThan2Weeks: boolean; rated: number;}>,
   ){}
 }
 
@@ -22,7 +23,8 @@ export class AuthService {
 
   constructor(public afAuth: AngularFireAuth,
           private router: Router,
-          private users: UserService){
+          private users: UserService,
+          private fb: FirebaseService){
     this.userData = afAuth.authState;
   }
 
@@ -48,8 +50,9 @@ export class AuthService {
   }
 
   logOut(){
-    this.afAuth.signOut().then(() => {})
-      .catch(error => {
+    this.afAuth.signOut().then(() => {
+      this.fb.clearCart();
+    }).catch(error => {
         alert('There was a problem. ' + error);
       })
   }

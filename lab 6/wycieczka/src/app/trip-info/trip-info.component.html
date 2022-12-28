@@ -19,7 +19,7 @@
                 <p>To: {{trip.endDate}}</p>
             </div>
             <p class="cost"> {{trip.cost * currencyConvert}}{{currentCurrency}} </p>
-            <div class="buying-features">
+            <div class="buying-features" *ngIf="user.type != 'banned'">
                 <button *ngIf="trip.vacants > 0" (click)="addTripToCart(trip)" class="buy-button">+</button>
                 <button *ngIf="trip.addedToCart >= 0" (click)="rmvTripFromCart(trip)" class="resign-button">X</button>
                 <p class="vacants" *ngIf="trip.vacants > 0" [class.few-left]="trip.vacants <= 3">
@@ -44,7 +44,7 @@
             </app-rating>
         </div>
 
-        <div class="forms">
+        <div class="forms" *ngIf="user.type != 'banned'">
             
             <form [formGroup]="opinionForm">
 

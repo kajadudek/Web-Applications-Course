@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { first, Subscription } from 'rxjs';
+import { AuthService, User } from '../services/auth.service';
 import { DataService } from '../services/data.service';
 import { FirebaseService } from '../services/firebase.service';
 import { ServicedataService, Trip } from '../services/servicedata.service';
+import { UserService } from '../services/user.service';
 
 interface comment {
   nick: string;
@@ -22,7 +24,9 @@ export class TripInfoComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, 
     private db: FirebaseService,
-    private dataService: DataService) { }
+    private dataService: DataService,
+    private auth: AuthService,
+    private userService: UserService) { }
 
   tripId!: number;
   trips: Trip[] = [];
@@ -35,6 +39,7 @@ export class TripInfoComponent implements OnInit {
   currImg = 0;
   currentCurrency = "PLN";
   currencyConvert = 1;
+  user = new User('guest', 'guest', 'guest', 'guest', []);
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -53,6 +58,16 @@ export class TripInfoComponent implements OnInit {
             }
           }
       })
+    })
+
+    this.auth.userData.subscribe(user => {
+      if (user != null){
+        this.userService.users.subscribe((data: any[]) => {
+          this.user = data.filter((u: {id: string;}) => u.id == user.uid)[0];
+        })
+      } else {
+        this.user = new User('guest', 'guest', 'guest', 'guest', []);
+      }
     })
 
     this.dataService.getCurrency().subscribe((data) => {

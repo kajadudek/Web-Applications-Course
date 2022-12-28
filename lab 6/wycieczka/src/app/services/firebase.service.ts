@@ -3,6 +3,7 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/datab
 import { HttpClient } from '@angular/common/http';
 import { Trip } from './servicedata.service';
 import { first, Observable } from 'rxjs';
+import { User } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -37,15 +38,15 @@ export class FirebaseService {
    }
 
    addToCart(selectedTrip: Trip, newValue: any){
-    this.db.list('Trips').snapshotChanges().pipe(first()).subscribe((items:any) =>{
+    this.db.list('Trips').snapshotChanges().pipe(first()).subscribe((items: any) =>{
       for(let i of items){
         if(i.payload.val().id==selectedTrip.id){
           this.db.list('Trips').update(i.payload.key, {addedToCart: newValue});
           this.db.list('Trips').update(i.payload.key, {vacants: selectedTrip.vacants - 1});
+          }
         }
-      }
-    } )
-  }
+      })
+    }
 
   removeFromCart(selectedTrip: Trip, newValue: any){
     this.db.list('Trips').snapshotChanges().pipe(first()).subscribe((items:any) =>{
@@ -56,6 +57,15 @@ export class FirebaseService {
         }
       }
     } )
+  }
+
+  clearCart(){
+    this.db.list('Trips').snapshotChanges().pipe(first()).subscribe((items: any) =>{
+      for(let i of items){
+          this.db.list('Trips').update(i.payload.key, {vacants:  i.payload.val().vacants + i.payload.val().addedToCart});
+          this.db.list('Trips').update(i.payload.key, {addedToCart: 0});
+        }
+      })
   }
 
   buyTrip(selectedTrip: Trip, newValue: any){
@@ -74,6 +84,16 @@ export class FirebaseService {
       for(let i of items){
         if(i.payload.val().id==selectedTrip.id){
           this.db.list('Trips').update(i.payload.key, {rating: newValue});
+        }
+      }
+    } )
+  }
+
+  userRate(selectedTripId: number, user: User, rate: number){
+    this.db.list('users/' + user.id + '/history').snapshotChanges().pipe(first()).subscribe((items:any) =>{
+      for(let i of items){
+        if(i.payload.key==selectedTripId){
+          this.db.list('users/' + user.id + '/history').update(i.payload.key, {rated: rate});
         }
       }
     } )
@@ -107,33 +127,37 @@ export class FirebaseService {
     } )
   }
 
-  addBought(trip: Trip) {
-    this.db.list('Bought').push ({
-          id: trip.id,
-          name: trip.name,
-          country: trip.country,
-          startDate: trip.startDate,
-          endDate: trip.endDate,
-          cost: trip.cost,
-          addedToCart: trip.addedToCart,
-          dateOfBought: trip.dateOfBought,
-          toBe: false,
-          ended: false,
-          during: false,
-          lessThan2Weeks: false
-    })
-  }
-
-  tripStatus(selectedTrip: Trip, end: boolean, willBe: boolean, inProgress: boolean){
-    this.db.list('Bought').snapshotChanges().pipe(first()).subscribe((items:any) =>{
+  tripStatus(user: User, selectedTrip: any, end: boolean, willBe: boolean, inProgress: boolean){
+    this.db.list('users/' + user.id + '/history').snapshotChanges().pipe(first()).subscribe((items:any) =>{
       for(let i of items){
-        if(i.payload.val().id==selectedTrip.id){
-          this.db.list('Bought').update(i.payload.key, {ended: end});
-          this.db.list('Bought').update(i.payload.key, {toBe: willBe});
-          this.db.list('Bought').update(i.payload.key, {during: inProgress});
+        if(i.payload.key==selectedTrip.boughtID){
+          this.db.list('users/' + user.id + '/history').update(i.payload.key, {ended: end});
+          this.db.list('users/' + user.id + '/history').update(i.payload.key, {toBe: willBe});
+          this.db.list('users/' + user.id + '/history').update(i.payload.key, {during: inProgress});
         }
       }
     } )
+  }
+
+  addBought(user: User, trip: Trip) {
+    let len = user.history.length;
+    user.history.push({
+      id: trip.id,
+      name: trip.name,
+      country: trip.country,
+      startDate: trip.startDate,
+      endDate: trip.endDate,
+      cost: trip.cost,
+      addedToCart: trip.addedToCart,
+      dateOfBought: trip.dateOfBought,
+      boughtID: len,
+      toBe: false,
+      ended: false,
+      during: false,
+      lessThan2Weeks: false,
+      rated: 0,
+    })
+    this.db.list('users').update(user.id, {history: user.history}) 
   }
 
   updateTrip(selectedTrip: Trip, name: any, country: any, dateOfStart: any, dateOfEnd: any, cost: any,

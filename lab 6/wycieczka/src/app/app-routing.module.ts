@@ -7,6 +7,7 @@ import { SignupComponent } from './authorization/signup/signup.component';
 import { AuthGuard } from './guard/auth.guard';
 import { GuestGuard } from './guard/guest.guard';
 import { ManagerGuard } from './guard/manager.guard';
+import { NonGuestGuard } from './guard/non-guest.guard';
 import { UserGuard } from './guard/user.guard';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ShoppingCartExtendedComponent } from './shopping-cart-extended/shopping-cart-extended.component';
@@ -21,7 +22,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard]},
   { path: 'trip-manage', component: TripManageComponent, canActivate: [ManagerGuard]},
   { path: 'shopping-cart', component: ShoppingCartExtendedComponent, canActivate: [UserGuard]},
-  { path: 'trips/:id', component: TripInfoComponent, canActivate: [UserGuard]},
+  { path: 'trips/:id', component: TripInfoComponent, canActivate: [NonGuestGuard]},
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: SignupComponent, canActivate: [GuestGuard]},
   { path: '**', component: HomePageComponent}

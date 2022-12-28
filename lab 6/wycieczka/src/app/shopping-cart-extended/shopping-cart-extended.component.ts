@@ -1,8 +1,12 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { first } from 'rxjs';
+import { AuthService, User } from '../services/auth.service';
 import { DataService } from '../services/data.service';
 import { FirebaseService } from '../services/firebase.service';
 import { Trip, ServicedataService } from '../services/servicedata.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-shopping-cart-extended',
@@ -19,11 +23,15 @@ export class ShoppingCartExtendedComponent implements OnInit {
   todaysDate!: any;
   date = new Date();
   filter: boolean[] = [false, false, false];
+  user = new User('guest', 'guest', 'guest', 'guest', []);
 
   constructor(public servicedata: ServicedataService,
     private dataService: DataService,
     private db: FirebaseService,
-    private datePipe: DatePipe) {
+    private fb: AngularFireDatabase,
+    private datePipe: DatePipe,
+    private userService: UserService,
+    private auth: AuthService) {
     }
 
   updateSelectedTrip(data: Trip) {
@@ -53,23 +61,30 @@ export class ShoppingCartExtendedComponent implements OnInit {
       this.total();
     })  
 
-    this.db.getBoughtTrips().subscribe(change => {
-      this.updateNotification(false);
-      if (this.boughtTrips.length < 1) {
-        for (let trip of change){
-          this.boughtTrips.push(trip as Trip);
-          this.statusCheck(trip);
-          this.isSoon(trip);
-        }
-      }else {
-        this.boughtTrips = [];
-        for (let trip of change){
-          this.boughtTrips.push(trip as Trip);
-          this.statusCheck(trip);
-          this.isSoon(trip);
-        }
+    this.auth.userData.subscribe(user => {
+      if (user != null){
+        this.userService.users.subscribe(data => {
+          this.user = data.filter((u: {id: string;}) => u.id == user.uid)[0];
+          
+          if (this.user.history.length < 1) {
+            for (let trip of this.user.history){
+              this.boughtTrips.push(trip);
+              this.statusCheck(trip);
+              this.isSoon(trip);
+            }
+          }else {
+            this.boughtTrips = [];
+            for (let trip of this.user.history){
+              this.boughtTrips.push(trip);
+              this.statusCheck(trip);
+              this.isSoon(trip);
+            }
+          }
+        })
+      } else {
+        this.user = new User('guest', 'guest', 'guest', 'guest', []);
       }
-    })  
+    })
 
     this.dataService.getCurrency().subscribe((data) => {
       this.currentCurrency = data as string;
@@ -99,8 +114,9 @@ export class ShoppingCartExtendedComponent implements OnInit {
       if( trip.addedToCart > 0){        
 
         this.db.buyTrip(trip, trip.bought + trip.addedToCart);
-        trip.dateOfBought = this.datePipe.transform(this.date, 'yyyy-MM-dd')
-        this.db.addBought(trip)
+        trip.dateOfBought = this.datePipe.transform(this.date, 'yyyy-MM-dd');
+
+        this.db.addBought(this.user, trip);
         trip.bought = trip.addedToCart;
         trip.addedToCart = 0;
       }
@@ -118,12 +134,11 @@ export class ShoppingCartExtendedComponent implements OnInit {
     const endDate = new Date(selectedTrip.endDate);
 
     if ( startDate <= this.date && endDate >= this.date){
-      this.db.tripStatus(selectedTrip, false, false, true);
-      // this.updateNotification(true);
+      this.db.tripStatus(this.user, selectedTrip, false, false, true);
     } else if (endDate < this.date) {
-      this.db.tripStatus(selectedTrip, true, false, false);
+      this.db.tripStatus(this.user, selectedTrip, true, false, false);
     } else if (startDate > this.date){
-      this.db.tripStatus(selectedTrip, false, true, false);
+      this.db.tripStatus(this.user, selectedTrip, false, true, false);
     }
   }
 

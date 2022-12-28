@@ -1,4 +1,5 @@
 <svg (click)="starClicked()" 
+    [class.disabled] = "user.type == 'guest' || user.type == 'manager' || !tripIsBought || tripRated"
     class="star-not-clicked" 
     (mouseenter)="onenter()" 
     (mouseleave)="newRate()"

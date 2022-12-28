@@ -10,10 +10,10 @@ export class RatingComponent implements OnInit {
 
   @Input() height!: number;
   @Input() trip!: Trip;
+  @Input() rating!: number;
   @Output() ratingSend: EventEmitter<number> = new EventEmitter();
   
   stars = [1, 2, 3, 4, 5];
-  rating = 0;
   hoverStars = 0;
 
   ngOnInit(): void {

@@ -5,3 +5,7 @@
 .star-not-clicked {
     fill: rgb(197, 197, 197);
 }
+
+.disabled {
+    pointer-events: none;
+}

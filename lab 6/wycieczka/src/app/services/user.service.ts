@@ -4,6 +4,7 @@ import { faTachographDigital } from '@fortawesome/free-solid-svg-icons';
 import { map, Observable } from 'rxjs';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { User } from './auth.service';
+import { Trip } from './servicedata.service';
 
 @Injectable({
   providedIn: 'root'

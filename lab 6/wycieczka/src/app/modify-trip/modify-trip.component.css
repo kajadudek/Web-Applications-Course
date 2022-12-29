@@ -1,43 +1,62 @@
 .form{
     background-color: rgba(237, 107, 0, 0.808);
-    width: 55vw;
+    width: 45vw;
+    min-width: 740px;
+    height: 500px;
     margin: 60px auto;
     justify-content: center;
-    padding: 80px;
-    padding-top: 20px;
+    padding: 30px;
+    padding-top: 10px;
 
     display: flex;
     flex-direction: column;
     border-radius: 10px;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.edited {
+    top: 520px;
+    animation: dropdown-modifier 1s ease-in-out;
+}
+
+.non-edited {
+    top: 0;
+    animation: dropup-modifier 1s ease-in-out;
 }
 
 select {
-    height: 30px;
-    margin-bottom: 20px;
+    height: 20px;
+    margin-bottom: 10px;
     background-color: rgb(246, 232, 224);
     border: 0;
     border-radius: 5px;
 }
 
 label {
-    font-size: 15px;
+    font-size: 12px;
     letter-spacing: 2px;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
     text-transform: uppercase;
     color: rgb(52, 49, 45);
 }
 
 input {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     background-color: rgb(246, 232, 224);
     border: 0;
-    min-height: 30px;
+    min-height: 20px;
     border-radius: 5px;
     margin-right: 5px;
 }
 
 p {
-    font-size: 25px;
+    font-size: 20px;
     text-align: center;
     text-transform: uppercase;
 }
@@ -50,7 +69,7 @@ p {
 }
 
 .submit-button {
-    width: 300px;
+    width: 200px;
     height: 35px;
     background-color: rgb(52, 49, 45);
     border: 0;
@@ -68,14 +87,249 @@ p {
     color: rgb(52, 49, 45);
 }
 
-@media screen and (max-width: 900px) {
-    .form {
-        padding: 10px;
-        width: 90vw;
-    }
 
+.trip-modifier {
+    position: relative;
+}
+
+.card-edited {
+    animation: dropdown-cardHeight 1s ease-in-out;
+    height: 1000px;
+}
+
+.card-non-edited {
+    animation: dropup-cardHeight 1s ease-in-out;
+    height: 520px;
+}
+
+.trip-cards {
+    width: 70vw;
+    margin: auto;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    flex-direction: column;
+    gap: 90px;
+}
+
+.trip-card {
+    width: 40vw;
+    min-width: 760px;
+    height: 520px;
+    margin: auto;
+    background-color: white;
+    box-shadow: 0px 0px 5px 3px rgb(238, 238, 238);
+    position: relative;
+    border-radius: 5px;
+    padding: 30px 0px;
+    display: flex;
+
+    overflow: hidden;
+}
+
+.delete-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: rgb(159, 159, 159);
+    cursor: pointer;
+}
+
+.edit-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: rgb(159, 159, 159);
+    cursor: pointer;
+}
+
+.delete-button:hover {  
+    color: rgb(105, 105, 105);
+}
+
+.edit-button:hover {
+    color:  rgb(105, 105, 105);
+}
+
+.max-price {
+    box-shadow: 0px 0px 7px 3px rgb(169, 208, 127);
+}
+
+.min-price {
+    box-shadow: 0px 0px 7px 3px rgb(231, 111, 77);
+}
+
+.left-side {
+    width: fit-content;
+    align-items: center;
+    margin: auto
+}
+
+.img-container {
+    width: 250px;
+    height: 250px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+
+    border-radius: 150px;
+    box-shadow: 0px 2px 8px 3px rgb(202, 202, 202);
+}
+
+.trip-img {
+    max-width: 170%;
+    min-height: 100%;
+}
+
+.trip-name {
+    position: absolute;
+    text-align: center;
+    font-size: calc(20px + 0.2vw);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.45);
+    width: 100%;
+    height: 40px;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: auto;
+}
+
+.dates {
+    display: flex;
+    color: gray;
+    justify-content: space-around;
+    margin: 5px 20px;
+}
+
+.dates > p {
+    font-size: 15px;
+}
+
+.country {
+    font-size: 17px;
+    margin: 0;
+    text-align: center;
+}
+
+.cost {
+    font-size: 35px;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+}
+
+.trip-info {
+    color: gray;
+    font-size: 14px;
+    padding: 0px 20px;
+    letter-spacing: 0.7px;
+    line-height: 25px;
+    text-transform: none;
+    text-justify: inter-word;
+}
+
+.vacants {
+    font-size: 18px;
+    width: 100px;
+    color: black;
+    margin: auto;
+}
+
+
+@keyframes dropdown-modifier {
+    from { top: 0; }
+    to { top: 520px; }
+}
+
+@keyframes dropup-modifier {
+    from { top: 520px; }
+    to { top: 0px; }
+}
+
+@keyframes dropup-cardHeight {
+    from { height: 1000px; }
+    to { height: 520px; }
+}
+
+@keyframes dropdown-cardHeight {
+    from { height: 520px; }
+    to { height: 1000px; }
+}
+
+@media screen and (max-width: 900px) {
     .cost-vac {
         display: flex;
         flex-direction: column;
     }
+
+    .trip-modifier {
+        flex-direction: column;
+        margin-left: 10px;
+        margin-top: -20px;
+    }
+}
+
+
+@media screen and (max-width: 800px) {
+    .form {
+        padding: 30px 10px;
+        height: 600px;
+        width: 80vw;
+        min-width: 290px;
+    }
+
+    .trip-card {
+        flex-direction: column;
+        width: 83vw;
+        min-width: 300px;
+        height: 700px;
+    }
+
+    @keyframes dropdown-modifier2 {
+        from { top: 0; }
+        to { top: 700px; }
+    }
+    
+    @keyframes dropup-cardHeight2 {
+        from { height: 1200px; }
+        to { height: 700px; }
+    }
+    
+    @keyframes dropdown-cardHeight2 {
+        from { height: 700px; }
+        to { height: 1200px; }
+    }
+
+    .edited {
+        top: 700px;
+        animation: dropdown-modifier2 1s ease-in-out;
+    }
+    
+    .card-edited {
+        animation: dropdown-cardHeight2 1s ease-in-out;
+        height: 1200px;
+    }
+    
+    .card-non-edited {
+        animation: dropup-cardHeight2 1s ease-in-out;
+        height: 700px;
+    }
+
+
 }

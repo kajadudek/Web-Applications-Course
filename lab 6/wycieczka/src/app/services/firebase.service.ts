@@ -13,20 +13,6 @@ export class FirebaseService {
   trips: Trip[] = [];
 
   constructor(private db: AngularFireDatabase) {
-
-    // this.db.list('Trips').valueChanges().subscribe(change => {
-    //   if (this.trips.length < 1) {
-    //     for (let trip of change){
-    //       this.trips.push(trip as Trip);
-    //     }
-    //   } else {
-    //     this.trips = [];
-    //     for (let trip of change){
-    //       this.trips.push(trip as Trip);
-    //     }
-    //   }
-    // })
-    // console.log(this.trips);
    }
 
    getTrips(): Observable<any>{

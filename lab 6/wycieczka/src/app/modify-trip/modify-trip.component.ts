@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DataService } from '../services/data.service';
+import {faTrashCan} from '@fortawesome/free-solid-svg-icons'
 import { FirebaseService } from '../services/firebase.service';
 import { Trip, ServicedataService } from '../services/servicedata.service';
 
@@ -17,16 +18,27 @@ export class ModifyTripComponent implements OnInit {
   tripName: any;
   tripNameError: boolean = false;
   trip: any;
+  faTrashCan = faTrashCan;
+  edited: any;
+  prevEdited: any;
 
   constructor(public servicedata: ServicedataService,
-    private dataService: DataService,
-    private dbf: AngularFireDatabase,
     private db: FirebaseService) {
   }
 
   ngOnInit(): void {
-    // this.trips = this.servicedata.trips;
-    // this.trips = this.db.getTrips();
+    this.db.getTrips().subscribe(change => {
+      if (this.trips == undefined ||this.trips.length < 1) {
+        for (let trip of change){
+          this.trips.push(trip as Trip);
+        }
+      }else {
+        this.trips = [];
+        for (let trip of change){
+          this.trips.push(trip as Trip);
+        }
+      }
+    })
 
     this.db.getTrips().subscribe(change => {
       if (this.trips == undefined || this.trips.length < 1) {
@@ -146,5 +158,20 @@ export class ModifyTripComponent implements OnInit {
         this.isDateValid = false;
       }
     }    
+  }
+
+  deleteTrip(trip: Trip) {
+    const id = this.trips.indexOf(trip,0);
+    this.db.deleteTrip(trip);
+    this.trips.splice(id,1);
+  }
+
+  changeEdited(trip: Trip){
+    this.prevEdited = this.edited;
+    if (this.edited == trip) {
+      this.edited = null;
+    } else {
+      this.edited = trip;
+    }
   }
 }

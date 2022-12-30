@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { HttpClient } from '@angular/common/http';
 import { Trip } from './servicedata.service';
-import { first, Observable } from 'rxjs';
+import { first, map, Observable } from 'rxjs';
 import { User } from './auth.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,8 @@ export class FirebaseService {
 
   trips: Trip[] = [];
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase,
+    private afAuth: AngularFireAuth) {
    }
 
    getTrips(): Observable<any>{
@@ -164,6 +167,13 @@ export class FirebaseService {
         }
       }
     } )
+  }
+
+  
+  //Persistence
+
+  actualPersistence(): Observable<any> {
+    return this.db.object('persistence').valueChanges();
   }
 }
 

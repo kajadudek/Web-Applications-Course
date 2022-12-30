@@ -1,7 +1,7 @@
 <div class="trip-cards" *ngIf="trips != []">
     <div class="trip-modifier" *ngFor="let trip of trips" [class.card-edited]="edited==trip" [class.card-non-edited]="prevEdited==trip">
         <form [formGroup]="addingTripForms" class="form" [class.edited]="edited==trip" [class.non-edited]="prevEdited==trip">
-            <p>Modify trip</p>
+            <p class="title">Modify trip</p>
             <label for="name"> Trip name: </label>
             <select
                 class="trip-name-select"

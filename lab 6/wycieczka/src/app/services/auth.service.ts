@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
-import { AngularFireAuth } from "@angular/fire/compat/auth";
-import { Observable } from 'rxjs';
+import { AngularFireAuth, PERSISTENCE } from "@angular/fire/compat/auth";
+import { first, map, Observable, take } from 'rxjs';
 import { UserService } from './user.service';
 import { FirebaseService } from './firebase.service';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import firebase from 'firebase/compat/app';
 
 export class User{
   public constructor(
@@ -20,11 +22,17 @@ export class User{
 })
 export class AuthService {
   userData!: Observable<any>;
+  currPersistence!: any;
 
   constructor(public afAuth: AngularFireAuth,
           private router: Router,
           private users: UserService,
-          private fb: FirebaseService){
+          private fb: FirebaseService,
+          private db: AngularFireDatabase){
+    this.fb.actualPersistence().subscribe(e => {
+      this.currPersistence = e;
+      this.changePersistence(this.currPersistence);
+    })
     this.userData = afAuth.authState;
   }
 
@@ -55,5 +63,17 @@ export class AuthService {
     }).catch(error => {
         alert('There was a problem. ' + error);
       })
+  }
+
+  // Persistence
+  changePersistence(persistence: string){
+    this.db.object('persistence').set(persistence);
+    if(persistence == 'local') {
+      this.afAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+    } else if (persistence == 'session') {
+      this.afAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
+    } else {
+      this.afAuth.setPersistence(firebase.auth.Auth.Persistence.NONE);
+    }
   }
 }

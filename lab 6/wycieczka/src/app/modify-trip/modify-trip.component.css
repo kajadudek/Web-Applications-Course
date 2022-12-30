@@ -114,7 +114,7 @@ p {
 }
 
 .trip-card {
-    width: 40vw;
+    width: 46vw;
     min-width: 760px;
     height: 520px;
     margin: auto;
@@ -282,6 +282,10 @@ p {
         flex-direction: column;
         margin-left: 10px;
         margin-top: -20px;
+    }
+
+    .title {
+        opacity: 0;
     }
 }
 

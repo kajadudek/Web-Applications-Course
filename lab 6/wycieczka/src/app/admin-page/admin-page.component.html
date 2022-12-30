@@ -4,7 +4,7 @@
 
         <div class="user-info">
             <p>{{user.name}}</p>
-            <p class="email">{{user.email}}</p>
+            <p class="email">{{user.email}} - {{user.type}}</p>
         </div>
 
         <div class="buttons">
@@ -28,4 +28,16 @@
         </div>
     </div>
 </div>
+
+<div class="persistence-container">
+    <h3>PERSISTENCE</h3>
+    <p class="actual-persistence"><b>Actual:</b> {{actualPersistence}}</p>
+    <p class="persistence-options-info">Change to:</p>
+    <div class="persistence-options">
+        <button (click)="changePersistence('local')">LOCAL</button>
+        <button (click)="changePersistence('session')">SESSION</button>
+        <button (click)="changePersistence('none')">NONE</button>
+    </div>
+</div>
+
 <app-trip-manage></app-trip-manage>

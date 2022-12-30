@@ -1,7 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AuthService, User } from '../services/auth.service';
 import { DataService } from '../services/data.service';
 import { FirebaseService } from '../services/firebase.service';
 import { ServicedataService, Trip } from '../services/servicedata.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -12,13 +15,16 @@ export class ShoppingCartComponent implements OnInit {
   tripsInCart: Trip[] = [];
   selectedTrip!: any;
   totalCost = 0;
+  user = new User('guest', 'guest', 'guest', 'guest', [], []);
 
   @Input() currentCurrency!: string;
   @Input() currencyConvert!: number;
 
   constructor(public servicedata: ServicedataService,
     private service: DataService,
-    private db: FirebaseService) {
+    private db: FirebaseService,
+    private userService: UserService,
+    private auth: AuthService) {
   }
 
   updateTotal(data: number) {
@@ -26,18 +32,26 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.db.getTrips().subscribe(change => {
-      if (this.tripsInCart == undefined || this.tripsInCart.length < 1) {
-        for (let trip of change){
-          this.tripsInCart.push(trip as Trip);
-        }
-      }else {
-        this.tripsInCart = [];
-        for (let trip of change){
-          this.tripsInCart.push(trip as Trip);
-        }
+    this.auth.userData.subscribe(user => {
+      if (user != null){
+        this.userService.users.subscribe(data => {
+          this.user = data.filter((u: {id: string;}) => u.id == user.uid)[0];
+
+          if (this.user.cart.length < 1) {
+            for (let trip of this.user.cart){
+              this.tripsInCart.push(trip as Trip);
+            }
+          }else {
+            this.tripsInCart = [];
+            for (let trip of this.user.cart){
+              this.tripsInCart.push(trip as Trip);
+            }
+          }
+          this.total();
+        })
+      } else {
+        this.user = new User('guest', 'guest', 'guest', 'guest', [], []);
       }
-      this.total();
     })
   }
 
@@ -47,7 +61,8 @@ export class ShoppingCartComponent implements OnInit {
 
   deleteProductFromCart(selectedTrip: Trip){
     // this.deleteProduct.emit(selectedTrip);
-    this.db.removeFromCart(selectedTrip, 1)
+    // this.db.removeFromCart(selectedTrip, 1)
+    this.db.removeFromUserCart(this.user, selectedTrip, 0);
     this.total();
     this.updateTotal(this.totalCost);
   }

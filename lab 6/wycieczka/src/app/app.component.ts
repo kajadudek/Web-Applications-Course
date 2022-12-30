@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
   deletedTrips = 0;
   displayCartFlag = false;
   mobileMenuOpened = false;
-  user = new User('guest', 'guest', 'guest', 'guest', []);
+  user = new User('guest', 'guest', 'guest', 'guest', [], []);
 
   constructor(private dataService: DataService,
     private db: FirebaseService,
@@ -61,28 +61,17 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void { 
-    this.db.getTrips().subscribe(change => {
-      if (this.trips == undefined ||this.trips.length < 1) {
-        for (let trip of change){
-          this.trips.push(trip as Trip);
-        }
-      }else {
-        this.trips = [];
-        for (let trip of change){
-          this.trips.push(trip as Trip);
-        }
-      }
-      this.howManyInCart();
-    })
-
     this.auth.userData.subscribe(user => {
       if (user != null){
         this.userService.users.subscribe(data => {
           this.user = data.filter((u: {id: string;}) => u.id == user.uid)[0];
+
+          this.getTripsInCart();
         })
       } else {
-        this.user = new User('guest', 'guest', 'guest', 'guest', []);
+        this.user = new User('guest', 'guest', 'guest', 'guest', [], []);
       }
+      this.howManyTrips = 0;
     })
 
     this.dataService.getTrip().subscribe(data => {
@@ -96,6 +85,7 @@ export class AppComponent implements OnInit {
 
     this.total();
     this.updateTotal(this.totalCost);
+    this.howManyInCart();
   }
 
   logOut() {
@@ -110,6 +100,24 @@ export class AppComponent implements OnInit {
     this.displayCartFlag = false;
   }
 
+  getTripsInCart(){
+    this.db.getUserCart(this.user).subscribe(change => {
+      this.howManyTrips = 0;
+      if (this.trips.length < 1) {
+        for (let trip of change){
+          this.trips.push(trip as Trip);
+          this.howManyTrips += trip.addedToCart;
+        }
+      }else {
+        this.trips = [];
+        for (let trip of change){
+          this.trips.push(trip as Trip);
+          this.howManyTrips += trip.addedToCart;
+        }
+      }
+      this.total();
+    })  
+  }
   updateFromCart(selectedTrip: Trip) {
     selectedTrip.vacants += selectedTrip.addedToCart;
     selectedTrip.addedToCart = 0;

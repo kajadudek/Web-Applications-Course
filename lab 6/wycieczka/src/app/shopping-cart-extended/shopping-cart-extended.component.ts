@@ -23,7 +23,7 @@ export class ShoppingCartExtendedComponent implements OnInit {
   todaysDate!: any;
   date = new Date();
   filter: boolean[] = [false, false, false];
-  user = new User('guest', 'guest', 'guest', 'guest', []);
+  user = new User('guest', 'guest', 'guest', 'guest', [], []);
 
   constructor(public servicedata: ServicedataService,
     private dataService: DataService,
@@ -47,24 +47,12 @@ export class ShoppingCartExtendedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.db.getTrips().subscribe(change => {
-      if (this.tripsInCart.length < 1) {
-        for (let trip of change){
-          this.tripsInCart.push(trip as Trip);
-        }
-      }else {
-        this.tripsInCart = [];
-        for (let trip of change){
-          this.tripsInCart.push(trip as Trip);
-        }
-      }
-      this.total();
-    })  
-
     this.auth.userData.subscribe(user => {
       if (user != null){
         this.userService.users.subscribe(data => {
           this.user = data.filter((u: {id: string;}) => u.id == user.uid)[0];
+
+          this.getTripsInCart();
           
           if (this.user.history.length < 1) {
             for (let trip of this.user.history){
@@ -82,7 +70,7 @@ export class ShoppingCartExtendedComponent implements OnInit {
           }
         })
       } else {
-        this.user = new User('guest', 'guest', 'guest', 'guest', []);
+        this.user = new User('guest', 'guest', 'guest', 'guest', [], []);
       }
     })
 
@@ -109,11 +97,27 @@ export class ShoppingCartExtendedComponent implements OnInit {
     return this.totalCost
   }
 
+  getTripsInCart(){
+    this.db.getUserCart(this.user).subscribe(change => {
+      if (this.tripsInCart.length < 1) {
+        for (let trip of change){
+          this.tripsInCart.push(trip as Trip);
+        }
+      }else {
+        this.tripsInCart = [];
+        for (let trip of change){
+          this.tripsInCart.push(trip as Trip);
+        }
+      }
+      this.total();
+    }) 
+  }
+
   buyTrips() {
     for (let trip of this.tripsInCart){
       if( trip.addedToCart > 0){        
 
-        this.db.buyTrip(trip, trip.bought + trip.addedToCart);
+        this.db.buyTrip(trip, trip.addedToCart);
         trip.dateOfBought = this.datePipe.transform(this.date, 'yyyy-MM-dd');
 
         this.db.addBought(this.user, trip);
@@ -125,7 +129,8 @@ export class ShoppingCartExtendedComponent implements OnInit {
   }
 
   deleteTripFromCart(selectedTrip: Trip){
-    this.db.removeFromCart(selectedTrip, selectedTrip.addedToCart);
+    // this.db.removeFromCart(selectedTrip, selectedTrip.addedToCart);
+    this.db.removeFromUserCart(this.user, selectedTrip, 0);
     this.total();
   }
 

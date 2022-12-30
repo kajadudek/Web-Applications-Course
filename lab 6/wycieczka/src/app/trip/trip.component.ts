@@ -20,11 +20,12 @@ export class TripComponent implements OnInit {
   data!: any;
   public trips: Trip[] = [];
   cart: Trip[] = [];
-  howManyTrips = 0;
+  tripsInCart: Trip[] = [];
+  howManyTrips: any;
   currentCurrency = "PLN";
   currencyConvert = 1;
   starHeight = 27;
-  user = new User('guest', 'guest', 'guest', 'guest', []);
+  user = new User('guest', 'guest', 'guest', 'guest', [], []);
 
   faTrashCan = faTrashCan;
   displayCartFlag = false;
@@ -62,11 +63,19 @@ export class TripComponent implements OnInit {
       if (user != null){
         this.userService.users.subscribe((data: any[]) => {
           this.user = data.filter((u: {id: string;}) => u.id == user.uid)[0];
+
+          this.db.getUserCart(this.user).subscribe(change => {
+              this.tripsInCart = [];
+              for (let trip of change){
+                this.tripsInCart.push(trip as Trip);
+            }
+          }) 
         })
       } else {
-        this.user = new User('guest', 'guest', 'guest', 'guest', []);
+        this.user = new User('guest', 'guest', 'guest', 'guest', [], []);
       }
     })
+
 
     this.dataService.getCurrency().subscribe((data) => {
       this.currentCurrency = data as string;
@@ -88,11 +97,17 @@ export class TripComponent implements OnInit {
   addTripToCart(selectedTrip: Trip) {
     selectedTrip.addedToCart += 1;
     this.db.addToCart(selectedTrip, selectedTrip.addedToCart);
+    this.db.addToUserCart(this.user, selectedTrip);
+    this.howManyTrips += 1;
+    // this.updateTripsInCart(this.howManyTrips);
   }
 
   rmvTripFromCart(selectedTrip: Trip) {
     if(selectedTrip.addedToCart>0){
-      this.db.removeFromCart(selectedTrip, 1);
+      // this.db.removeFromCart(selectedTrip, 1);
+      this.db.removeFromUserCart(this.user, selectedTrip, -1);
+      this.howManyTrips -=1 ;
+      // this.updateTripsInCart(this.howManyTrips);
     }
   }
 

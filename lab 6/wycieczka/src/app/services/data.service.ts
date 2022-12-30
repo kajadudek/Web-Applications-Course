@@ -9,7 +9,7 @@ import { Trip } from './servicedata.service';
 export class DataService {
   private currencyObs = new Subject();
   private currencyConvert = new Subject();
-  private totalTripsObs = new Subject();
+  private tripsInCart = new Subject();
   private countryFilter = new Subject();
   private trips = new Subject();
   private totalCost = new Subject();
@@ -33,10 +33,10 @@ export class DataService {
     }
 
     getTripsInCart() {
-      return this.totalTripsObs;
+      return this.tripsInCart;
     }
     updateTripsInCart(data: number){
-      this.totalTripsObs.next(data);
+      this.tripsInCart.next(data);
     }
 
     getCountryFilter() {

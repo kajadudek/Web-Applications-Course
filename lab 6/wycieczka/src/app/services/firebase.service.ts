@@ -37,31 +37,11 @@ export class FirebaseService {
       })
     }
 
-  removeFromCart(selectedTrip: Trip, newValue: any){
-    this.db.list('Trips').snapshotChanges().pipe(first()).subscribe((items:any) =>{
-      for(let i of items){
-        if(i.payload.val().id==selectedTrip.id) {
-          this.db.list('Trips').update(i.payload.key, {vacants: selectedTrip.vacants + newValue});
-          this.db.list('Trips').update(i.payload.key, {addedToCart: selectedTrip.addedToCart - newValue});
-        }
-      }
-    } )
-  }
-
-  clearCart(){
-    this.db.list('Trips').snapshotChanges().pipe(first()).subscribe((items: any) =>{
-      for(let i of items){
-          this.db.list('Trips').update(i.payload.key, {vacants:  i.payload.val().vacants + i.payload.val().addedToCart});
-          this.db.list('Trips').update(i.payload.key, {addedToCart: 0});
-        }
-      })
-  }
-
   buyTrip(selectedTrip: Trip, newValue: any){
     this.db.list('Trips').snapshotChanges().pipe(first()).subscribe((items:any) =>{
       for(let i of items){
         if(i.payload.val().id==selectedTrip.id){
-          this.db.list('Trips').update(i.payload.key, {addedToCart: 0});
+          this.db.list('Trips').update(i.payload.key, {addedToCart: i.payload.val().addedToCart-newValue});
           this.db.list('Trips').update(i.payload.key, {bought: newValue});
         }
       }
@@ -147,6 +127,69 @@ export class FirebaseService {
       rated: 0,
     })
     this.db.list('users').update(user.id, {history: user.history}) 
+
+    this.db.list('users/' + user.id + "/cart").snapshotChanges().pipe(first()).subscribe((items:any) =>{
+      for(let i of items){
+        if(i.payload.val().id==trip.id){
+          this.db.list('users/' + user.id + "/cart").update(i.payload.key, {addedToCart: 0});
+        }
+      }
+    })
+  }
+
+  addToUserCart(user: User, trip: Trip) {
+    let flag = false;
+    this.db.list('users/' + user.id + "/cart").snapshotChanges().pipe(first()).subscribe((items:any) =>{
+      for(let i of items){
+        if(i.payload.val().id==trip.id){
+          this.db.list('users/' + user.id + "/cart").update(i.payload.key, {addedToCart: i.payload.val().addedToCart + 1});
+          flag = true;
+          break;
+        }
+      }
+
+      if (!flag) {
+        user.cart.push({
+        id: trip.id,
+        name: trip.name,
+        country: trip.country,
+        startDate: trip.startDate,
+        endDate: trip.endDate,
+        cost: trip.cost,
+        addedToCart: 1,
+        }) 
+        this.db.list('users').update(user.id, {cart: user.cart}) 
+      }
+    })
+  }
+
+  removeFromUserCart(user: User, trip: Trip, value: number){
+    let added = 1;
+    this.db.list('users/' + user.id + "/cart").snapshotChanges().pipe(first()).subscribe((items:any) =>{
+      for(let i of items){
+        if(i.payload.val().id==trip.id){
+          if( value == -1){
+            this.db.list('users/' + user.id + "/cart").update(i.payload.key, {addedToCart: i.payload.val().addedToCart + value});
+          } else {
+            added = i.payload.val().addedToCart;
+            this.db.list('users/' + user.id + "/cart").update(i.payload.key, {addedToCart: 0});
+          }
+        }
+      }
+    })
+
+    this.db.list('Trips').snapshotChanges().pipe(first()).subscribe((items:any) =>{
+      for(let i of items){
+        if(i.payload.val().id==trip.id) {
+          this.db.list('Trips').update(i.payload.key, {vacants: i.payload.val().vacants + added});
+          this.db.list('Trips').update(i.payload.key, {addedToCart: i.payload.val().addedToCart - added});
+        }
+      }
+    } )
+  }
+
+  getUserCart(user: User): Observable<any>{
+    return this.db.list('users/' + user.id +'/cart').valueChanges();
   }
 
   updateTrip(selectedTrip: Trip, name: any, country: any, dateOfStart: any, dateOfEnd: any, cost: any,

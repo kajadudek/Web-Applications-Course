@@ -21,7 +21,11 @@ export class UserService {
           userInfo.history = [];
         }
 
-        let newUser = new User(data.payload.key, userInfo.name, userInfo.email, userInfo.type, userInfo.history);
+        if (!userInfo.cart){
+          userInfo.cart = [];
+        }
+
+        let newUser = new User(data.payload.key, userInfo.name, userInfo.email, userInfo.type, userInfo.history, userInfo.cart);
         return newUser;
       })
     }))

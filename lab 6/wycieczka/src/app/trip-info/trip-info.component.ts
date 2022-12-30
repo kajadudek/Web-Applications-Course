@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { faTachographDigital } from '@fortawesome/free-solid-svg-icons';
 import { first, Subscription } from 'rxjs';
 import { AuthService, User } from '../services/auth.service';
 import { DataService } from '../services/data.service';
@@ -39,7 +40,7 @@ export class TripInfoComponent implements OnInit {
   currImg = 0;
   currentCurrency = "PLN";
   currencyConvert = 1;
-  user = new User('guest', 'guest', 'guest', 'guest', []);
+  user = new User('guest', 'guest', 'guest', 'guest', [], []);
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -66,7 +67,7 @@ export class TripInfoComponent implements OnInit {
           this.user = data.filter((u: {id: string;}) => u.id == user.uid)[0];
         })
       } else {
-        this.user = new User('guest', 'guest', 'guest', 'guest', []);
+        this.user = new User('guest', 'guest', 'guest', 'guest', [], []);
       }
     })
 
@@ -95,11 +96,12 @@ export class TripInfoComponent implements OnInit {
   addTripToCart(selectedTrip: Trip) {
     selectedTrip.addedToCart += 1;
     this.db.addToCart(selectedTrip, selectedTrip.addedToCart);
+    this.db.addToUserCart(this.user, selectedTrip);
   }
 
   rmvTripFromCart(selectedTrip: Trip) {
     if(selectedTrip.addedToCart>0){
-      this.db.removeFromCart(selectedTrip, 1);
+      this.db.removeFromUserCart(this.user, selectedTrip, -1)
     }
   }
 

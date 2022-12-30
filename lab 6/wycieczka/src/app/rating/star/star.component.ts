@@ -13,7 +13,7 @@ import { UserService } from "src/app/services/user.service";
 
 export class StarComponent implements OnInit {
   starState = "star-not-clicked";
-  user = new User('guest', 'guest', 'guest', 'guest', []);
+  user = new User('guest', 'guest', 'guest', 'guest', [], []);
   tripIsBought = false;
   tripRated = false;
   tripId: any;
@@ -52,7 +52,7 @@ export class StarComponent implements OnInit {
           }
         })
       } else {
-        this.user = new User('guest', 'guest', 'guest', 'guest', []);
+        this.user = new User('guest', 'guest', 'guest', 'guest', [], []);
       }
     })
   }

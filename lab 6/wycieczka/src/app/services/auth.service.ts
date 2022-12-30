@@ -14,6 +14,7 @@ export class User{
     public email: string,
     public type: string,
     public history: Array<{id: number; name: string; country: string; startDate: string; endDate: string; cost: number; addedToCart: number; dateOfBought: any; boughtID: number; toBe: boolean; ended: boolean; during: boolean; lessThan2Weeks: boolean; rated: number;}>,
+    public cart: Array<{id: number; name: string; country: string; startDate: string; endDate: string; cost: number; addedToCart: number;}>,
   ){}
 }
 
@@ -40,7 +41,7 @@ export class AuthService {
     this.afAuth.createUserWithEmailAndPassword(email, password)
       .then(res => {
         this.router.navigate(['login']);
-        let user = new User(res.user!.uid, nick, email, "user", []);
+        let user = new User(res.user!.uid, nick, email, "user", [], []);
         this.users.addNewUser(user);
       })
       .catch(error => {
@@ -59,7 +60,6 @@ export class AuthService {
 
   logOut(){
     this.afAuth.signOut().then(() => {
-      this.fb.clearCart();
     }).catch(error => {
         alert('There was a problem. ' + error);
       })

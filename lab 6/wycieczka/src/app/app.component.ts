@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
   howManyTrips = 0;
   deletedTrips = 0;
   displayCartFlag = false;
+  mobileMenuOpened = false;
   user = new User('guest', 'guest', 'guest', 'guest', []);
 
   constructor(private dataService: DataService,
@@ -156,5 +157,12 @@ export class AppComponent implements OnInit {
       }
     }
     return this.totalCost
+  }
+
+  openMenu(){
+    this.mobileMenuOpened = true;
+  }
+  closeMenu() {
+    this.mobileMenuOpened = false;
   }
 }

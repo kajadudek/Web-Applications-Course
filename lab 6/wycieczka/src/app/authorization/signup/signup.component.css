@@ -89,3 +89,14 @@ input {
 .footer > a:hover {
     color: rgb(74, 74, 74);
 }
+
+@media screen and (max-width: 650px) {
+    .signup-form {
+        width: 90vw;
+    }
+
+    input,
+    .submit-button {
+        width: 87vw;
+    }
+}

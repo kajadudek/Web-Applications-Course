@@ -157,6 +157,12 @@
     color: red;
 }
 
+.buttons {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+}
+
 button {
     width: 30px;
     height: 30px;
@@ -207,6 +213,34 @@ button:hover {
 @media screen and (max-width: 850px) {
     .trip-cards{
         grid-template-columns: 1fr;
+    }
+
+    
+}
+
+@media screen and (max-width: 450px) {
+    .trip-card {
+        min-width: 280px;
+    }
+
+    .img-container {
+        width: 200px;
+        height: 200px;
+    }
+
+    .buying-features{
+        flex-direction: column;
+        margin-bottom: 5px;
+    }
+
+    .buttons {
+        margin-left: 5px;
+    }
+    
+    .vacants {
+        font-size: 15px;
+        text-align: center;
+        margin-top: 0;
     }
 }
 

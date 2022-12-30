@@ -334,6 +334,22 @@ p {
         animation: dropup-cardHeight2 1s ease-in-out;
         height: 700px;
     }
+}
 
+@media screen and (max-width: 450px) {
+    .trip-card {
+        min-width: 280px;
+    }
 
+    .img-container {
+        width: 200px;
+        height: 200px;
+    }
+
+    .form {
+        padding: 30px 5px;
+        height: 600px;
+        width: 80vw;
+        min-width: 270px;
+    }
 }

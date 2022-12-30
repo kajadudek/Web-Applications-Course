@@ -171,4 +171,9 @@ form > input {
         height: 70vw;
     }
 
+    .trips {
+        width: 72vw;
+        font-size: 17px;
+    }
+
 }

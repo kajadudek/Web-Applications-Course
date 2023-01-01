@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'trip-manage', component: TripManageComponent, canActivate: [ManagerGuard]},
   { path: 'shopping-cart', component: ShoppingCartExtendedComponent, canActivate: [UserGuard]},
   { path: 'trips/:id', component: TripInfoComponent, canActivate: [NonGuestGuard]},
-  { path: 'login', component: LoginComponent},
+  { path: 'login', component: LoginComponent, canActivate: [GuestGuard]},
   { path: 'signup', component: SignupComponent, canActivate: [GuestGuard]},
   { path: '**', component: HomePageComponent}
 ];

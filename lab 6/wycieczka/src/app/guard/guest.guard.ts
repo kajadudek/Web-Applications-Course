@@ -17,11 +17,10 @@ export class GuestGuard implements CanActivate {
     
     return this.auth.userData.pipe(
       map(state => {
-        console.log(state);
         if (state == null) {
           return true;
         }
-        this.router.navigate(['/login']);
+        this.router.navigate(['/home']);
         return false;
       })
     );

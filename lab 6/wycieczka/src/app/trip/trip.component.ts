@@ -99,15 +99,17 @@ export class TripComponent implements OnInit {
     this.db.addToCart(selectedTrip, selectedTrip.addedToCart);
     this.db.addToUserCart(this.user, selectedTrip);
     this.howManyTrips += 1;
-    // this.updateTripsInCart(this.howManyTrips);
   }
 
   rmvTripFromCart(selectedTrip: Trip) {
-    if(selectedTrip.addedToCart>0){
-      // this.db.removeFromCart(selectedTrip, 1);
-      this.db.removeFromUserCart(this.user, selectedTrip, -1);
-      this.howManyTrips -=1 ;
-      // this.updateTripsInCart(this.howManyTrips);
+    for (let trip of this.tripsInCart) {
+      if (trip.id == selectedTrip.id){
+        if (trip.addedToCart > 0){
+          this.db.removeFromUserCart(this.user, selectedTrip, -1);
+          this.howManyTrips -=1 ;
+          break;
+        }
+      }
     }
   }
 

@@ -127,8 +127,9 @@ a {
 }
 
 .username {
-    font-size: 13px;
-    width: fit-content;
+    font-size: 12px;
+    width: max-content;
+    /* width: fit-content; */
     margin-left: 0;
 }
 

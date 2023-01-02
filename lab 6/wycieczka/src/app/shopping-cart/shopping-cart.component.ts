@@ -27,9 +27,6 @@ export class ShoppingCartComponent implements OnInit {
     private auth: AuthService) {
   }
 
-  updateTotal(data: number) {
-    this.service.updateTotal(data);
-  }
 
   ngOnInit(): void {
     this.auth.userData.subscribe(user => {
@@ -60,11 +57,8 @@ export class ShoppingCartComponent implements OnInit {
   @Output() deleteProduct: EventEmitter<Trip> = new EventEmitter();
 
   deleteProductFromCart(selectedTrip: Trip){
-    // this.deleteProduct.emit(selectedTrip);
-    // this.db.removeFromCart(selectedTrip, 1)
     this.db.removeFromUserCart(this.user, selectedTrip, 0);
     this.total();
-    this.updateTotal(this.totalCost);
   }
 
   total(){

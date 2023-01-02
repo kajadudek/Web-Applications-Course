@@ -34,14 +34,6 @@ export class ShoppingCartExtendedComponent implements OnInit {
     private auth: AuthService) {
     }
 
-  updateSelectedTrip(data: Trip) {
-    this.dataService.updateTrip(data);
-  }
-
-  updateTripsInCart(data: number) {
-    this.dataService.updateTripsInCart(data);
-  }
-
   updateNotification(data: boolean) {
     this.dataService.updateNotification(data);
   }
@@ -80,10 +72,6 @@ export class ShoppingCartExtendedComponent implements OnInit {
 
     this.dataService.getCurrencyConv().subscribe((data) => {
       this.currencyConvert = data as number;
-    })
-
-    this.dataService.getTotal().subscribe((data) => {
-      this.totalCost = data as number;
     })
   }
 

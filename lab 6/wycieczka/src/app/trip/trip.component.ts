@@ -37,10 +37,6 @@ export class TripComponent implements OnInit {
     private auth: AuthService,
     private userService: UserService) {}
 
-  updateTripsInCart(data: number) {
-    this.dataService.updateTripsInCart(data);
-  }
-
   updateCountryFilter(data: string[]) {
     this.dataService.updateCountryFilter(data);
   }
@@ -83,10 +79,6 @@ export class TripComponent implements OnInit {
 
     this.dataService.getCurrencyConv().subscribe((data) => {
       this.currencyConvert = data as number;
-    })
-
-    this.dataService.getTripsInCart().subscribe(data => {
-      this.howManyTrips = data as number;
     })
 
     this.dataService.getCountryFilter().subscribe(data => {

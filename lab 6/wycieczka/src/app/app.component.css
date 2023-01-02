@@ -129,7 +129,7 @@ a {
 .username {
     font-size: 12px;
     width: max-content;
-    /* width: fit-content; */
+    min-width: 170px;
     margin-left: 0;
 }
 

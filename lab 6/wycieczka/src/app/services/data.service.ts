@@ -32,13 +32,6 @@ export class DataService {
       this.currencyConvert.next(data);
     }
 
-    getTripsInCart() {
-      return this.tripsInCart;
-    }
-    updateTripsInCart(data: number){
-      this.tripsInCart.next(data);
-    }
-
     getCountryFilter() {
       return this.countryFilter;
     }
@@ -46,31 +39,10 @@ export class DataService {
       this.countryFilter.next(data);
     }
 
-    getTrip() {
-      return this.trips;
-    }
-    updateTrip(data: Trip){
-      this.trips.next(data);
-    }
-
-    getTotal() {
-      return this.totalCost;
-    }
-    updateTotal(data: number) {
-      this.totalCost.next(data);
-    }
-
     getNotification() {
       return this.notificationObs;
     }
     updateNotification(data: boolean) {
       this.notificationObs.next(data);
-    }
-
-    updateCart(cart: Trip[]){
-      this.cart = cart;
-    }
-    getCart(): Trip[]{
-      return this.cart;
     }
 }

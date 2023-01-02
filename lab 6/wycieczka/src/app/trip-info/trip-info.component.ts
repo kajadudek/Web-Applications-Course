@@ -106,8 +106,9 @@ export class TripInfoComponent implements OnInit {
   }
 
   getRating(rating: number, trip: Trip){
-    trip.rating = rating
-    this.db.rateTrip(trip, rating);
+    let newRate = Math.round((trip.rating + rating)/trip.bought);
+    trip.rating = newRate;
+    this.db.rateTrip(trip, trip.rating);
   }
 
   nextImg() {

@@ -48,18 +48,6 @@ export class AppComponent implements OnInit {
     this.dataService.updateCurrencyConv(data);
   }
 
-  updateTripsInCart(data: number) {
-    this.dataService.updateTripsInCart(data);
-  }
-  
-  updateTrip(data: Trip) {
-    this.dataService.updateTrip(data);
-  }
-
-  updateTotal(data: number) {
-    this.dataService.updateTotal(data);
-  }
-
   ngOnInit(): void { 
     this.auth.userData.subscribe(user => {
       if (user != null){
@@ -74,17 +62,11 @@ export class AppComponent implements OnInit {
       this.howManyTrips = 0;
     })
 
-    this.dataService.getTrip().subscribe(data => {
-      this.tripToRmv = data as Trip;
-      this.updateFromCart(this.tripToRmv);
-    })
-
     this.dataService.getNotification().subscribe(data => {
       this.notification = data as boolean;
     })
 
     this.total();
-    this.updateTotal(this.totalCost);
     this.howManyInCart();
   }
 
@@ -117,12 +99,6 @@ export class AppComponent implements OnInit {
       }
       this.total();
     })  
-  }
-  updateFromCart(selectedTrip: Trip) {
-    selectedTrip.vacants += selectedTrip.addedToCart;
-    selectedTrip.addedToCart = 0;
-    this.total();
-    this.updateTotal(this.totalCost);
   }
 
   changeCurrency(toCurrency: string){
